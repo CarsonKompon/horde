@@ -61,6 +61,15 @@
           "OnMapLoaded": null,
           "OnMapUnloaded": null,
           "UseMapFromLaunch": false
+        },
+        {
+          "__type": "MapManager",
+          "Map": {
+            "_type": "component",
+            "go": "a09d6359-41eb-4151-87bc-8ef6f217bd5d",
+            "component_type": "MapInstance"
+          },
+          "WeaponSpawnerPrefab": "3173fbcb-0e43-41bd-9bf5-f412f25fe696"
         }
       ],
       "Children": []
@@ -964,6 +973,22 @@
           "Id": "12533334-0628-400b-839d-947c4e639a29",
           "Name": "Aim Object",
           "Enabled": true
+        }
+      ]
+    },
+    {
+      "Id": "3173fbcb-0e43-41bd-9bf5-f412f25fe696",
+      "Name": "Weapon Spawner",
+      "Position": "-39.211,-6.488983,114.2827",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "PrefabSpawner",
+          "MaxRespawnTime": 10,
+          "MinRespawnTime": 5,
+          "Prefabs": [
+            "prefabs/pickups/pickup_usp.prefab"
+          ]
         }
       ]
     }

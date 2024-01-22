@@ -1,0 +1,22 @@
+{
+  "RootObject": {
+    "Id": "3173fbcb-0e43-41bd-9bf5-f412f25fe696",
+    "Name": "Weapon Spawner",
+    "Position": "-39.211,-6.488983,114.2827",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "PrefabSpawner",
+        "MaxRespawnTime": 10,
+        "MinRespawnTime": 5,
+        "Prefabs": [
+          "prefabs/pickups/pickup_usp.prefab"
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

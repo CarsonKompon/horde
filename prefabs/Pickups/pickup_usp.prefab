@@ -1,0 +1,60 @@
+{
+  "RootObject": {
+    "Id": "92d2ea65-5de3-42d7-9912-0f38401a7cc7",
+    "Name": "USP Pickup",
+    "Tags": "trigger",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "SphereCollider",
+        "Center": "0,0,9.700003",
+        "IsTrigger": true,
+        "Radius": 10,
+        "Static": false,
+        "Surface": null
+      },
+      {
+        "__type": "Pickup",
+        "Body": "e0215eaf-6a3b-43ef-b608-d15818c4c6a3"
+      }
+    ],
+    "Children": [
+      {
+        "Id": "e0215eaf-6a3b-43ef-b608-d15818c4c6a3",
+        "Name": "Body",
+        "Position": "0,0,4.5",
+        "Scale": "2,2,2",
+        "Tags": "trigger",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 9493,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          },
+          {
+            "__type": "HighlightOutline",
+            "Color": "1,1,1,1",
+            "InsideColor": "0,0,0,0",
+            "InsideObscuredColor": "0,0,0,0",
+            "Material": null,
+            "ObscuredColor": "0,0,0,0.4",
+            "Width": 0.25
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "facepunch.w_usp"
+  ]
+}
