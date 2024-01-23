@@ -1,30 +1,33 @@
 {
   "RootObject": {
-    "Id": "76f041fd-c2da-4480-9d03-3c082bb7ab2c",
+    "Id": "1d41881f-c7b2-4d4b-bd36-c0bfaf38c7a1",
     "Name": "weapon_revolver",
     "Enabled": true,
     "Components": [
       {
         "__type": "Weapon",
-        "Body": "b94ab475-e41d-412b-aa91-a4cbde22b5fa",
+        "Body": "9bed0c04-c654-402a-807d-7a512de0bd2e",
         "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
-        "BulletSpawnPos": "6286dbd0-e809-481b-8c84-9128beed2608",
+        "BulletSpawnPos": "c5754e5e-d412-40ee-a48e-bc4e56c12579",
+        "BulletsPerShot": 1,
         "ClipSize": 16,
         "Damage": 30,
         "FireRate": 0.9,
         "FireSound": "sounds/weapons/revolver_1.sound",
         "HoldType": "Pistol",
         "Icon": "ui/weapons/revolver.png",
-        "IsDefault": false
+        "IsDefault": false,
+        "Range": 1000,
+        "Spread": 0
       }
     ],
     "Children": [
       {
-        "Id": "b94ab475-e41d-412b-aa91-a4cbde22b5fa",
+        "Id": "9bed0c04-c654-402a-807d-7a512de0bd2e",
         "Name": "Body",
-        "Position": "3.628547,0.9520323,-4.626728",
-        "Rotation": "0.000000008847564,-0.000000005122274,0.0000008642728,1.000005",
-        "Scale": "1.66,1.66,1.66",
+        "Position": "0.795222,-0.6287304,-2.397516",
+        "Rotation": "0.00000001536682,0.00000001420267,1.000001,-0.0000001192093",
+        "Scale": "1.237697,1.237697,1.237697",
         "Enabled": true,
         "Components": [
           {
@@ -34,16 +37,17 @@
             "CreateBoneObjects": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
-            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "Model": "models/weapons/w_revolver.vmdl",
             "RenderType": "On",
             "Tint": "1,1,1,1"
           }
         ],
         "Children": [
           {
-            "Id": "6286dbd0-e809-481b-8c84-9128beed2608",
+            "Id": "c5754e5e-d412-40ee-a48e-bc4e56c12579",
             "Name": "Bullet Spawn",
-            "Position": "4.276376,0.0000002651219,4.558849",
+            "Position": "-12.11941,0.000004425709,5.169416",
+            "Rotation": "0,-0.0000000000002353673,1,-0.00000004371139",
             "Enabled": true
           }
         ]
@@ -54,6 +58,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "__references": [
-    "facepunch.w_usp"
+    "gok.w_revolver"
   ]
 }

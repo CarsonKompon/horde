@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "92d2ea65-5de3-42d7-9912-0f38401a7cc7",
+    "Id": "91a5e8df-5ad2-432e-911c-02681511d411",
     "Name": "pickup_revolver",
     "Tags": "trigger",
     "Enabled": true,
@@ -15,16 +15,16 @@
       },
       {
         "__type": "Pickup",
-        "Body": "e0215eaf-6a3b-43ef-b608-d15818c4c6a3",
+        "Body": "ac3694dd-2e87-4624-8ec5-3b37e0a4a6ed",
         "WeaponPrefab": "prefabs/weapons/weapon_revolver.prefab"
       }
     ],
     "Children": [
       {
-        "Id": "e0215eaf-6a3b-43ef-b608-d15818c4c6a3",
+        "Id": "ac3694dd-2e87-4624-8ec5-3b37e0a4a6ed",
         "Name": "Body",
         "Position": "0,0,4.5",
-        "Scale": "2,2,2",
+        "Scale": "1.665597,1.665597,1.665597",
         "Enabled": true,
         "Components": [
           {
@@ -34,7 +34,7 @@
             "CreateBoneObjects": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
-            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "Model": "models/weapons/w_revolver.vmdl",
             "RenderType": "On",
             "Tint": "1,1,1,1"
           },
@@ -55,6 +55,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "__references": [
-    "facepunch.w_usp"
+    "gok.w_revolver"
   ]
 }
