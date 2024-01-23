@@ -1,7 +1,7 @@
 {
   "RootObject": {
     "Id": "92d2ea65-5de3-42d7-9912-0f38401a7cc7",
-    "Name": "USP Pickup",
+    "Name": "pickup_revolver",
     "Tags": "trigger",
     "Enabled": true,
     "Components": [
@@ -15,7 +15,8 @@
       },
       {
         "__type": "Pickup",
-        "Body": "e0215eaf-6a3b-43ef-b608-d15818c4c6a3"
+        "Body": "e0215eaf-6a3b-43ef-b608-d15818c4c6a3",
+        "WeaponPrefab": "prefabs/weapons/weapon_revolver.prefab"
       }
     ],
     "Children": [
@@ -24,7 +25,6 @@
         "Name": "Body",
         "Position": "0,0,4.5",
         "Scale": "2,2,2",
-        "Tags": "trigger",
         "Enabled": true,
         "Components": [
           {

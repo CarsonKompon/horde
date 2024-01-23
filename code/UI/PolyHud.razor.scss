@@ -16,6 +16,48 @@ PolyHud
 		pointer-events: all;
 	}
 
-	
+	> .weapon
+	{
+		position: absolute;
+		bottom: 16px;
+		right: 16px;
+		width: 400px;
+		height: 200px;
+		background-image: url("ui/weapon_background.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		padding: 32px;
+		color: white;
+		font-family: Poppins;
+		align-items: center;
+		font-size: 50px;
+		font-weight: 700;
+
+		> .icon
+		{
+			width: 128px;
+			aspect-ratio: 1;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		> .ammo
+		{
+			top: 16px;
+			text-shadow: 0 0 8px black;
+		}
+
+		> .infinite-ammo
+		{
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			width: 92px;
+			top: 16px;
+			transform: translateX(50%);
+		}
+	}
 
 }

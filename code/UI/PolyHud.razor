@@ -5,17 +5,26 @@
 <root>
 	<div class="free-mouse" />
 
-	
+	@if(Player.Local is null) return;
 
+	@if(Player.Local.CurrentWeapon is not null)
+	{
+		var weapon = Player.Local.CurrentWeapon;
+		<div class="weapon">
+			<img src=@weapon.Icon class="icon" />
+			@if(weapon.ClipSize == 0)
+			{
+				<img src="ui/infinity.png" class="infinite-ammo" />
+			}
+			else
+			{
+				<p class="ammo">@weapon.Ammo / @weapon.ClipSize</p>
+			}
+		</div>
+	}
 </root>
 
 @code
 {
-
-	[Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
-
-	/// <summary>
-	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( MyStringValue );
+	protected override int BuildHash() => System.HashCode.Combine( Player.Local, Player.Local?.CurrentWeapon ?? null, Player.Local?.CurrentWeapon?.Ammo ?? 0);
 }

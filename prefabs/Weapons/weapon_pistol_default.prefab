@@ -1,0 +1,56 @@
+{
+  "RootObject": {
+    "Id": "4bb1e99f-dfea-47d0-ad00-315f922fbe4e",
+    "Name": "weapon_pistol_default",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Weapon",
+        "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
+        "BulletSpawnPos": "2730363a-b3e1-4375-b5b1-c2975a095953",
+        "ClipSize": 0,
+        "FireRate": 0.1,
+        "FireSound": "sounds/weapons/pistol_light_1.sound",
+        "Icon": "ui/weapons/pistol.png",
+        "IsDefault": true
+      }
+    ],
+    "Children": [
+      {
+        "Id": "de2a8149-d1a9-4690-b060-fc00da4136e2",
+        "Name": "Body",
+        "Position": "3.628547,0.9520323,-4.626728",
+        "Rotation": "0.000000008847564,-0.000000005122274,0.0000008642728,1.000005",
+        "Scale": "1.66,1.66,1.66",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 9493,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ],
+        "Children": [
+          {
+            "Id": "2730363a-b3e1-4375-b5b1-c2975a095953",
+            "Name": "Bullet Spawn",
+            "Position": "4.276376,0.0000002651219,4.558849",
+            "Enabled": true
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "facepunch.w_usp"
+  ]
+}

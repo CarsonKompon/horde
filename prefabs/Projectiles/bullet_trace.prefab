@@ -1,0 +1,19 @@
+{
+  "RootObject": {
+    "Id": "e5f8d5b2-e76d-4b0d-80ce-9d57d892ff03",
+    "Name": "bullet_trace",
+    "Tags": "bullet",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "BulletTrace",
+        "MuzzleFlash": "particles/pistol_muzzleflash.vpcf",
+        "Range": 1000
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

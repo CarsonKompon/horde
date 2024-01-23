@@ -17,11 +17,9 @@ public sealed class MapManager : Component
 
 	void OnMapLoaded()
 	{
-		Log.Info( "Loaded map" );
 
 		foreach ( var obj in Map.GameObject.Children )
 		{
-			Log.Info( obj.Name );
 
 			if ( obj.Name == "sd_weaponspawn_random" )
 			{

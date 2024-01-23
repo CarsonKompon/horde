@@ -1,16 +1,32 @@
 using Sandbox;
+using Sandbox.ActionGraphs;
 using Sandbox.Citizen;
+using System.Linq;
 
 public sealed class Player : Component
 {
+	public static Player Local => GameManager.ActiveScene.GetAllComponents<Player>().FirstOrDefault( p => p.Network.IsOwner );
 	[Property] public float Speed { get; set; } = 100f;
 	[Property] public GameObject Body { get; set; }
 	[Property] public CharacterController CharacterController { get; private set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; private set; }
-	[Property] GameObject AimObject { get; set; }
+	[Property] public GameObject AimObject { get; set; }
+	[Property] public GameObject HoldObject { get; set; }
+	[Property] GameObject StartingWeaponPrefab { get; set; }
+
+	public Weapon CurrentWeapon => HoldObject.Components.GetAll<Weapon>().OrderBy( x => x.IsDefault ).FirstOrDefault();
 
 	public Vector3 WishVelocity { get; set; }
 	public Vector3 Forward { get; set; }
+
+	protected override void OnStart()
+	{
+		if ( CurrentWeapon is not null && CurrentWeapon.IsDefault ) return;
+
+		var weapon = StartingWeaponPrefab.Clone( HoldObject.Transform.World );
+		weapon.SetParent( HoldObject );
+		weapon.NetworkSpawn( Network.OwnerConnection );
+	}
 
 	protected override void OnUpdate()
 	{
@@ -18,13 +34,26 @@ public sealed class Player : Component
 		{
 			BuildWishVelocity();
 
-			var mouseRay = Scene.Camera.ScreenPixelToRay( Mouse.Position );
-			var mouseTrace = Scene.Trace.Ray( mouseRay.Position, mouseRay.Position + mouseRay.Forward * 10000 )
-				.WithTag( "aimplane" )
-				.Run();
-			var mousePos = mouseTrace.HitPosition;
-			Forward = (mousePos - Transform.Position.WithZ( mousePos.z )).Normal;
-			AimObject.Transform.Position = mousePos;
+			if ( Input.UsingController )
+			{
+				var look = Input.AnalogLook;
+				var aim = new Vector2( -look.pitch, look.yaw );
+				if ( aim.Length > 0.1f )
+				{
+					Forward = new Vector3( aim.x, aim.y, 0 );
+					AimObject.Transform.Position = Transform.Position + Forward * 256f;
+				}
+			}
+			else
+			{
+				var mouseRay = Scene.Camera.ScreenPixelToRay( Mouse.Position );
+				var mouseTrace = Scene.Trace.Ray( mouseRay.Position, mouseRay.Position + mouseRay.Forward * 10000 )
+					.WithTag( "aimplane" )
+					.Run();
+				var mousePos = mouseTrace.HitPosition;
+				Forward = (mousePos - Transform.Position.WithZ( mousePos.z )).Normal;
+				AimObject.Transform.Position = mousePos;
+			}
 
 			// Move
 			UpdateMovement();
@@ -33,7 +62,7 @@ public sealed class Player : Component
 			var targetRot = Rotation.LookAt( Forward, Vector3.Up );
 			Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
 
-			var camPos = Transform.Position + Vector3.Up * 512f + (mousePos - Transform.Position.WithZ( mousePos.z )) / 4f;
+			var camPos = Transform.Position + Vector3.Up * 512f + (AimObject.Transform.Position - Transform.Position.WithZ( AimObject.Transform.Position.z )) / 4f;
 			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
 		}
 
@@ -42,14 +71,12 @@ public sealed class Player : Component
 
 	void BuildWishVelocity()
 	{
-		WishVelocity = Vector3.Zero;
-		if ( Input.Down( "Forward" ) ) WishVelocity += Vector3.Forward;
-		if ( Input.Down( "Backward" ) ) WishVelocity += Vector3.Backward;
-		if ( Input.Down( "Left" ) ) WishVelocity += Vector3.Left;
-		if ( Input.Down( "Right" ) ) WishVelocity += Vector3.Right;
+		var move = Input.AnalogMove;
+		WishVelocity = new Vector3( move.x, move.y, 0 );
 		WishVelocity = WishVelocity.Normal;
 
 		WishVelocity = WishVelocity * Speed;
+		if ( Input.Down( "Run" ) ) WishVelocity *= 1.5f;
 	}
 
 	void UpdateMovement()
@@ -90,5 +117,6 @@ public sealed class Player : Component
 	{
 		AnimationHelper.WithWishVelocity( WishVelocity );
 		AnimationHelper.WithVelocity( CharacterController.Velocity );
+		AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Pistol;
 	}
 }
