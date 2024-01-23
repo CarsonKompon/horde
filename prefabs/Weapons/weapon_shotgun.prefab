@@ -1,0 +1,62 @@
+{
+  "RootObject": {
+    "Id": "6d95be67-e103-4309-b528-a042586a3723",
+    "Name": "weapon_shotgun",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Weapon",
+        "Body": "07f7ccf7-17c9-4611-9f91-47fc92d006e7",
+        "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
+        "BulletSpawnPos": "ce335d73-7c4a-4a50-8e59-efdb2dd860e9",
+        "BulletsPerShot": 5,
+        "ClipSize": 24,
+        "Damage": 8,
+        "FireRate": 1.2,
+        "FireSound": "sounds/weapons/revolver_1.sound",
+        "HoldType": "Shotgun",
+        "Icon": "ui/weapons/shotgun.png",
+        "IsDefault": true,
+        "Range": 256,
+        "Spread": 15
+      }
+    ],
+    "Children": [
+      {
+        "Id": "07f7ccf7-17c9-4611-9f91-47fc92d006e7",
+        "Name": "Body",
+        "Position": "-3.173171,0.006861273,-2.714782",
+        "Rotation": "0.000000009065843,-0.000000005036782,0.0000001192096,1.000008",
+        "Scale": "1.048078,1.048078,1.048078",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 9493,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "weapons/rust_shotgun/rust_shotgun.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ],
+        "Children": [
+          {
+            "Id": "ce335d73-7c4a-4a50-8e59-efdb2dd860e9",
+            "Name": "Bullet Spawn",
+            "Position": "32.03461,0.000008595099,3.058967",
+            "Enabled": true
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "rust.rust_shotgun"
+  ]
+}
