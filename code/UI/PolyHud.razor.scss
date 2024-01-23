@@ -111,10 +111,15 @@ PolyHud
 		> .player
 		{
 			justify-content: space-between;
+			align-items: center;
+			font-family: Poppins;
+			font-size: 18px;
 
 			> .info
 			{
 				gap: 8px;
+				align-items: center;
+
 				> Image
 				{
 					width: 32px;
@@ -140,7 +145,7 @@ PolyHud
 		{
 			width: 100%;
 			height: 32px;
-			
+
 		}
 	}
 
