@@ -7,7 +7,7 @@ public sealed class AimPlane : Component
 		var player = Player.Local;
 		if ( player is not null )
 		{
-			Transform.Position = player.Transform.Position.WithZ( player.Transform.Position.z + 50f );
+			Transform.Position = player.Transform.Position.WithZ( player.CurrentWeapon.Transform.Position.z );
 		}
 	}
 }
