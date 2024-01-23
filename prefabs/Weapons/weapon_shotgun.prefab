@@ -13,10 +13,10 @@
         "ClipSize": 24,
         "Damage": 8,
         "FireRate": 1.2,
-        "FireSound": "sounds/weapons/revolver_1.sound",
+        "FireSound": "sounds/weapons/shotgun_medium.sound",
         "HoldType": "Shotgun",
         "Icon": "ui/weapons/shotgun.png",
-        "IsDefault": true,
+        "IsDefault": false,
         "Range": 256,
         "Spread": 15
       }
