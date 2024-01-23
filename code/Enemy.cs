@@ -85,7 +85,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	public void Kill()
 	{
-		if ( PickupDrops is not null && PickupDrops.Count > 0 && Random.Shared.Float() < 0.9f )
+		if ( PickupDrops is not null && PickupDrops.Count > 0 && Random.Shared.Float() < 0.15f )
 		{
 			var pickup = PickupDrops[Random.Shared.Next( PickupDrops.Count )];
 			pickup.Clone( Transform.Position ).NetworkSpawn( null );
