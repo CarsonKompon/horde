@@ -121,6 +121,7 @@
             "go": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
             "component_type": "CharacterController"
           },
+          "FlashlightObject": "b29f2a6e-8b02-4f62-abc7-40890d2c0dcf",
           "HoldObject": "13a839be-b218-439f-ba51-82d07f3e5d9b",
           "Speed": 180,
           "StartingWeaponPrefab": "prefabs/weapons/weapon_pistol_default.prefab"

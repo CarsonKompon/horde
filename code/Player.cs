@@ -11,6 +11,7 @@ public sealed class Player : Component
 	[Property] public GameObject Body { get; set; }
 	[Property] public CharacterController CharacterController { get; private set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; private set; }
+	[Property] GameObject FlashlightObject { get; set; }
 	[Property] public GameObject HoldObject { get; set; }
 	[Property] GameObject StartingWeaponPrefab { get; set; }
 
@@ -20,6 +21,7 @@ public sealed class Player : Component
 	[Sync] public Vector3 Forward { get; set; }
 	[Sync] public Vector3 AimPosition { get; set; }
 	[Sync] TimeSince SlideTimer { get; set; } = 1f;
+	[Sync] bool Flashlight { get; set; } = true;
 	public bool IsSliding => SlideTimer < 0.6f;
 
 	protected override void OnStart()
@@ -56,6 +58,12 @@ public sealed class Player : Component
 				AimPosition = mousePos;
 			}
 
+			if ( Input.Pressed( "Flashlight" ) )
+			{
+				Flashlight = !Flashlight;
+				Sound.Play( Flashlight ? "flashlight_on" : "flashlight_off" );
+			}
+
 			if ( Input.Pressed( "attack2" ) && SlideTimer > 2f )
 			{
 				Slide();
@@ -71,6 +79,8 @@ public sealed class Player : Component
 			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
 		}
 
+		// Enable Flashlight
+		FlashlightObject.Enabled = Flashlight;
 
 		// Lerp Body Rotation
 		var targetRot = Rotation.LookAt( Forward, Vector3.Up );
