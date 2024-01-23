@@ -1,0 +1,187 @@
+{
+  "RootObject": {
+    "Id": "4c6ffc9b-f5fb-419f-9225-244a78f1d86d",
+    "Name": "enemy_basic",
+    "Tags": "enemy",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "CharacterController",
+        "Acceleration": 10,
+        "GroundAngle": 45,
+        "Height": 64,
+        "IgnoreLayers": "trigger",
+        "Radius": 9.29,
+        "StepHeight": 18
+      },
+      {
+        "__type": "Enemy",
+        "AnimationHelper": {
+          "_type": "component",
+          "go": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
+          "component_type": "CitizenAnimationHelper"
+        },
+        "Body": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
+        "CharacterController": {
+          "_type": "component",
+          "go": "4c6ffc9b-f5fb-419f-9225-244a78f1d86d",
+          "component_type": "CharacterController"
+        },
+        "Health": 25,
+        "LeftForward": "05dec6e6-016a-4d85-9fef-663be5eff7a4",
+        "PickupDrops": [
+          "prefabs/pickups/pickup_mp5.prefab",
+          "prefabs/pickups/pickup_revolver.prefab"
+        ],
+        "RightForward": "47bb8d1d-90c3-4799-848e-bea1f342da7c",
+        "Speed": 102.799736
+      },
+      {
+        "__type": "SphereCollider",
+        "Center": "0,0,38.30001",
+        "IsTrigger": true,
+        "Radius": 420,
+        "Static": false,
+        "Surface": null
+      }
+    ],
+    "Children": [
+      {
+        "Id": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
+        "Name": "Body",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 341,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
+            "Model": "models/citizen/citizen.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          },
+          {
+            "__type": "CitizenAnimationHelper",
+            "BodyWeight": 1,
+            "EyeSource": "31202175-6e6d-4caa-8828-5331738283df",
+            "EyesWeight": 1,
+            "HeadWeight": 1,
+            "Height": 1,
+            "IkLeftFoot": null,
+            "IkLeftHand": null,
+            "IkRightFoot": null,
+            "IkRightHand": null,
+            "LookAt": null,
+            "LookAtEnabled": false,
+            "Target": {
+              "_type": "component",
+              "go": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
+              "component_type": "SkinnedModelRenderer"
+            }
+          },
+          {
+            "__type": "HighlightOutline",
+            "Color": "1,1,1,0",
+            "InsideColor": "0,0,0,0",
+            "InsideObscuredColor": "1,0,0,0.06275",
+            "Material": null,
+            "ObscuredColor": "0,0,0,0.4",
+            "Width": 0.25
+          }
+        ],
+        "Children": [
+          {
+            "Id": "e36b1661-92f6-488d-8200-b7c17a0ae02f",
+            "Name": "Hair",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "SkinnedModelRenderer",
+                "BodyGroups": 18446744073709551615,
+                "BoneMergeTarget": {
+                  "_type": "component",
+                  "go": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
+                  "component_type": "SkinnedModelRenderer"
+                },
+                "CreateBoneObjects": false,
+                "MaterialGroup": null,
+                "MaterialOverride": null,
+                "Model": "models/citizen_clothes/hair/hair_longbob/models/hair_longbob.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ]
+          },
+          {
+            "Id": "05dec6e6-016a-4d85-9fef-663be5eff7a4",
+            "Name": "LeftForward",
+            "Position": "14.41086,1,19.55466",
+            "Rotation": "0.000000008232106,0.000000001010975,0.258819,0.9659258",
+            "Enabled": true
+          },
+          {
+            "Id": "47bb8d1d-90c3-4799-848e-bea1f342da7c",
+            "Name": "RightForward",
+            "Position": "14.41086,-1,19.55466",
+            "Rotation": "0.0000000076347,-0.000000003240523,-0.258819,0.9659258",
+            "Enabled": true
+          }
+        ]
+      },
+      {
+        "Id": "31202175-6e6d-4caa-8828-5331738283df",
+        "Name": "Head",
+        "Position": "0,0,64",
+        "Enabled": true
+      },
+      {
+        "Id": "a21bffa8-d995-4747-afc1-89ba7ea3d4ba",
+        "Name": "Outline Circle",
+        "Scale": "0.4849404,0.4849404,0.4849404",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "ModelRenderer",
+            "BodyGroups": 18446744073709551615,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/dev/sphere.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,0"
+          },
+          {
+            "__type": "HighlightOutline",
+            "Color": "1,0,0,1",
+            "InsideColor": "0,0,0,0",
+            "InsideObscuredColor": "0,0,0,0",
+            "Material": null,
+            "ObscuredColor": "0,0,0,0.4",
+            "Width": 0.25
+          }
+        ]
+      },
+      {
+        "Id": "1896d971-fdad-41f7-8ff7-4d621651fc4c",
+        "Name": "Collider",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "CapsuleCollider",
+            "End": "0,0,56.79998",
+            "IsTrigger": false,
+            "Radius": 19.400024,
+            "Start": "0,0,15.60001",
+            "Static": false,
+            "Surface": null
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

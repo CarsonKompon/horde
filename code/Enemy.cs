@@ -5,12 +5,14 @@ using Sandbox.Citizen;
 
 public sealed class Enemy : Component, Component.ITriggerListener
 {
+	[Property, Sync] public float Health { get; set; } = 25f;
 	[Property] float Speed { get; set; } = 80f;
 	[Property] GameObject Body { get; set; }
 	[Property] CharacterController CharacterController { get; set; }
 	[Property] CitizenAnimationHelper AnimationHelper { get; set; }
 	[Property] GameObject LeftForward { get; set; }
 	[Property] GameObject RightForward { get; set; }
+	[Property] List<GameObject> PickupDrops { get; set; }
 	float ForwardDistance = 50f;
 
 	public Vector3 WishVelocity { get; set; }
@@ -66,6 +68,26 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		}
 
 		UpdateAnimations();
+	}
+
+	public void Hurt( float damage )
+	{
+		Health -= damage;
+		if ( Health <= 0f )
+		{
+			Kill();
+		}
+	}
+
+	public void Kill()
+	{
+		if ( PickupDrops is not null && PickupDrops.Count > 0 && Random.Shared.Float() < 0.1f )
+		{
+			var pickup = PickupDrops[Random.Shared.Next( PickupDrops.Count )];
+			pickup.Clone( Transform.Position ).NetworkSpawn( null );
+		}
+
+		GameObject.Destroy();
 	}
 
 	void BuildWishVelocity()

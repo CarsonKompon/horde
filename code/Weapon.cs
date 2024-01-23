@@ -9,6 +9,7 @@ public sealed class Weapon : Component
 	[Property, Category( "Bullet" )] GameObject BulletSpawnPos { get; set; }
 	[Property, Category( "Weapon" )] public int ClipSize { get; set; } = 60;
 	[Property, Category( "Weapon" )] public float FireRate { get; set; } = 0.1f;
+	[Property, Category( "Weapon" )] public float Damage { get; set; } = 10f;
 	[Property, Category( "Weapon" )] public CitizenAnimationHelper.HoldTypes HoldType { get; set; } = CitizenAnimationHelper.HoldTypes.Pistol;
 	[Property, Category( "Assets" )] public string Icon { get; set; } = "ui/weapons/pistol.png";
 	[Property, Category( "Assets" )] public SoundEvent FireSound { get; set; }
@@ -41,8 +42,6 @@ public sealed class Weapon : Component
 	{
 		if ( Ammo <= 0 && ClipSize > 0 ) return;
 
-		var bullet = BulletPrefab.Clone( BulletSpawnPos.Transform.World );
-		bullet.NetworkSpawn();
 		Ammo--;
 
 		Player.Local.BroadcastAttackEvent();
@@ -59,6 +58,10 @@ public sealed class Weapon : Component
 	[Broadcast]
 	void BroadcastFireEvent()
 	{
+		var bulletObj = BulletPrefab.Clone( BulletSpawnPos.Transform.World );
+		var bullet = bulletObj.Components.Get<BulletTrace>();
+		bullet.Damage = Damage;
+
 		if ( FireSound is not null )
 		{
 			Sound.Play( FireSound, Transform.Position );

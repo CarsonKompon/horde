@@ -1,15 +1,16 @@
 {
   "RootObject": {
-    "Id": "cb487920-6bc6-473d-a545-de43f76b0cf7",
+    "Id": "76f041fd-c2da-4480-9d03-3c082bb7ab2c",
     "Name": "weapon_revolver",
     "Enabled": true,
     "Components": [
       {
         "__type": "Weapon",
-        "Body": "377c4852-5f31-4e38-bacd-21d0c662ae58",
+        "Body": "b94ab475-e41d-412b-aa91-a4cbde22b5fa",
         "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
-        "BulletSpawnPos": "b76118dd-7ff5-4620-86dd-3c00af2eee4a",
+        "BulletSpawnPos": "6286dbd0-e809-481b-8c84-9128beed2608",
         "ClipSize": 16,
+        "Damage": 30,
         "FireRate": 0.9,
         "FireSound": "sounds/weapons/revolver_1.sound",
         "HoldType": "Pistol",
@@ -19,7 +20,7 @@
     ],
     "Children": [
       {
-        "Id": "377c4852-5f31-4e38-bacd-21d0c662ae58",
+        "Id": "b94ab475-e41d-412b-aa91-a4cbde22b5fa",
         "Name": "Body",
         "Position": "3.628547,0.9520323,-4.626728",
         "Rotation": "0.000000008847564,-0.000000005122274,0.0000008642728,1.000005",
@@ -40,7 +41,7 @@
         ],
         "Children": [
           {
-            "Id": "b76118dd-7ff5-4620-86dd-3c00af2eee4a",
+            "Id": "6286dbd0-e809-481b-8c84-9128beed2608",
             "Name": "Bullet Spawn",
             "Position": "4.276376,0.0000002651219,4.558849",
             "Enabled": true

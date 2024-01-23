@@ -2,6 +2,7 @@ using Sandbox;
 
 public sealed class BulletTrace : Component
 {
+	public float Damage { get; set; } = 10f;
 	[Property] float Range { get; set; } = 1000f;
 	[Property, Category( "Particles" )] ParticleSystem MuzzleFlash { get; set; }
 	TimeSince timeSinceSpawn = 0f;
@@ -15,6 +16,11 @@ public sealed class BulletTrace : Component
 		var startPos = Transform.Position;
 		var endPos = tr.HitPosition;
 		var distance = (endPos - startPos).Length;
+
+		if ( Networking.IsHost && tr.Hit && tr.GameObject.Components.GetInParentOrSelf<Enemy>() is Enemy enemy )
+		{
+			enemy.Hurt( Damage );
+		}
 
 		// Trace Particles
 		var p = new SceneParticles( Scene.SceneWorld, "particles/tracer/trail_smoke.vpcf" );

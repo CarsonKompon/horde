@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "95568d7f-f241-4c34-a6e8-ba99d2f193e1",
+    "Id": "703dddfe-6a05-4f1e-8230-e3cba241416a",
     "Name": "weapon_spawner",
     "Enabled": true,
     "Components": [
@@ -9,8 +9,7 @@
         "MaxRespawnTime": 10,
         "MinRespawnTime": 5,
         "Prefabs": [
-          "prefabs/pickups/pickup_revolver.prefab",
-          "prefabs/pickups/pickup_mp5.prefab"
+          "prefabs/enemies/enemy_basic.prefab"
         ]
       }
     ]
