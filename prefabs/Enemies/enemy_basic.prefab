@@ -33,7 +33,8 @@
         "PickupDrops": [
           "prefabs/pickups/pickup_mp5.prefab",
           "prefabs/pickups/pickup_revolver.prefab",
-          "prefabs/pickups/pickup_shotgun.prefab"
+          "prefabs/pickups/pickup_shotgun.prefab",
+          "prefabs/pickups/pickup_ak47.prefab"
         ],
         "RightForward": "47bb8d1d-90c3-4799-848e-bea1f342da7c",
         "Speed": 102.799736

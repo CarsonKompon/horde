@@ -1,0 +1,68 @@
+{
+  "RootObject": {
+    "Id": "f0b482d1-ff11-4f5f-a95e-0a71302da96e",
+    "Name": "pickup_ak47",
+    "Tags": "trigger",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "SphereCollider",
+        "Center": "0,0,9.700003",
+        "IsTrigger": true,
+        "Radius": 10,
+        "Static": false,
+        "Surface": null
+      },
+      {
+        "__type": "Pickup",
+        "Body": "2fd92b58-b857-43c0-91eb-f4affef2ead4",
+        "WeaponPrefab": "prefabs/weapons/weapon_mp5.prefab"
+      }
+    ],
+    "Children": [
+      {
+        "Id": "2fd92b58-b857-43c0-91eb-f4affef2ead4",
+        "Name": "Body",
+        "Position": "0,0,3.724123",
+        "Scale": "1.173685,1.173685,1.173685",
+        "Enabled": true,
+        "Children": [
+          {
+            "Id": "ada93011-918f-4779-8642-f007ec685d23",
+            "Name": "Real Body",
+            "Position": "5.659024,-0.00005429436,3.973969",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "SkinnedModelRenderer",
+                "BodyGroups": 3,
+                "BoneMergeTarget": null,
+                "CreateBoneObjects": false,
+                "MaterialGroup": null,
+                "MaterialOverride": null,
+                "Model": "models/weapons/w_ak47.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              },
+              {
+                "__type": "HighlightOutline",
+                "Color": "1,1,1,1",
+                "InsideColor": "0,0,0,0",
+                "InsideObscuredColor": "0,0,0,0",
+                "Material": null,
+                "ObscuredColor": "0,0,0,0.4",
+                "Width": 0.25
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "gok.w_ak47"
+  ]
+}
