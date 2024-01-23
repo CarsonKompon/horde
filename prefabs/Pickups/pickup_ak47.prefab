@@ -16,6 +16,7 @@
       {
         "__type": "Pickup",
         "Body": "2fd92b58-b857-43c0-91eb-f4affef2ead4",
+        "PickupName": "AK-47",
         "WeaponPrefab": "prefabs/weapons/weapon_mp5.prefab"
       }
     ],

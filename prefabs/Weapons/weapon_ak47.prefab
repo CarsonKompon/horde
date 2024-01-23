@@ -17,6 +17,7 @@
         "HoldType": "Rifle",
         "Icon": "ui/weapons/rifle-1.png",
         "IsDefault": false,
+        "Name": "AK-47",
         "Range": 1000,
         "Spread": 2
       }

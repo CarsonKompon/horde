@@ -72,6 +72,8 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	public void Hurt( float damage )
 	{
+		if ( Health <= 0 ) return;
+
 		BroadcastHurtEvent( damage );
 
 		Health -= damage;

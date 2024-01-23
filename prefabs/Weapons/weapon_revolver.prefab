@@ -1,14 +1,14 @@
 {
   "RootObject": {
-    "Id": "1d41881f-c7b2-4d4b-bd36-c0bfaf38c7a1",
+    "Id": "47d41508-ad67-4337-ab70-4709956419e5",
     "Name": "weapon_revolver",
     "Enabled": true,
     "Components": [
       {
         "__type": "Weapon",
-        "Body": "9bed0c04-c654-402a-807d-7a512de0bd2e",
+        "Body": "d5cfdbdb-cabe-4983-b647-5195a4dfb45c",
         "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
-        "BulletSpawnPos": "c5754e5e-d412-40ee-a48e-bc4e56c12579",
+        "BulletSpawnPos": "9a7024ab-5314-4812-b1a3-14ffc3d258da",
         "BulletsPerShot": 1,
         "ClipSize": 16,
         "Damage": 30,
@@ -17,13 +17,14 @@
         "HoldType": "Pistol",
         "Icon": "ui/weapons/revolver.png",
         "IsDefault": false,
+        "Name": "Revolver",
         "Range": 1000,
         "Spread": 0
       }
     ],
     "Children": [
       {
-        "Id": "9bed0c04-c654-402a-807d-7a512de0bd2e",
+        "Id": "d5cfdbdb-cabe-4983-b647-5195a4dfb45c",
         "Name": "Body",
         "Position": "0.795222,-0.6287304,-2.397516",
         "Rotation": "0.00000001536682,0.00000001420267,1.000001,-0.0000001192093",
@@ -44,7 +45,7 @@
         ],
         "Children": [
           {
-            "Id": "c5754e5e-d412-40ee-a48e-bc4e56c12579",
+            "Id": "9a7024ab-5314-4812-b1a3-14ffc3d258da",
             "Name": "Bullet Spawn",
             "Position": "-12.11941,0.000004425709,5.169416",
             "Rotation": "0,-0.0000000000002353673,1,-0.00000004371139",

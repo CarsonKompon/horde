@@ -1,0 +1,24 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits Panel
+
+<root class="notification">
+    <p>@Notification.Message</p>
+</root>
+
+@code
+{
+    public PolyHud.Notification Notification { get; set; }
+
+    public override void Tick()
+    {
+        base.Tick();
+
+        if(Notification.TimeSinceBorn > Notification.Time)
+        {
+            Delete();
+        }
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine(Notification);
+}

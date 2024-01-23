@@ -1,11 +1,16 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using System.Collections.Generic;
+@using System.Linq;
 @inherits PanelComponent
 
 <root>
 	<div class="free-mouse" />
 
 	@if(Player.Local is null) return;
+
+	<div class="notifications" @ref="NotificationPanel" >
+	</div>
 
 	@if(Player.Local.CurrentWeapon is not null)
 	{
@@ -26,5 +31,45 @@
 
 @code
 {
-	protected override int BuildHash() => System.HashCode.Combine( Player.Local, Player.Local?.CurrentWeapon ?? null, Player.Local?.CurrentWeapon?.Ammo ?? 0);
+	public static PolyHud Instance { get; private set; }
+	Panel NotificationPanel { get; set; }
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+		Instance = this;
+	}
+
+	@* protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if(Input.Pressed("Jump"))
+		{
+			AddNotification("Picked up REVOLVER!");
+		}
+	} *@
+
+	public void AddNotification(string text, float time = 3f)
+	{
+		var notification = new Notification(text, time);
+		var popup = NotificationPanel.AddChild<NotificationPopup>();
+		popup.Notification = notification;
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( Time.Now );
+
+	public class Notification
+	{
+		public string Message { get; set; }
+		public TimeSince TimeSinceBorn { get; set; }
+		public float Time { get; set; } = 3f;
+
+		public Notification(string message, float time = 4f)
+		{
+			Message = message;
+			TimeSinceBorn = 0f;
+			Time = time;
+		}
+	}
 }

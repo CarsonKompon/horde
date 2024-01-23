@@ -9,6 +9,7 @@ public sealed class Weapon : Component
 	[Property, Category( "Bullet" )] GameObject BulletPrefab { get; set; }
 	[Property, Category( "Bullet" )] GameObject BulletSpawnPos { get; set; }
 
+	[Property, Category( "Weapon" )] public string Name { get; set; } = "Item";
 	[Property, Category( "Weapon" )] public int ClipSize { get; set; } = 60;
 	[Property, Category( "Weapon" )] public float FireRate { get; set; } = 0.1f;
 	[Property, Category( "Weapon" )] public float Damage { get; set; } = 10f;

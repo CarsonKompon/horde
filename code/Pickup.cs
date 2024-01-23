@@ -37,6 +37,10 @@ public sealed class Pickup : Component, Component.ITriggerListener
 			var weapon = WeaponPrefab.Clone( player.HoldObject.Transform.World );
 			weapon.SetParent( player.HoldObject );
 			weapon.NetworkSpawn();
+
+			var weaponScript = weapon.Components.Get<Weapon>();
+			PolyHud.Instance.AddNotification( $"Picked up {weaponScript.Name}!" );
+
 			GameObject.Destroy();
 		}
 	}
