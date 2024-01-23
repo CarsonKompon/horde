@@ -51,13 +51,6 @@ public sealed class Enemy : Component, Component.ITriggerListener
 			BuildWishVelocity();
 			UpdateMovement();
 
-			// Rotate body towards target
-			if ( Target != Vector3.Zero )
-			{
-				var targetRot = Rotation.LookAt( Target - Transform.Position, Vector3.Up );
-				Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, Time.Delta * 10f );
-			}
-
 			// using ( Gizmo.Scope( "navtest" ) )
 			// {
 			// 	Gizmo.Draw.Color = Color.Blue;
@@ -159,6 +152,13 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	void UpdateAnimations()
 	{
+		// Rotate body towards target
+		if ( Target != Vector3.Zero )
+		{
+			var targetRot = Rotation.LookAt( Target - Transform.Position, Vector3.Up );
+			Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, Time.Delta * 10f );
+		}
+
 		AnimationHelper.WithWishVelocity( WishVelocity );
 		AnimationHelper.WithVelocity( CharacterController.Velocity );
 		AnimationHelper.WithLook( Body.Transform.Rotation.Forward );

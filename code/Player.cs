@@ -67,13 +67,15 @@ public sealed class Player : Component
 			// Move
 			UpdateMovement();
 
-			// Lerp Body Rotation
-			var targetRot = Rotation.LookAt( Forward, Vector3.Up );
-			Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
-
 			var camPos = Transform.Position + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - Transform.Position.WithZ( AimPosition.z )) / 4f;
 			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
 		}
+
+
+		// Lerp Body Rotation
+		var targetRot = Rotation.LookAt( Forward, Vector3.Up );
+		Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
+
 
 		UpdateAnimations();
 	}
