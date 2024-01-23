@@ -11,7 +11,7 @@
         "BulletSpawnPos": "64f1a110-e41d-4193-9ba3-11d88539a133",
         "BulletsPerShot": 1,
         "ClipSize": 0,
-        "Damage": 10,
+        "Damage": 8,
         "FireRate": 0.25,
         "FireSound": "sounds/weapons/pistol_light_1.sound",
         "HoldType": "Pistol",

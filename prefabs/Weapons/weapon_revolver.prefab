@@ -11,7 +11,7 @@
         "BulletSpawnPos": "9a7024ab-5314-4812-b1a3-14ffc3d258da",
         "BulletsPerShot": 1,
         "ClipSize": 16,
-        "Damage": 30,
+        "Damage": 25,
         "FireRate": 0.9,
         "FireSound": "sounds/weapons/revolver_1.sound",
         "HoldType": "Pistol",
