@@ -13,14 +13,21 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	[Property] GameObject LeftForward { get; set; }
 	[Property] GameObject RightForward { get; set; }
 	[Property] List<GameObject> PickupDrops { get; set; }
+	[Property] GameObject DamageNumberPrefab { get; set; }
 	float ForwardDistance = 50f;
 
 	public Vector3 WishVelocity { get; set; }
 
 	[Sync] Vector3 Target { get; set; } = Vector3.Zero;
 	TimeSince targetTimer = 0f;
+	float startingHealth = 10f;
 
 	List<GameObject> InRange = new();
+
+	protected override void OnStart()
+	{
+		startingHealth = Health;
+	}
 
 	protected override void OnUpdate()
 	{
@@ -65,6 +72,8 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	public void Hurt( float damage )
 	{
+		BroadcastHurtEvent( damage );
+
 		Health -= damage;
 		if ( Health <= 0f )
 		{
@@ -191,5 +200,21 @@ public sealed class Enemy : Component, Component.ITriggerListener
 			InRange.Remove( player.GameObject );
 		}
 
+	}
+
+	[Broadcast]
+	void BroadcastHurtEvent( float damage )
+	{
+		var obj = DamageNumberPrefab.Clone( Transform.Position + Vector3.Random.WithZ( 0f ) * 4f + Vector3.Up * 64f );
+		var dmgNumber = obj.Components.Get<DamageNumber>();
+		dmgNumber.Damage = (int)damage;
+		if ( damage >= startingHealth )
+		{
+			dmgNumber.TextRenderer.Color = Color.Red;
+		}
+		else
+		{
+			dmgNumber.TextRenderer.Color = Color.Yellow;
+		}
 	}
 }

@@ -1,0 +1,31 @@
+{
+  "RootObject": {
+    "Id": "dc1487e0-a4a5-4e59-b5e5-350eaa252785",
+    "Name": "Damage Numbers",
+    "Position": "0,0,104.3934",
+    "Rotation": "-0.00000001403369,0.2164396,-0.0000000002719414,0.976296",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "TextRenderer",
+        "Color": "1,1,1,1",
+        "FontFamily": "Poppins",
+        "FontSize": 32,
+        "Scale": 0.33,
+        "Text": "10\n"
+      },
+      {
+        "__type": "DamageNumber",
+        "TextRenderer": {
+          "_type": "component",
+          "go": "dc1487e0-a4a5-4e59-b5e5-350eaa252785",
+          "component_type": "TextRenderer"
+        }
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

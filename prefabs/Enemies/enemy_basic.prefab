@@ -27,6 +27,7 @@
           "go": "4c6ffc9b-f5fb-419f-9225-244a78f1d86d",
           "component_type": "CharacterController"
         },
+        "DamageNumberPrefab": "prefabs/particles/damage_numbers.prefab",
         "Health": 25,
         "LeftForward": "05dec6e6-016a-4d85-9fef-663be5eff7a4",
         "PickupDrops": [
