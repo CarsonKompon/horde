@@ -1,23 +1,25 @@
 {
   "RootObject": {
-    "Id": "4bb1e99f-dfea-47d0-ad00-315f922fbe4e",
+    "Id": "db562eb1-5f11-49b2-921c-d7cf240e5773",
     "Name": "weapon_pistol_default",
     "Enabled": true,
     "Components": [
       {
         "__type": "Weapon",
+        "Body": "8ac6c599-e232-487b-9c7b-03f9ad82d4e9",
         "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
-        "BulletSpawnPos": "2730363a-b3e1-4375-b5b1-c2975a095953",
+        "BulletSpawnPos": "46b79b1b-d478-403c-9c97-fc375d058d92",
         "ClipSize": 0,
-        "FireRate": 0.1,
+        "FireRate": 0.25,
         "FireSound": "sounds/weapons/pistol_light_1.sound",
+        "HoldType": "Pistol",
         "Icon": "ui/weapons/pistol.png",
         "IsDefault": true
       }
     ],
     "Children": [
       {
-        "Id": "de2a8149-d1a9-4690-b060-fc00da4136e2",
+        "Id": "8ac6c599-e232-487b-9c7b-03f9ad82d4e9",
         "Name": "Body",
         "Position": "3.628547,0.9520323,-4.626728",
         "Rotation": "0.000000008847564,-0.000000005122274,0.0000008642728,1.000005",
@@ -38,7 +40,7 @@
         ],
         "Children": [
           {
-            "Id": "2730363a-b3e1-4375-b5b1-c2975a095953",
+            "Id": "46b79b1b-d478-403c-9c97-fc375d058d92",
             "Name": "Bullet Spawn",
             "Position": "4.276376,0.0000002651219,4.558849",
             "Enabled": true

@@ -1,0 +1,58 @@
+{
+  "RootObject": {
+    "Id": "4bb1e99f-dfea-47d0-ad00-315f922fbe4e",
+    "Name": "weapon_mp5",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Weapon",
+        "Body": "de2a8149-d1a9-4690-b060-fc00da4136e2",
+        "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
+        "BulletSpawnPos": "2730363a-b3e1-4375-b5b1-c2975a095953",
+        "ClipSize": 92,
+        "FireRate": 0.08,
+        "FireSound": "sounds/weapons/rifle_light.sound",
+        "HoldType": "Rifle",
+        "Icon": "ui/weapons/smg-1.png",
+        "IsDefault": false
+      }
+    ],
+    "Children": [
+      {
+        "Id": "de2a8149-d1a9-4690-b060-fc00da4136e2",
+        "Name": "Body",
+        "Position": "3.126096,0.5897995,-6.699589",
+        "Rotation": "-0.000000004190952,-0.000000008149073,0.00000008935785,1.000006",
+        "Scale": "1.5,1.5,1.5",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 3,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/weapons/sbox_smg_mp5/w_mp5.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ],
+        "Children": [
+          {
+            "Id": "2730363a-b3e1-4375-b5b1-c2975a095953",
+            "Name": "Bullet Spawn",
+            "Position": "13.70529,0.00001468885,8.079002",
+            "Enabled": true
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "facepunch.w_mp5"
+  ]
+}

@@ -35,7 +35,7 @@
     {
       "Id": "73a4fa50-a9b9-4573-b8f8-5d66ce6f0967",
       "Name": "Aim Plane",
-      "Position": "458.7779,-534.3385,0",
+      "Position": "458.7779,-534.3385,64",
       "Tags": "trigger,aimplane",
       "Enabled": true,
       "Components": [
@@ -46,6 +46,9 @@
           "Scale": "3701.802,3700.902,0.25",
           "Static": false,
           "Surface": null
+        },
+        {
+          "__type": "AimPlane"
         }
       ]
     },
@@ -77,16 +80,16 @@
       "Id": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
       "Name": "Camera",
       "Position": "-0.000008552593,0,390.8771",
-      "Rotation": "0,0.7071068,0,0.7071068",
+      "Rotation": "0.000000007691807,0.5661847,-0.00000000769181,0.8242788",
       "Enabled": true,
       "Components": [
         {
           "__type": "CameraComponent",
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
-          "FieldOfView": 60,
+          "FieldOfView": 69,
           "IsMainCamera": true,
-          "Orthographic": true,
+          "Orthographic": false,
           "OrthographicHeight": 400,
           "Priority": 1,
           "RenderExcludeTags": "",
@@ -107,7 +110,6 @@
       "Components": [
         {
           "__type": "Player",
-          "AimObject": "12533334-0628-400b-839d-947c4e639a29",
           "AnimationHelper": {
             "_type": "component",
             "go": "8d57730b-b36d-446c-abd3-5ab8a485366a",
@@ -128,7 +130,7 @@
           "Acceleration": 10,
           "GroundAngle": 45,
           "Height": 64,
-          "IgnoreLayers": "trigger",
+          "IgnoreLayers": "trigger,enemy",
           "Radius": 10,
           "StepHeight": 18
         }
@@ -161,8 +163,8 @@
               "IkLeftHand": null,
               "IkRightFoot": null,
               "IkRightHand": null,
-              "LookAt": "12533334-0628-400b-839d-947c4e639a29",
-              "LookAtEnabled": true,
+              "LookAt": null,
+              "LookAtEnabled": false,
               "Target": {
                 "_type": "component",
                 "go": "8d57730b-b36d-446c-abd3-5ab8a485366a",
@@ -176,6 +178,15 @@
                 "go": "8d57730b-b36d-446c-abd3-5ab8a485366a",
                 "component_type": "SkinnedModelRenderer"
               }
+            },
+            {
+              "__type": "HighlightOutline",
+              "Color": "1,1,1,0",
+              "InsideColor": "0,0,0,0",
+              "InsideObscuredColor": "1,1,1,0.06275",
+              "Material": null,
+              "ObscuredColor": "0,0,0,0.4",
+              "Width": 0.25
             }
           ],
           "Children": [
@@ -986,11 +997,194 @@
               "Width": 0.25
             }
           ]
+        }
+      ]
+    },
+    {
+      "Id": "58607459-9d9f-414b-b6f6-c990bd058817",
+      "Name": "Enemy",
+      "Position": "128,-640,0",
+      "Tags": "enemy",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "CharacterController",
+          "Acceleration": 10,
+          "GroundAngle": 45,
+          "Height": 64,
+          "IgnoreLayers": "trigger",
+          "Radius": 9.29,
+          "StepHeight": 18
         },
         {
-          "Id": "12533334-0628-400b-839d-947c4e639a29",
-          "Name": "Aim Object",
+          "__type": "Enemy",
+          "AnimationHelper": {
+            "_type": "component",
+            "go": "3ae2251a-eedd-4949-b9a7-bbf24021f058",
+            "component_type": "CitizenAnimationHelper"
+          },
+          "Body": "3ae2251a-eedd-4949-b9a7-bbf24021f058",
+          "CharacterController": {
+            "_type": "component",
+            "go": "58607459-9d9f-414b-b6f6-c990bd058817",
+            "component_type": "CharacterController"
+          },
+          "LeftForward": "65922d10-e8bc-4be0-9943-aaf7c882fc29",
+          "RightForward": "93834e3f-f846-4a18-9fd6-b9c5f9253935",
+          "Speed": 102.799736
+        },
+        {
+          "__type": "SphereCollider",
+          "Center": "0,0,38.30001",
+          "IsTrigger": true,
+          "Radius": 420,
+          "Static": false,
+          "Surface": null
+        }
+      ],
+      "Children": [
+        {
+          "Id": "3ae2251a-eedd-4949-b9a7-bbf24021f058",
+          "Name": "Body",
+          "Position": "0,0,0",
+          "Tags": "enemy",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "SkinnedModelRenderer",
+              "BodyGroups": 341,
+              "BoneMergeTarget": null,
+              "CreateBoneObjects": false,
+              "MaterialGroup": null,
+              "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
+              "Model": "models/citizen/citizen.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            },
+            {
+              "__type": "CitizenAnimationHelper",
+              "BodyWeight": 1,
+              "EyeSource": "381fbc62-4abe-48d4-803a-0c5808299adc",
+              "EyesWeight": 1,
+              "HeadWeight": 1,
+              "Height": 1,
+              "IkLeftFoot": null,
+              "IkLeftHand": null,
+              "IkRightFoot": null,
+              "IkRightHand": null,
+              "LookAt": null,
+              "LookAtEnabled": false,
+              "Target": {
+                "_type": "component",
+                "go": "3ae2251a-eedd-4949-b9a7-bbf24021f058",
+                "component_type": "SkinnedModelRenderer"
+              }
+            },
+            {
+              "__type": "HighlightOutline",
+              "Color": "1,1,1,0",
+              "InsideColor": "0,0,0,0",
+              "InsideObscuredColor": "1,0,0,0.06275",
+              "Material": null,
+              "ObscuredColor": "0,0,0,0.4",
+              "Width": 0.25
+            }
+          ],
+          "Children": [
+            {
+              "Id": "90da71fd-d0c9-414b-acad-e3372af6a630",
+              "Name": "Hair",
+              "Position": "0,0,0",
+              "Tags": "enemy",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "SkinnedModelRenderer",
+                  "BodyGroups": 18446744073709551615,
+                  "BoneMergeTarget": {
+                    "_type": "component",
+                    "go": "3ae2251a-eedd-4949-b9a7-bbf24021f058",
+                    "component_type": "SkinnedModelRenderer"
+                  },
+                  "CreateBoneObjects": false,
+                  "MaterialGroup": null,
+                  "MaterialOverride": null,
+                  "Model": "models/citizen_clothes/hair/hair_longbob/models/hair_longbob.vmdl",
+                  "RenderType": "On",
+                  "Tint": "1,1,1,1"
+                }
+              ]
+            },
+            {
+              "Id": "65922d10-e8bc-4be0-9943-aaf7c882fc29",
+              "Name": "LeftForward",
+              "Position": "14.41086,1,19.55466",
+              "Rotation": "0.000000008232106,0.000000001010975,0.258819,0.9659258",
+              "Tags": "enemy",
+              "Enabled": true
+            },
+            {
+              "Id": "93834e3f-f846-4a18-9fd6-b9c5f9253935",
+              "Name": "RightForward",
+              "Position": "14.41086,-1,19.55466",
+              "Rotation": "0.0000000076347,-0.000000003240523,-0.258819,0.9659258",
+              "Tags": "enemy",
+              "Enabled": true
+            }
+          ]
+        },
+        {
+          "Id": "381fbc62-4abe-48d4-803a-0c5808299adc",
+          "Name": "Head",
+          "Position": "0,0,64",
+          "Tags": "enemy",
           "Enabled": true
+        },
+        {
+          "Id": "5728d644-335e-4563-b627-91ebc3fcc460",
+          "Name": "Outline Circle",
+          "Position": "0,0,0",
+          "Scale": "0.4849404,0.4849404,0.4849404",
+          "Tags": "enemy",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/dev/sphere.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,0"
+            },
+            {
+              "__type": "HighlightOutline",
+              "Color": "1,0,0,1",
+              "InsideColor": "0,0,0,0",
+              "InsideObscuredColor": "0,0,0,0",
+              "Material": null,
+              "ObscuredColor": "0,0,0,0.4",
+              "Width": 0.25
+            }
+          ]
+        },
+        {
+          "Id": "2ce078d2-bf30-4483-931b-0d3ec8214752",
+          "Name": "Collider",
+          "Position": "0,0,0",
+          "Tags": "enemy",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "CapsuleCollider",
+              "End": "0,0,56.79998",
+              "IsTrigger": false,
+              "Radius": 19.400024,
+              "Start": "0,0,15.60001",
+              "Static": false,
+              "Surface": null
+            }
+          ]
         }
       ]
     }

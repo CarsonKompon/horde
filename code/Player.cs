@@ -10,14 +10,16 @@ public sealed class Player : Component
 	[Property] public GameObject Body { get; set; }
 	[Property] public CharacterController CharacterController { get; private set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; private set; }
-	[Property] public GameObject AimObject { get; set; }
 	[Property] public GameObject HoldObject { get; set; }
 	[Property] GameObject StartingWeaponPrefab { get; set; }
 
 	public Weapon CurrentWeapon => HoldObject.Components.GetAll<Weapon>().OrderBy( x => x.IsDefault ).FirstOrDefault();
 
-	public Vector3 WishVelocity { get; set; }
-	public Vector3 Forward { get; set; }
+	[Sync] public Vector3 WishVelocity { get; set; }
+	[Sync] public Vector3 Forward { get; set; }
+	[Sync] public Vector3 AimPosition { get; set; }
+	[Sync] TimeSince SlideTimer { get; set; } = 1f;
+	public bool IsSliding => SlideTimer < 0.6f;
 
 	protected override void OnStart()
 	{
@@ -32,8 +34,6 @@ public sealed class Player : Component
 	{
 		if ( !IsProxy )
 		{
-			BuildWishVelocity();
-
 			if ( Input.UsingController )
 			{
 				var look = Input.AnalogLook;
@@ -41,7 +41,7 @@ public sealed class Player : Component
 				if ( aim.Length > 0.1f )
 				{
 					Forward = new Vector3( aim.x, aim.y, 0 );
-					AimObject.Transform.Position = Transform.Position + Forward * 256f;
+					AimPosition = Transform.Position + Forward * 128f;
 				}
 			}
 			else
@@ -52,8 +52,16 @@ public sealed class Player : Component
 					.Run();
 				var mousePos = mouseTrace.HitPosition;
 				Forward = (mousePos - Transform.Position.WithZ( mousePos.z )).Normal;
-				AimObject.Transform.Position = mousePos;
+				AimPosition = mousePos;
 			}
+
+			if ( Input.Pressed( "attack2" ) && SlideTimer > 2f )
+			{
+				Slide();
+			}
+
+			if ( !IsSliding )
+				BuildWishVelocity();
 
 			// Move
 			UpdateMovement();
@@ -62,11 +70,26 @@ public sealed class Player : Component
 			var targetRot = Rotation.LookAt( Forward, Vector3.Up );
 			Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
 
-			var camPos = Transform.Position + Vector3.Up * 512f + (AimObject.Transform.Position - Transform.Position.WithZ( AimObject.Transform.Position.z )) / 4f;
+			var camPos = Transform.Position + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - Transform.Position.WithZ( AimPosition.z )) / 4f;
 			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
 		}
 
 		UpdateAnimations();
+	}
+
+	void Slide()
+	{
+		if ( WishVelocity.Length < Speed )
+		{
+			WishVelocity = WishVelocity.Normal * Speed;
+		}
+		WishVelocity *= 1.75f;
+		if ( WishVelocity.Length > Speed * 2f )
+		{
+			WishVelocity = WishVelocity.Normal * Speed * 2f;
+		}
+
+		SlideTimer = 0f;
 	}
 
 	void BuildWishVelocity()
@@ -117,6 +140,14 @@ public sealed class Player : Component
 	{
 		AnimationHelper.WithWishVelocity( WishVelocity );
 		AnimationHelper.WithVelocity( CharacterController.Velocity );
-		AnimationHelper.HoldType = CitizenAnimationHelper.HoldTypes.Pistol;
+		AnimationHelper.WithLook( Forward );
+		AnimationHelper.HoldType = CurrentWeapon?.HoldType ?? CitizenAnimationHelper.HoldTypes.None;
+		AnimationHelper.SpecialMove = IsSliding ? CitizenAnimationHelper.SpecialMoveStyle.Slide : CitizenAnimationHelper.SpecialMoveStyle.None;
+	}
+
+	[Broadcast]
+	public void BroadcastAttackEvent()
+	{
+		AnimationHelper.Target.Set( "b_attack", true );
 	}
 }
