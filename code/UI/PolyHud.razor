@@ -7,25 +7,49 @@
 <root>
 	<div class="free-mouse" />
 
-	@if(Player.Local is null) return;
-
-	<div class="notifications" @ref="NotificationPanel" >
-	</div>
-
-	@if(Player.Local.CurrentWeapon is not null)
+	@if(Player.Local is not null)
 	{
-		var weapon = Player.Local.CurrentWeapon;
-		<div class="weapon">
-			<img src=@weapon.Icon class="icon" />
-			@if(weapon.ClipSize == 0)
+		int i = 0;
+		var players = Scene.GetAllComponents<Player>();
+
+		<div class="notifications" @ref="NotificationPanel" >
+		</div>
+
+		<div class="leaderboard">
+			@foreach(var player in players.OrderBy(x => x.Kills))
 			{
-				<img src="ui/infinity.png" class="infinite-ammo" />
-			}
-			else
-			{
-				<p class="ammo">@weapon.Ammo / @weapon.ClipSize</p>
+				@if(i == 4)
+				{
+					<div class="more">and @(players.Count() - i) more...</div>
+				}
+				else if(i < 4)
+				{
+					<div class="player">
+						<div class="info">
+							<Image texture=@Texture.LoadAvatar((long)player.Network.OwnerConnection.SteamId) />
+							<p class="name">@player.Network.OwnerConnection.DisplayName</p>
+						</div>
+						<p class="kills">@player.Kills</p>
+					</div>
+				}
 			}
 		</div>
+
+		@if(Player.Local.CurrentWeapon is not null)
+		{
+			var weapon = Player.Local.CurrentWeapon;
+			<div class="weapon">
+				<img src=@weapon.Icon class="icon" />
+				@if(weapon.ClipSize == 0)
+				{
+					<img src="ui/infinity.png" class="infinite-ammo" />
+				}
+				else
+				{
+					<p class="ammo">@weapon.Ammo / @weapon.ClipSize</p>
+				}
+			</div>
+		}
 	}
 </root>
 

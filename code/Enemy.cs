@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Sandbox;
 using Sandbox.Citizen;
 
@@ -19,6 +20,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	public Vector3 WishVelocity { get; set; }
 
 	[Sync] Vector3 Target { get; set; } = Vector3.Zero;
+	[Sync] Guid LastHurt { get; set; } = Guid.Empty;
 	TimeSince targetTimer = 0f;
 	float startingHealth = 10f;
 
@@ -70,9 +72,10 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		UpdateAnimations();
 	}
 
-	public void Hurt( float damage )
+	public void Hurt( float damage, Guid hurtBy = default )
 	{
 		if ( Health <= 0 ) return;
+		if ( hurtBy != default ) LastHurt = hurtBy;
 
 		BroadcastHurtEvent( damage );
 
@@ -89,6 +92,15 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		{
 			var pickup = PickupDrops[Random.Shared.Next( PickupDrops.Count )];
 			pickup.Clone( Transform.Position ).NetworkSpawn( null );
+		}
+
+		if ( LastHurt != Guid.Empty )
+		{
+			var player = Scene.GetAllComponents<Player>().FirstOrDefault( x => x.Network.OwnerId == LastHurt );
+			if ( player is not null )
+			{
+				player.Kills++;
+			}
 		}
 
 		GameObject.Destroy();

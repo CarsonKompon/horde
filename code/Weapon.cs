@@ -74,6 +74,7 @@ public sealed class Weapon : Component
 			var bullet = bulletObj.Components.Get<BulletTrace>();
 			bullet.Damage = Damage;
 			bullet.Range = Range;
+			bullet.OwnerId = Rpc.Caller.Id;
 		}
 
 		if ( FireSound is not null )

@@ -1,9 +1,12 @@
+using System;
+using System.Linq;
 using Sandbox;
 
 public sealed class BulletTrace : Component
 {
 	public float Damage { get; set; } = 10f;
 	public float Range { get; set; } = 1000f;
+	public Guid OwnerId { get; set; } = Guid.Empty;
 	[Property, Category( "Particles" )] ParticleSystem MuzzleFlash { get; set; }
 	TimeSince timeSinceSpawn = 0f;
 
@@ -19,7 +22,12 @@ public sealed class BulletTrace : Component
 
 		if ( Networking.IsHost && tr.Hit && tr.GameObject.Components.GetInParentOrSelf<Enemy>() is Enemy enemy )
 		{
-			enemy.Hurt( Damage );
+			enemy.Hurt( Damage, OwnerId );
+
+			if ( !enemy.IsValid() )
+			{
+				Player.Local.Kills++;
+			}
 		}
 
 		// Trace Particles

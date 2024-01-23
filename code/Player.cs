@@ -22,6 +22,7 @@ public sealed class Player : Component
 	[Sync] public Vector3 AimPosition { get; set; }
 	[Sync] TimeSince SlideTimer { get; set; } = 1f;
 	[Sync] bool Flashlight { get; set; } = true;
+	[Sync] public int Kills { get; set; } = 0;
 	public bool IsSliding => SlideTimer < 0.6f;
 
 	protected override void OnStart()
