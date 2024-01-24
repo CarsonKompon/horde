@@ -25,7 +25,8 @@ public sealed class BulletTrace : Component
 
 			if ( !enemy.IsValid() )
 			{
-				Player.Local.Kills++;
+				var player = Scene.Components.GetAll<Player>().FirstOrDefault( p => p.Network.OwnerId == Network.OwnerId );
+				player.IncrementKills();
 			}
 		}
 

@@ -120,7 +120,7 @@ PolyHud
 			height: 100px;
 			justify-content: center;
 			align-items: center;
-			font-family: Poppins;
+			font-family: Zombie Shooting;
 			font-size: 50px;
 			font-weight: 700;
 			color: white;
@@ -318,9 +318,11 @@ PolyHud
 
 		> h1
 		{
-			font-size: 100px;
-			font-weight: 700;
+			font-size: 200px;
+			font-weight: 300;
 			text-shadow: 0 0 8px black;
+			font-family: Zombie A;
+			text-transform: uppercase;
 		}
 
 		> .options
@@ -334,8 +336,8 @@ PolyHud
 				background-color: rgb(109, 79, 79);
 				border-radius: 16px;
 				color: white;
-				font-family: Poppins;
-				font-size: 50px;
+				font-family: Zombie Shooting;
+				font-size: 92px;
 				font-weight: 700;
 				text-shadow: 0 0 8px black;
 				justify-content: center;
@@ -386,6 +388,8 @@ PolyHud
 			font-size: 100px;
 			font-weight: 700;
 			text-shadow: 0 0 8px black;
+			font-family: Zombie A;
+			text-transform: uppercase;
 		}
 
 		> .options
@@ -398,8 +402,9 @@ PolyHud
 			{
 				width: 400px;
 				gap: 16px;
-				font-size: 32px;
 				align-items: center;
+				font-family: Zombie Shooting;
+				font-size: 48px;
 			}
 
 			> .btn
@@ -407,8 +412,8 @@ PolyHud
 				background-color: rgb(109, 79, 79);
 				border-radius: 16px;
 				color: white;
-				font-family: Poppins;
-				font-size: 50px;
+				font-family: Zombie Shooting;
+				font-size: 92px;
 				font-weight: 700;
 				text-shadow: 0 0 8px black;
 				justify-content: center;

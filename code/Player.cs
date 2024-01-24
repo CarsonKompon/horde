@@ -211,6 +211,13 @@ public sealed class Player : Component
 	}
 
 	[Broadcast]
+	public void IncrementKills()
+	{
+		if ( IsProxy ) return;
+		Kills++;
+	}
+
+	[Broadcast]
 	public void Respawn()
 	{
 		if ( IsProxy || Health > 0f ) return;

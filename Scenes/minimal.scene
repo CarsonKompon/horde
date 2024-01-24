@@ -27,6 +27,21 @@
       ]
     },
     {
+      "Id": "7a725c14-d328-4fca-8177-8efa6b531531",
+      "Name": "Music Player",
+      "Position": "-376.7363,-312.7557,534.2381",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "SongPlayer",
+          "Songs": [
+            "sounds/music/music-1.sound",
+            "sounds/music/music-2.sound"
+          ]
+        }
+      ]
+    },
+    {
       "Id": "98456e73-f258-4881-9863-aa8839bce194",
       "Name": "Screen UI",
       "Position": "17.11655,-33.55924,33.3356",

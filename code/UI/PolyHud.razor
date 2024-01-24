@@ -103,7 +103,7 @@
 			<div class="options">
 				<div class="option">
 					<p>Music</p>
-					<SliderControl Min=@(0) Max=@(100) />
+					<SliderControl Min=@(0) Max=@(100) Value:bind="@HordePreferences.Settings.Volume" />
 				</div>
 				<p class="btn" onclick=@ReturnToMenu>Return to Menu</p>
 			</div>
@@ -133,6 +133,7 @@
 		if(Input.EscapePressed)
 		{
 			IsPaused = !IsPaused;
+			if(!IsPaused) HordePreferences.Save();
 		}
 	}
 
