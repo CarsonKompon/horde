@@ -187,7 +187,9 @@ public sealed class Player : Component
 
 	public void Kill()
 	{
+		if ( IsProxy ) return;
 		Health = 0f;
+		BroadcastDeathEvent();
 	}
 
 	[Broadcast]
@@ -196,6 +198,7 @@ public sealed class Player : Component
 		if ( IsProxy || Health > 0f ) return;
 		Health = 50f;
 		ResetWeapons();
+		BroadcastRespawnEvent();
 	}
 
 	public void GiveStartingWeapon()
@@ -222,5 +225,17 @@ public sealed class Player : Component
 	public void BroadcastAttackEvent()
 	{
 		AnimationHelper.Target.Set( "b_attack", true );
+	}
+
+	[Broadcast]
+	void BroadcastDeathEvent()
+	{
+		PolyHud.Instance.AddNotification( $"{Network.OwnerConnection.DisplayName} has died!" );
+	}
+
+	[Broadcast]
+	void BroadcastRespawnEvent()
+	{
+		PolyHud.Instance.AddNotification( $"{Network.OwnerConnection.DisplayName} has been revived!" );
 	}
 }
