@@ -4,7 +4,7 @@ using Sandbox;
 public sealed class Pickup : Component, Component.ITriggerListener
 {
 	[Property] GameObject Body { get; set; }
-	[Property] GameObject WeaponPrefab { get; set; }
+	[Property] public GameObject WeaponPrefab { get; set; }
 
 	Vector3 offset;
 
@@ -21,26 +21,11 @@ public sealed class Pickup : Component, Component.ITriggerListener
 
 	public void OnTriggerEnter( Collider other )
 	{
-		Log.Info( $"OnTriggerEnter: {other}" );
+		if ( !Networking.IsHost ) return;
+
 		if ( other.Components.GetInParentOrSelf<Player>() is Player player )
 		{
-			if ( player.Network.IsProxy ) return;
-
-			foreach ( var obj in player.HoldObject.Children )
-			{
-				if ( obj.Components.Get<Weapon>() is Weapon wep && !wep.IsDefault )
-				{
-					obj.Destroy();
-				}
-			}
-
-			var weapon = WeaponPrefab.Clone( player.HoldObject.Transform.World );
-			weapon.SetParent( player.HoldObject );
-			weapon.NetworkSpawn();
-
-			var weaponScript = weapon.Components.Get<Weapon>();
-			PolyHud.Instance.AddNotification( $"Picked up {weaponScript.Name}!" );
-
+			player.GiveWeapon( GameObject.Id );
 			GameObject.Destroy();
 		}
 	}
@@ -48,6 +33,12 @@ public sealed class Pickup : Component, Component.ITriggerListener
 	public void OnTriggerExit( Collider other )
 	{
 
+	}
+
+	[Broadcast]
+	public void DestroyMe()
+	{
+		GameObject.Destroy();
 	}
 
 }

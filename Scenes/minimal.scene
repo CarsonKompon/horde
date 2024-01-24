@@ -1147,6 +1147,30 @@
               "WorldspacePlayback": true
             }
           ]
+        },
+        {
+          "Id": "fda3e638-69ad-4de5-b63e-7ecfabe231c2",
+          "Name": "Nametag",
+          "Position": "18.17761,0,84.83541",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "WorldPanel",
+              "HorizontalAlign": "Center",
+              "LookAtCamera": true,
+              "PanelSize": "1400,380",
+              "RenderScale": 1,
+              "VerticalAlign": "Center"
+            },
+            {
+              "__type": "Nametag",
+              "Player": {
+                "_type": "component",
+                "go": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
+                "component_type": "Player"
+              }
+            }
+          ]
         }
       ]
     }

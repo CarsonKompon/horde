@@ -1,6 +1,7 @@
 using Sandbox;
 using Sandbox.ActionGraphs;
 using Sandbox.Citizen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -235,6 +236,36 @@ public sealed class Player : Component
 		var weapon = StartingWeaponPrefab.Clone( HoldObject.Transform.World );
 		weapon.SetParent( HoldObject );
 		weapon.NetworkSpawn( Network.OwnerConnection );
+	}
+
+	[Broadcast]
+	public void GiveWeapon( Guid pickupObjectId )
+	{
+		if ( IsProxy ) return;
+
+		var pickupObject = Scene.Children.FirstOrDefault( x => x.Id == pickupObjectId );
+		if ( pickupObject is null ) return;
+		var pickup = pickupObject.Components.Get<Pickup>();
+		if ( pickup is null ) return;
+		var prefab = pickup.WeaponPrefab;
+		if ( prefab is null ) return;
+
+		foreach ( var obj in HoldObject.Children )
+		{
+			if ( obj.Components.Get<Weapon>() is Weapon wep && !wep.IsDefault )
+			{
+				obj.Destroy();
+			}
+		}
+
+		var weapon = prefab.Clone( HoldObject.Transform.World );
+		weapon.SetParent( HoldObject );
+		weapon.NetworkSpawn();
+
+		var weaponScript = weapon.Components.Get<Weapon>();
+		PolyHud.Instance.AddNotification( $"Picked up {weaponScript.Name}!" );
+
+		pickup.DestroyMe();
 	}
 
 	public void ResetWeapons()

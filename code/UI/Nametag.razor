@@ -1,0 +1,20 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+
+<root>
+	@if(Player.Health <= 0f || Player == Player.Local) return;
+	<div class="content">
+		<img src="@($"avatar:{Player.Network.OwnerConnection.SteamId}")" />
+		<div class="name">@Player.Network.OwnerConnection.DisplayName</div>
+	</div>
+</root>
+
+@code
+{
+	[Property] Player Player { get; set; }
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( Player, Player.Health > 0f );
+}

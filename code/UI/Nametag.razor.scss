@@ -1,0 +1,23 @@
+Nametag
+{
+	font-family: Poppins;
+	font-size: 64px;
+	justify-content: center;
+	align-items: center;
+
+	> .content
+	{
+		background-color: white;
+		padding: 16px;
+		border-radius: 42px;
+		gap: 16px;
+		align-items: center;
+
+		> img
+		{
+			width: 128px;
+			aspect-ratio: 1;
+			flex-shrink: 0;
+		}
+	}
+}
