@@ -30,6 +30,7 @@ public sealed class Player : Component
 	public bool IsSliding => SlideTimer < 0.6f;
 
 	float healTimer = 0f;
+	TimeSince timeSinceRespawn = 0f;
 
 	protected override void OnStart()
 	{
@@ -188,6 +189,7 @@ public sealed class Player : Component
 	public void Hurt( float damage )
 	{
 		if ( IsProxy ) return;
+		if ( timeSinceRespawn < 5f ) return;
 		Health -= damage;
 		healTimer = 0f;
 		if ( Health <= 0f )
@@ -207,7 +209,8 @@ public sealed class Player : Component
 	public void Respawn()
 	{
 		if ( IsProxy || Health > 0f ) return;
-		Health = 50f;
+		Health = 100f;
+		timeSinceRespawn = 0f;
 		ResetWeapons();
 		BroadcastRespawnEvent();
 	}

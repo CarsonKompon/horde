@@ -96,6 +96,19 @@
 			</div>
 		</div>
 	}
+	else if(IsPaused)
+	{
+		<div class="pause-menu">
+			<h1>PAUSED</h1>
+			<div class="options">
+				<div class="option">
+					<p>Music</p>
+					<SliderControl Min=@(0) Max=@(100) />
+				</div>
+				<p class="btn" onclick=@ReturnToMenu>Return to Menu</p>
+			</div>
+		</div>
+	}
 </root>
 
 @code
@@ -105,10 +118,22 @@
 
 	[Property] SceneFile MenuScene { get; set; }
 
+	public bool IsPaused = false;
+
 	protected override void OnStart()
 	{
 		base.OnStart();
 		Instance = this;
+	}
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
+
+		if(Input.EscapePressed)
+		{
+			IsPaused = !IsPaused;
+		}
 	}
 
 	void PlayAgain()
