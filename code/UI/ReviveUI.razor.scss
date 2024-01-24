@@ -1,0 +1,37 @@
+ReviveUI
+{
+	position: absolute;
+	flex-direction: column;
+
+	background-color: #bdbdbd;
+
+	font-family: Poppins;
+	font-size: 20px;
+	padding: 8px;
+	transform: skewX(-10deg);
+
+	h1
+	{
+		font-size: 32px;
+		font-weight: bold;
+	}
+
+	.header
+	{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+
+		width: 100%;
+	}
+
+	.info
+	{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		padding: 0 20px;
+	}
+}

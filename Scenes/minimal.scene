@@ -1123,6 +1123,25 @@
                   "Offset": "0,180,0"
                 }
               ]
+            },
+            {
+              "Id": "0c00db67-12be-4394-b1b3-638be9da12cd",
+              "Name": "Screen",
+              "Position": "0,0,0",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ScreenPanel",
+                  "AutoScreenScale": true,
+                  "Opacity": 1,
+                  "Scale": 1,
+                  "ZIndex": 80
+                },
+                {
+                  "__type": "ReviveUI",
+                  "Target": "dd812707-4d52-411e-9763-a078ac8aa7f0"
+                }
+              ]
             }
           ]
         },
