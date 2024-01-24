@@ -1,17 +1,17 @@
 {
   "RootObject": {
-    "Id": "f808ed79-aad0-4f65-a6f9-10ecff8ada5f",
+    "Id": "d516c822-b2b3-4e3f-8025-6a5a9d66c0e1",
     "Name": "weapon_shotgun",
     "Enabled": true,
     "Components": [
       {
         "__type": "Weapon",
-        "Body": "c1fb3c6b-2048-4f69-b304-bef2e4216ad5",
+        "Body": "c76c2cd7-5e06-4fa3-a2d2-37c4872747a1",
         "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
-        "BulletSpawnPos": "8e4a81af-586d-449d-a44d-3adf353ef8d2",
+        "BulletSpawnPos": "547aecf1-7e3f-4d82-bffd-a00e998aad00",
         "BulletsPerShot": 5,
         "ClipSize": 24,
-        "Damage": 8,
+        "Damage": 9,
         "FireRate": 1.2,
         "FireSound": "sounds/weapons/shotgun_medium.sound",
         "HoldType": "Shotgun",
@@ -24,7 +24,7 @@
     ],
     "Children": [
       {
-        "Id": "c1fb3c6b-2048-4f69-b304-bef2e4216ad5",
+        "Id": "c76c2cd7-5e06-4fa3-a2d2-37c4872747a1",
         "Name": "Body",
         "Position": "-3.173171,0.006861273,-2.714782",
         "Rotation": "0.000000009065843,-0.000000005036782,0.0000001192096,1.000008",
@@ -45,7 +45,7 @@
         ],
         "Children": [
           {
-            "Id": "8e4a81af-586d-449d-a44d-3adf353ef8d2",
+            "Id": "547aecf1-7e3f-4d82-bffd-a00e998aad00",
             "Name": "Bullet Spawn",
             "Position": "32.03461,0.000008595099,3.058967",
             "Enabled": true

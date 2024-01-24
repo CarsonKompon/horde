@@ -10,17 +10,17 @@
           "__type": "HordeManager",
           "BloodBurstPrefab": "prefabs/particles/blood_burst.prefab",
           "DamageNumberPrefab": "prefabs/particles/damage_numbers.prefab",
-          "WeaponPrefabs": []
-        },
-        {
-          "__type": "NetworkHelper",
-          "PlayerPrefab": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
-          "SpawnPoints": [
+          "WeaponPrefabs": [
             "prefabs/pickups/pickup_ak47.prefab",
             "prefabs/pickups/pickup_mp5.prefab",
             "prefabs/pickups/pickup_revolver.prefab",
             "prefabs/pickups/pickup_shotgun.prefab"
-          ],
+          ]
+        },
+        {
+          "__type": "NetworkHelper",
+          "PlayerPrefab": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
+          "SpawnPoints": [],
           "StartServer": true
         }
       ]
