@@ -107,7 +107,7 @@
             refreshing = true;
             StateHasChanged();
 
-            LobbyList = await GameNetworkSystem.QueryLobbies();
+            LobbyList = await Networking.QueryLobbies();
 
             refreshing = false;
             StateHasChanged();
