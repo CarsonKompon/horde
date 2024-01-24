@@ -19,14 +19,19 @@ public sealed class DamageTrigger : Component, Component.ITriggerListener
 		if ( IsProxy ) return;
 		if ( TimeSinceLastDamage >= Cooldown && canHurt.Count > 0 )
 		{
+			bool didHurt = false;
 			foreach ( var player in canHurt )
 			{
-				if ( player is null ) continue;
+				if ( player is null || player.Health <= 0 ) continue;
 				player.Hurt( Damage );
+				didHurt = true;
 			}
-			TimeSinceLastDamage = 0f;
 
-			BroadcastAttackEvent();
+			if ( didHurt )
+			{
+				TimeSinceLastDamage = 0f;
+				BroadcastAttackEvent();
+			}
 		}
 	}
 

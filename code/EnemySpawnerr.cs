@@ -23,7 +23,7 @@ public sealed class EnemySpawner : Component
 
 	protected override void OnUpdate()
 	{
-		if ( !Networking.IsHost ) return;
+		if ( IsProxy ) return;
 
 		timer += Time.Delta;
 		if ( timer > MaxRespawnTime )

@@ -1,21 +1,24 @@
 using Sandbox;
 using Sandbox.ActionGraphs;
 using Sandbox.Citizen;
+using System.Collections.Generic;
 using System.Linq;
 
 public sealed class Player : Component
 {
 	public static Player Local => GameManager.ActiveScene.GetAllComponents<Player>().FirstOrDefault( p => p.Network.IsOwner );
-	public float Health { get; set; } = 100f;
+	[Sync] public float Health { get; set; } = 100f;
 	[Property] public float Speed { get; set; } = 100f;
 	[Property] public GameObject Body { get; set; }
 	[Property] public CharacterController CharacterController { get; private set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; private set; }
 	[Property] GameObject FlashlightObject { get; set; }
 	[Property] public GameObject HoldObject { get; set; }
+	[Property] public GameObject Tombstone { get; set; }
 	[Property] GameObject StartingWeaponPrefab { get; set; }
 
 	public Weapon CurrentWeapon => HoldObject.Components.GetAll<Weapon>().OrderBy( x => x.IsDefault ).FirstOrDefault();
+	public List<Weapon> HeldWeapons => HoldObject.Components.GetAll<Weapon>().OrderBy( x => x.IsDefault ).ToList();
 
 	[Sync] public Vector3 WishVelocity { get; set; }
 	[Sync] public Vector3 Forward { get; set; }
@@ -29,9 +32,7 @@ public sealed class Player : Component
 	{
 		if ( CurrentWeapon is not null && CurrentWeapon.IsDefault ) return;
 
-		var weapon = StartingWeaponPrefab.Clone( HoldObject.Transform.World );
-		weapon.SetParent( HoldObject );
-		weapon.NetworkSpawn( Network.OwnerConnection );
+		GiveStartingWeapon();
 	}
 
 	protected override void OnUpdate()
@@ -59,22 +60,25 @@ public sealed class Player : Component
 				AimPosition = mousePos;
 			}
 
-			if ( Input.Pressed( "Flashlight" ) )
+			if ( Health > 0f )
 			{
-				Flashlight = !Flashlight;
-				Sound.Play( Flashlight ? "flashlight_on" : "flashlight_off" );
+				if ( Input.Pressed( "Flashlight" ) )
+				{
+					Flashlight = !Flashlight;
+					Sound.Play( Flashlight ? "flashlight_on" : "flashlight_off" );
+				}
+
+				if ( Input.Pressed( "attack2" ) && SlideTimer > 2f )
+				{
+					Slide();
+				}
+
+				if ( !IsSliding )
+					BuildWishVelocity();
+
+				// Move
+				UpdateMovement();
 			}
-
-			if ( Input.Pressed( "attack2" ) && SlideTimer > 2f )
-			{
-				Slide();
-			}
-
-			if ( !IsSliding )
-				BuildWishVelocity();
-
-			// Move
-			UpdateMovement();
 
 			var camPos = Transform.Position + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - Transform.Position.WithZ( AimPosition.z )) / 4f;
 			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
@@ -87,6 +91,8 @@ public sealed class Player : Component
 		var targetRot = Rotation.LookAt( Forward, Vector3.Up );
 		Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
 
+		Body.Enabled = Health > 0f;
+		Tombstone.Enabled = Health <= 0f;
 
 		UpdateAnimations();
 	}
@@ -164,8 +170,40 @@ public sealed class Player : Component
 		Health -= damage;
 		if ( Health <= 0f )
 		{
-			Health = 0f;
+			Kill();
 		}
+	}
+
+	public void Kill()
+	{
+		Health = 0f;
+	}
+
+	public void Respawn()
+	{
+		if ( !IsProxy ) return;
+		Health = 50f;
+		ResetWeapons();
+	}
+
+	public void GiveStartingWeapon()
+	{
+		if ( StartingWeaponPrefab is null ) return;
+		if ( HeldWeapons.Count > 0 ) return;
+
+		var weapon = StartingWeaponPrefab.Clone( HoldObject.Transform.World );
+		weapon.SetParent( HoldObject );
+		weapon.NetworkSpawn( Network.OwnerConnection );
+	}
+
+	public void ResetWeapons()
+	{
+		foreach ( var weapon in HeldWeapons )
+		{
+			weapon.GameObject.Destroy();
+		}
+
+		GiveStartingWeapon();
 	}
 
 	[Broadcast]

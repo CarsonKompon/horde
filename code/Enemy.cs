@@ -24,7 +24,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	TimeSince targetTimer = 0f;
 	float startingHealth = 10f;
 
-	List<GameObject> InRange = new();
+	List<Player> InRange = new();
 
 	protected override void OnStart()
 	{
@@ -34,18 +34,18 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	protected override void OnUpdate()
 	{
-		if ( Networking.IsHost )
+		if ( !IsProxy )
 		{
 			if ( targetTimer > 0.5f || Vector3.DistanceBetween( Target, Transform.Position ) < 10f )
 			{
 				Target = Transform.Position + Vector3.Random.Normal.WithZ( 0 ) * 100f;
 				if ( InRange.Count > 0 )
 				{
-					foreach ( var obj in InRange )
+					foreach ( var player in InRange )
 					{
-						if ( HasLineOfSight( obj.Transform.Position ) )
+						if ( HasLineOfSight( player.Transform.Position ) && player.Health > 0 )
 						{
-							Target = obj.Transform.Position;
+							Target = player.Transform.Position;
 							break;
 						}
 					}
@@ -73,8 +73,10 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		Count--;
 	}
 
+	[Broadcast]
 	public void Hurt( float damage, Guid hurtBy = default )
 	{
+		if ( IsProxy ) return;
 		if ( Health <= 0 ) return;
 		if ( hurtBy != default ) LastHurt = hurtBy;
 
@@ -203,19 +205,19 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	public void OnTriggerEnter( Collider other )
 	{
-		if ( !Networking.IsHost ) return;
-		if ( other.Components.GetInParentOrSelf<Player>() is Player player )
+		if ( IsProxy ) return;
+		if ( other.Components.GetInParentOrSelf<Player>() is Player player && player.Health > 0 )
 		{
-			InRange.Add( player.GameObject );
+			InRange.Add( player );
 		}
 	}
 
 	public void OnTriggerExit( Collider other )
 	{
-		if ( !Networking.IsHost ) return;
+		if ( IsProxy ) return;
 		if ( other.Components.GetInParentOrSelf<Player>() is Player player )
 		{
-			InRange.Remove( player.GameObject );
+			InRange.Remove( player );
 		}
 
 	}

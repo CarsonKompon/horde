@@ -49,6 +49,17 @@ public sealed class Weapon : Component
 	{
 		if ( Ammo <= 0 && ClipSize > 0 ) return;
 
+		for ( int i = 0; i < BulletsPerShot; i++ )
+		{
+			var transform = BulletSpawnPos.Transform.World;
+			transform.Rotation *= Rotation.FromYaw( Random.Shared.Float( -Spread, Spread ) );
+			transform.Scale = 1f;
+			var bulletObj = BulletPrefab.Clone( transform );
+			bulletObj.NetworkSpawn();
+			var bullet = bulletObj.Components.Get<BulletTrace>();
+			bullet.Damage = Damage;
+			bullet.Range = Range;
+		}
 		Ammo--;
 
 		Player.Local.BroadcastAttackEvent();
@@ -65,18 +76,6 @@ public sealed class Weapon : Component
 	[Broadcast]
 	void BroadcastFireEvent()
 	{
-		for ( int i = 0; i < BulletsPerShot; i++ )
-		{
-			var transform = BulletSpawnPos.Transform.World;
-			transform.Rotation *= Rotation.FromYaw( Random.Shared.Float( -Spread, Spread ) );
-			transform.Scale = 1f;
-			var bulletObj = BulletPrefab.Clone( transform );
-			var bullet = bulletObj.Components.Get<BulletTrace>();
-			bullet.Damage = Damage;
-			bullet.Range = Range;
-			bullet.OwnerId = Rpc.Caller.Id;
-		}
-
 		if ( FireSound is not null )
 		{
 			Sound.Play( FireSound, Transform.Position );

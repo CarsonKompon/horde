@@ -6,7 +6,6 @@ public sealed class BulletTrace : Component
 {
 	public float Damage { get; set; } = 10f;
 	public float Range { get; set; } = 1000f;
-	public Guid OwnerId { get; set; } = Guid.Empty;
 	[Property, Category( "Particles" )] ParticleSystem MuzzleFlash { get; set; }
 	TimeSince timeSinceSpawn = 0f;
 
@@ -20,9 +19,9 @@ public sealed class BulletTrace : Component
 		var endPos = tr.Hit ? tr.HitPosition : tr.EndPosition;
 		var distance = (endPos - startPos).Length;
 
-		if ( Networking.IsHost && tr.Hit && tr.GameObject.Components.GetInParentOrSelf<Enemy>() is Enemy enemy )
+		if ( !IsProxy && tr.Hit && tr.GameObject.Components.GetInParentOrSelf<Enemy>() is Enemy enemy )
 		{
-			enemy.Hurt( Damage, OwnerId );
+			enemy.Hurt( Damage, Network.OwnerId );
 
 			if ( !enemy.IsValid() )
 			{

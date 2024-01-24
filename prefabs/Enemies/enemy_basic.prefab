@@ -178,6 +178,7 @@
         "Id": "0dd8d467-7edf-44f7-987b-7d765be29111",
         "Name": "Damage Trigger",
         "Position": "0,0,36.29562",
+        "Tags": "trigger",
         "Enabled": true,
         "Components": [
           {

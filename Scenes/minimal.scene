@@ -135,7 +135,8 @@
           "FlashlightObject": "b29f2a6e-8b02-4f62-abc7-40890d2c0dcf",
           "HoldObject": "13a839be-b218-439f-ba51-82d07f3e5d9b",
           "Speed": 180,
-          "StartingWeaponPrefab": "prefabs/weapons/weapon_pistol_default.prefab"
+          "StartingWeaponPrefab": "prefabs/weapons/weapon_pistol_default.prefab",
+          "Tombstone": "dd812707-4d52-411e-9763-a078ac8aa7f0"
         },
         {
           "__type": "CharacterController",
@@ -1009,6 +1010,89 @@
               "Width": 0.25
             }
           ]
+        },
+        {
+          "Id": "dd812707-4d52-411e-9763-a078ac8aa7f0",
+          "Name": "Tombstone",
+          "Position": "16.24107,0.000001419839,0",
+          "Rotation": "0,0,1,-0.00000004371139",
+          "Components": [
+            {
+              "__type": "ModelRenderer",
+              "BodyGroups": 18446744073709551615,
+              "MaterialGroup": null,
+              "MaterialOverride": null,
+              "Model": "models/cactus/tombstone.vmdl",
+              "RenderType": "On",
+              "Tint": "1,1,1,1"
+            }
+          ],
+          "Children": [
+            {
+              "Id": "3a120fbd-abca-4e9e-af20-b9368282b2d1",
+              "Name": "Dirt",
+              "Position": "15.12275,-0.0000000000001136868,0.000003784895",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "ModelRenderer",
+                  "BodyGroups": 18446744073709551615,
+                  "MaterialGroup": "default",
+                  "MaterialOverride": null,
+                  "Model": "models/props/dirt_pile/dirt_pile_04.vmdl",
+                  "RenderType": "On",
+                  "Tint": "0.30698,0.20532,0.05283,1"
+                }
+              ]
+            },
+            {
+              "Id": "b0885ee6-3a52-41aa-8a58-c5d8e9de419c",
+              "Name": "Revive Collider",
+              "Position": "15.93117,0.0000007444229,14.86983",
+              "Tags": "trigger",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "SphereCollider",
+                  "Center": "0,0,0",
+                  "IsTrigger": true,
+                  "Radius": 32.00002,
+                  "Static": false,
+                  "Surface": null
+                },
+                {
+                  "__type": "ReviveTrigger",
+                  "Player": {
+                    "_type": "component",
+                    "go": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
+                    "component_type": "Player"
+                  }
+                }
+              ]
+            },
+            {
+              "Id": "1e28202d-5d83-4229-b9ae-1982e9a4ccb2",
+              "Name": "Revive Text",
+              "Position": "-11.97115,-0.000000955547,53.78541",
+              "Rotation": "0,0,1,-0.00000004371139",
+              "Scale": "0.5,0.5,0.5",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "TextRenderer",
+                  "Color": "1,1,1,1",
+                  "FontFamily": "Poppins",
+                  "FontSize": 32,
+                  "Scale": 1,
+                  "Text": "REVIVE!"
+                },
+                {
+                  "__type": "LookAtCamera",
+                  "Offset": "0,180,0"
+                }
+              ]
+            }
+          ]
         }
       ]
     }
@@ -1024,5 +1108,8 @@
   },
   "Title": "minimal",
   "Description": "",
-  "__references": []
+  "__references": [
+    "facepunch.dirtpile_04",
+    "hillrop.tombstone"
+  ]
 }
