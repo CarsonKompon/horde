@@ -190,9 +190,10 @@ public sealed class Player : Component
 		Health = 0f;
 	}
 
+	[Broadcast]
 	public void Respawn()
 	{
-		if ( !IsProxy ) return;
+		if ( IsProxy || Health > 0f ) return;
 		Health = 50f;
 		ResetWeapons();
 	}

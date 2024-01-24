@@ -10,11 +10,8 @@ public sealed class ReviveTrigger : Component, Component.ITriggerListener
 
 	public void OnTriggerEnter( Collider other )
 	{
-		if ( IsProxy ) return;
-
 		if ( other.Components.GetInParentOrSelf<Player>() is Player player && player != Player )
 		{
-			Log.Info( "revive" );
 			Player.Respawn();
 		}
 	}
