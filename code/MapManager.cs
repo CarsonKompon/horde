@@ -2,6 +2,8 @@ using Sandbox;
 
 public sealed class MapManager : Component
 {
+	public static MapManager Instance { get; private set; }
+
 	[Property] MapInstance Map { get; set; }
 	[Property] GameObject EnemySpawnerPrefab { get; set; }
 
@@ -13,9 +15,11 @@ public sealed class MapManager : Component
 		{
 			OnMapLoaded();
 		}
+
+		Instance = this;
 	}
 
-	void OnMapLoaded()
+	public void OnMapLoaded()
 	{
 
 		foreach ( var obj in Map.GameObject.Children )

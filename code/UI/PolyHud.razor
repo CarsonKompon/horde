@@ -43,7 +43,7 @@
 								</div>
 							</div>
 						</div>
-						<p class="kills">@player.Kills</p>
+						<p class="kills">@player.Kills 💀</p>
 					</div>
 				}
 				ind++;
@@ -78,6 +78,24 @@
 			</div>
 		}
 	}
+
+	@if(!HordeManager.Instance.InGame)
+	{
+		<div class="game-over">
+			<h1>GAME OVER</h1>
+			<div class="options">
+				@if(Networking.IsHost)
+				{
+					<p class="btn" onclick=@PlayAgain>Play Again</p>
+				}
+				else
+				{
+					<p class="btn disabled">Waiting for host...</p>
+				}
+				<p class="btn" onclick=@ReturnToMenu>Return to Menu</p>
+			</div>
+		</div>
+	}
 </root>
 
 @code
@@ -85,21 +103,25 @@
 	public static PolyHud Instance { get; private set; }
 	Panel NotificationPanel { get; set; }
 
+	[Property] SceneFile MenuScene { get; set; }
+
 	protected override void OnStart()
 	{
 		base.OnStart();
 		Instance = this;
 	}
 
-	@* protected override void OnUpdate()
+	void PlayAgain()
 	{
-		base.OnUpdate();
+		if(Networking.IsHost)
+			HordeManager.Instance.ResetGame();
+	}
 
-		if(Input.Pressed("Jump"))
-		{
-			AddNotification("Picked up REVOLVER!");
-		}
-	} *@
+	void ReturnToMenu()
+	{
+		Game.Disconnect();
+		Scene.Load(MenuScene);
+	}
 
 	public void AddNotification(string text, float time = 3f)
 	{

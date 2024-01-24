@@ -40,7 +40,8 @@
           "ZIndex": 100
         },
         {
-          "__type": "PolyHud"
+          "__type": "PolyHud",
+          "MenuScene": "scenes/menu.scene"
         }
       ]
     },
@@ -974,7 +975,6 @@
         {
           "Id": "2e1d5f17-7576-41c9-8d08-9c07bc725301",
           "Name": "Collider",
-          "Tags": "player",
           "Enabled": true,
           "Components": [
             {

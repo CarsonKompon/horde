@@ -39,4 +39,49 @@ public sealed class HordeManager : Component
 			}
 		}
 	}
+
+	public void ResetGame()
+	{
+		if ( !Networking.IsHost ) return;
+
+		var players = Scene.Components.GetAll<Player>().ToList();
+		for ( int i = players.Count - 1; i >= 0; i-- )
+		{
+			var player = players[i];
+			player.Respawn();
+			player.Health = 100f;
+			player.Kills = 0;
+		}
+
+		// Destroy all Enemy objects
+		var enemies = Scene.Components.GetAll<Enemy>().ToList();
+		for ( int i = enemies.Count - 1; i >= 0; i-- )
+		{
+			var enemy = enemies[i];
+			enemies.RemoveAt( i );
+			enemy.GameObject.Destroy();
+		}
+
+		// Destroy all EnemySpawner objects
+		var spawners = Scene.Components.GetAll<EnemySpawner>().ToList();
+		for ( int i = spawners.Count - 1; i >= 0; i-- )
+		{
+			var spawner = spawners[i];
+			spawners.RemoveAt( i );
+			spawner.GameObject.Destroy();
+		}
+
+		// Destroy all Pickup objects
+		var pickups = Scene.Components.GetAll<Pickup>().ToList();
+		for ( int i = pickups.Count - 1; i >= 0; i-- )
+		{
+			var pickup = pickups[i];
+			pickups.RemoveAt( i );
+			pickup.GameObject.Destroy();
+		}
+
+		MapManager.Instance.OnMapLoaded();
+
+		InGame = true;
+	}
 }
