@@ -51,14 +51,27 @@ public sealed class Weapon : Component
 
 		for ( int i = 0; i < BulletsPerShot; i++ )
 		{
-			var transform = BulletSpawnPos.Transform.World;
+			Transform transform;
+			if ( BulletSpawnPos is not null )
+				transform = BulletSpawnPos.Transform.World;
+			else
+				transform = Player.Local.DefaultBulletSpawn.Transform.World;
 			transform.Rotation *= Rotation.FromYaw( Random.Shared.Float( -Spread, Spread ) );
 			transform.Scale = 1f;
 			var bulletObj = BulletPrefab.Clone( transform );
 			bulletObj.NetworkSpawn();
 			var bullet = bulletObj.Components.Get<BulletTrace>();
-			bullet.Damage = Damage;
-			bullet.Range = Range;
+			if ( bullet is not null )
+			{
+				bullet.Damage = Damage;
+				bullet.Range = Range;
+			}
+			var melee = bulletObj.Components.Get<MeleeContact>();
+			if ( melee is not null )
+			{
+				melee.Damage = Damage;
+				melee.Range = Range;
+			}
 		}
 		Ammo--;
 

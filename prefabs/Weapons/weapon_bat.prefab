@@ -1,0 +1,55 @@
+{
+  "RootObject": {
+    "Id": "47d41508-ad67-4337-ab70-4709956419e5",
+    "Name": "weapon_bat",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Weapon",
+        "Body": "d5cfdbdb-cabe-4983-b647-5195a4dfb45c",
+        "BulletPrefab": "prefabs/projectiles/melee_collider_hit.prefab",
+        "BulletSpawnPos": null,
+        "BulletsPerShot": 1,
+        "ClipSize": 42,
+        "Damage": 15,
+        "FireRate": 0.45,
+        "FireSound": "sounds/weapons/bat.swing.sound",
+        "HoldType": "Swing",
+        "Icon": "ui/weapons/baseball-bat.png",
+        "IsDefault": false,
+        "Name": "Bat",
+        "Range": 64,
+        "Spread": 0
+      }
+    ],
+    "Children": [
+      {
+        "Id": "d5cfdbdb-cabe-4983-b647-5195a4dfb45c",
+        "Name": "Body",
+        "Position": "-2.393833,-0.4932318,1.049672",
+        "Rotation": "-0.1411635,0.01944505,0.9897927,-0.002773404",
+        "Scale": "0.8592671,0.8592671,0.8592671",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 9493,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/entities/melee_weapons/baseballbat.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "apetavern.baseballbat"
+  ]
+}

@@ -241,6 +241,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	[Broadcast]
 	void BroadcastKillEvent()
 	{
+		Sound.Play( "zombie.death", Transform.Position );
 		var obj = HordeManager.Instance.BloodBurstPrefab.Clone( Transform.Position + Vector3.Up * 32f * AnimationHelper.Height );
 	}
 }

@@ -1,0 +1,55 @@
+{
+  "RootObject": {
+    "Id": "d5eab93d-7816-4212-998f-4a8f55fb2fcb",
+    "Name": "weapon_sword",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Weapon",
+        "Body": "b30e584a-c42f-48e8-b6ee-d0867cdc0193",
+        "BulletPrefab": "prefabs/projectiles/melee_collider_slice.prefab",
+        "BulletSpawnPos": null,
+        "BulletsPerShot": 1,
+        "ClipSize": 32,
+        "Damage": 25,
+        "FireRate": 1,
+        "FireSound": "sounds/weapons/bat.swing.sound",
+        "HoldType": "Swing",
+        "Icon": "ui/weapons/sword.png",
+        "IsDefault": false,
+        "Name": "Sword",
+        "Range": 52,
+        "Spread": 0
+      }
+    ],
+    "Children": [
+      {
+        "Id": "b30e584a-c42f-48e8-b6ee-d0867cdc0193",
+        "Name": "Body",
+        "Position": "-5.755746,0.3150372,11.81375",
+        "Rotation": "-0.6815023,-0.2936052,0.5154923,-0.4285166",
+        "Scale": "0.6659209,0.6659209,0.6659209",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 9493,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/sword/sword.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "hecker.sword"
+  ]
+}

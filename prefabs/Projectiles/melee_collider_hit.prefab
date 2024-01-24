@@ -1,0 +1,29 @@
+{
+  "RootObject": {
+    "Id": "e5f8d5b2-e76d-4b0d-80ce-9d57d892ff03",
+    "Name": "melee_collider_hit",
+    "Tags": "bullet,trigger",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "SphereCollider",
+        "Center": "0,0,0",
+        "IsTrigger": true,
+        "Radius": 20,
+        "Static": false,
+        "Surface": null
+      },
+      {
+        "__type": "MeleeContact",
+        "Damage": 10,
+        "DestroyAfter": 0.1,
+        "HitSound": "sounds/weapons/flesh.impact.hit.sound",
+        "Range": 20
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

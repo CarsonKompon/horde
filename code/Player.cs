@@ -11,6 +11,7 @@ public sealed class Player : Component
 	public static Player Local => GameManager.ActiveScene.GetAllComponents<Player>().FirstOrDefault( p => p.Network.IsOwner );
 	[Sync] public float Health { get; set; } = 100f;
 	[Property] public float Speed { get; set; } = 100f;
+	[Property] public bool GodMode { get; set; } = false;
 	[Property] public GameObject Body { get; set; }
 	[Property] public CharacterController CharacterController { get; private set; }
 	[Property] public CitizenAnimationHelper AnimationHelper { get; private set; }
@@ -18,6 +19,7 @@ public sealed class Player : Component
 	[Property] public GameObject HoldObject { get; set; }
 	[Property] GameObject MainCollider { get; set; }
 	[Property] GameObject Tombstone { get; set; }
+	[Property] public GameObject DefaultBulletSpawn { get; set; }
 	[Property] ParticleSphereEmitter SlideParticleEmitter { get; set; }
 	[Property] GameObject StartingWeaponPrefab { get; set; }
 
@@ -200,6 +202,7 @@ public sealed class Player : Component
 	{
 		if ( IsProxy ) return;
 		if ( timeSinceRespawn < 5f ) return;
+		if ( GodMode ) return;
 		Health -= damage;
 		healTimer = 0f;
 		if ( Health <= 0f )
@@ -294,6 +297,7 @@ public sealed class Player : Component
 	[Broadcast]
 	public void BroadcastAttackEvent()
 	{
+		AnimationHelper.Target.Set( "holdtype_attack", 1 );
 		AnimationHelper.Target.Set( "b_attack", true );
 	}
 

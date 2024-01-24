@@ -13,9 +13,11 @@
           "DamageNumberPrefab": "prefabs/particles/damage_numbers.prefab",
           "WeaponPrefabs": [
             "prefabs/pickups/pickup_ak47.prefab",
+            "prefabs/pickups/pickup_bat.prefab",
             "prefabs/pickups/pickup_mp5.prefab",
             "prefabs/pickups/pickup_revolver.prefab",
-            "prefabs/pickups/pickup_shotgun.prefab"
+            "prefabs/pickups/pickup_shotgun.prefab",
+            "prefabs/pickups/pickup_sword.prefab"
           ]
         },
         {
@@ -164,7 +166,9 @@
             "go": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
             "component_type": "CharacterController"
           },
+          "DefaultBulletSpawn": "b7e1f6c2-4103-43cf-9f1f-3e99060bc135",
           "FlashlightObject": "b29f2a6e-8b02-4f62-abc7-40890d2c0dcf",
+          "GodMode": false,
           "HoldObject": "13a839be-b218-439f-ba51-82d07f3e5d9b",
           "MainCollider": "2e1d5f17-7576-41c9-8d08-9c07bc725301",
           "SlideParticleEmitter": {
@@ -997,6 +1001,12 @@
                   "Shadows": false
                 }
               ]
+            },
+            {
+              "Id": "b7e1f6c2-4103-43cf-9f1f-3e99060bc135",
+              "Name": "Default Bullet Spot",
+              "Position": "37.61641,-0.00002005732,45.27365",
+              "Enabled": true
             }
           ]
         },
