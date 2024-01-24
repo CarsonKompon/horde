@@ -72,10 +72,10 @@
       "Components": [
         {
           "__type": "MapInstance",
-          "MapName": "eagleone/sd_lair",
+          "MapName": "eagleone/sd_bank",
           "OnMapLoaded": null,
           "OnMapUnloaded": null,
-          "UseMapFromLaunch": false
+          "UseMapFromLaunch": true
         },
         {
           "__type": "MapManager",

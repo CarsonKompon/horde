@@ -3,16 +3,54 @@
 @inherits PanelComponent
 
 <root>
-	<div class="title">@MyStringValue</div>
+	<div class="left">
+		<img src="ui/logo.png" class="logo" />
+
+		<div class="menu">
+			<div class="header">
+				<button class="@(UnsupportedMaps ? "" : "selected")" onclick=@(() => UnsupportedMaps = false)>Supported Maps</button>
+				<button class="@(UnsupportedMaps ? "selected" : "")" onclick=@(() => UnsupportedMaps = true)>Unsupported Maps</button>
+			</div>
+			<div class="content">
+				@if(UnsupportedMaps)
+				{
+					<PackageList ShowFilters="@true" Query="type:map sort:trending" OnSelected="@OnPackageSelected" Take=@(50)></PackageList>
+				}
+				else
+				{
+					<div class="supported-maps">
+						<MapButton Map="eagleone/sd_bank" Difficulty="Easy" />
+						<MapButton Map="eagleone/sd_lair" Difficulty="Medium" />
+						<MapButton Map="gvar/sd_lab" Difficulty="Medium" />
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+	<div class="right">
+		
+	</div>
 </root>
 
 @code
 {
+	public static MainMenuPanel Instance { get; private set; }
 
-	[Property, TextArea] public string MyStringValue { get; set; } = "Hello World!";
+	[Property] public SceneFile GameScene { get; set; }
 
-	/// <summary>
-	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( MyStringValue );
+	bool UnsupportedMaps = false;
+
+	protected override void OnStart()
+	{
+		base.OnStart();
+		Instance = this;
+	}
+
+	void OnPackageSelected(Package package)
+	{
+		LaunchArguments.Map = package.FullIdent;
+		Scene.Load(GameScene);
+	}
+
+	protected override int BuildHash() => System.HashCode.Combine( UnsupportedMaps );
 }

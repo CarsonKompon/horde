@@ -3,6 +3,7 @@ using Sandbox.ActionGraphs;
 using Sandbox.Citizen;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 
 public sealed class Player : Component
 {
@@ -93,6 +94,10 @@ public sealed class Player : Component
 			}
 
 			var camPos = Transform.Position + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - Transform.Position.WithZ( AimPosition.z )) / 4f;
+			// var camTrace = Scene.Trace.Ray( Transform.Position + Vector3.Up * 128f, camPos )
+			// 	.WithoutTags( "player", "enemy", "trigger" )
+			// 	.Run();
+			// if ( camTrace.Hit ) camPos = camTrace.HitPosition + camTrace.Normal * 2f;
 			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
 		}
 		else

@@ -1,0 +1,93 @@
+MapButton
+{
+	width: 500px;
+	height: 400px;
+	flex-direction: column;
+	border-radius: 32px;
+	overflow: hidden;
+	font-family: Poppins;
+	pointer-events: all;
+
+	> .header
+	{
+		flex-shrink: 0;
+		width: 100%;
+		background-color: black;
+		color: white;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		gap: -8px;
+		padding-bottom: 8px;
+		z-index: 10;
+
+		> .title
+		{
+			font-size: 32px;
+			font-weight: 700;
+		}
+
+		> .author
+		{
+			font-size: 16px;
+			font-weight: 400;
+		}
+	}
+
+	> .thumbnail
+	{
+		flex-grow: 1;
+		width: 100%;
+
+		> img
+		{
+			background-position: center;
+			transition: all 0.05s;
+		}
+
+		> .difficulty
+		{
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			background-color: white;
+			padding: 4px 8px;
+			padding-right: 12px;
+			padding-bottom: 6px;
+			border-radius: 16px 0 0 0;
+			font-size: 24px;
+			font-weight: 700;
+
+			&.Easy
+			{
+				background-color: rgb(100, 209, 100);
+			}
+
+			&.Medium
+			{
+				background-color: rgb(255, 193, 100);
+			}
+
+			&.Hard
+			{
+				background-color: rgb(255, 100, 100);
+			}
+		}
+	}
+
+	&:hover
+	{
+		img
+		{
+			transform: scale(1.1);
+		}
+	}
+
+	&:active
+	{
+		img
+		{
+			transform: scale(1.05);
+		}
+	}
+}

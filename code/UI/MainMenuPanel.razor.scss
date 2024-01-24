@@ -5,5 +5,116 @@ MainMenuPanel
 	left: 0;
 	right: 0;
 	bottom: 0;
-	
+	padding: 32px;
+
+	> .left
+	{
+		flex-direction: column;
+		gap: 32px;
+		flex-grow: 1;
+
+		> .logo
+		{
+			width: 800px;
+			aspect-ratio: 3.877;
+			flex-shrink: 0;
+		}
+
+		> .menu
+		{
+			flex-grow: 1;
+			background-color: rgba(black, 0.5);
+			flex-direction: column;
+			pointer-events: all;
+
+			> .header
+			{
+				flex-shrink: 0;
+				width: 100%;
+				justify-content: space-evenly;
+
+				> button
+				{
+					flex-grow: 1;
+					height: 64px;
+					background-color: rgba(black, 0.5);
+					color: white;
+					font-family: Poppins;
+					font-size: 32px;
+					font-weight: 700;
+					transition: all 0.05s ease-in;
+					justify-content: center;
+					align-items: center;
+
+					&.selected
+					{
+						background-color: rgba(white, 0.1);
+					}
+
+					&:hover
+					{
+						background-color: rgba(black, 0.7);
+						cursor: pointer;
+
+						&.selected
+						{
+							background-color: rgba(white, 0.2);
+							cursor: default;
+						}
+					}
+				}
+			}
+
+			> .content
+			{
+				padding: 32px;
+
+				> .supported-maps
+				{
+					overflow-y: scroll;
+					flex-wrap: wrap;
+					gap: 32px;
+					justify-content: center;
+				}
+
+				PackageList
+				{
+					color: white;
+
+					PackageFilters
+					{
+						.left
+						{
+							display: none;
+						}
+
+						.right
+						{
+							flex-grow: 1;
+
+							TextEntry
+							{
+								flex-grow: 1;
+								background-color: rgba(white, 0.02);
+								backdrop-filter: blur(2px);
+								color: white;
+							}
+
+							PackageFilterOrder
+							{
+								background-color: white;
+								color: black;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	> .right
+	{
+		width: 600px;
+		flex-shrink: 0;
+	}
 }
