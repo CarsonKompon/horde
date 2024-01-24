@@ -18,6 +18,7 @@
 				@if(UnsupportedMaps)
 				{
 					<PackageList ShowFilters="@true" Query="type:map sort:trending" OnSelected="@OnPackageSelected" Take=@(50)></PackageList>
+					<div class="warning">These maps are not officially supported by the game and may not work correctly.</div>
 				}
 				else
 				{

@@ -68,6 +68,7 @@ MainMenuPanel
 
 			> .content
 			{
+				flex-direction: column;
 				padding: 32px;
 
 				> .supported-maps
@@ -108,6 +109,17 @@ MainMenuPanel
 							}
 						}
 					}
+				}
+
+				> .warning
+				{
+					font-family: Poppins;
+					font-size: 24px;
+					flex-shrink: 0;
+					color: rgb(224, 88, 88);
+					justify-content: center;
+					align-items: center;
+					top: 16px;
 				}
 			}
 		}
