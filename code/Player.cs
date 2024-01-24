@@ -29,6 +29,8 @@ public sealed class Player : Component
 	[Sync] public int Kills { get; set; } = 0;
 	public bool IsSliding => SlideTimer < 0.6f;
 
+	float healTimer = 0f;
+
 	protected override void OnStart()
 	{
 		if ( CurrentWeapon is not null && CurrentWeapon.IsDefault ) return;
@@ -79,6 +81,14 @@ public sealed class Player : Component
 
 				// Move
 				UpdateMovement();
+
+				// Heal
+				healTimer += Time.Delta;
+				if ( healTimer >= 8f && Health < 100f )
+				{
+					Health += 5 * Time.Delta;
+					if ( Health > 100f ) Health = 100f;
+				}
 			}
 
 			var camPos = Transform.Position + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - Transform.Position.WithZ( AimPosition.z )) / 4f;
@@ -179,6 +189,7 @@ public sealed class Player : Component
 	{
 		if ( IsProxy ) return;
 		Health -= damage;
+		healTimer = 0f;
 		if ( Health <= 0f )
 		{
 			Kill();

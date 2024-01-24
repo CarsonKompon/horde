@@ -1,5 +1,6 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using System;
 @using System.Collections.Generic;
 @using System.Linq;
 @inherits PanelComponent
@@ -27,7 +28,20 @@
 					<div class="player">
 						<div class="info">
 							<Image texture=@Texture.LoadAvatar((long)player.Network.OwnerConnection.SteamId) />
-							<p class="name">@player.Network.OwnerConnection.DisplayName</p>
+							<div class="name-container">
+								<p class="name">@player.Network.OwnerConnection.DisplayName</p>
+								<div class="health">
+									<div class="bars">
+										@for(int i=0; i<System.Math.Ceiling(player.Health/10); i++)
+										{
+											var segmentValue = System.Math.Clamp(player.Health - i * 10, 0, 10);
+											var height = segmentValue / 10 * 100;
+											<div class="bar" style="height: @(height)%;"></div>
+										}
+									</div>
+									<p class="hp">@Math.Ceiling(player.Health)</p>
+								</div>
+							</div>
 						</div>
 						<p class="kills">@player.Kills</p>
 					</div>
@@ -45,7 +59,7 @@
 					<div class="bar" style="height: @(height)%;"></div>
 				}
 			</div>
-			<p class="hp">@Player.Local.Health</p>
+			<p class="hp">@Math.Ceiling(Player.Local.Health)</p>
 		</div>
 
 		@if(Player.Local.CurrentWeapon is not null)

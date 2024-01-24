@@ -4,6 +4,7 @@
     {
       "Id": "bd8563f7-2711-4cf8-af33-6d6e82077579",
       "Name": "Network Manager",
+      "Networked": true,
       "Enabled": true,
       "Components": [
         {

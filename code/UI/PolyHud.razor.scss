@@ -145,14 +145,14 @@ PolyHud
 		position: absolute;
 		left: 16px;
 		top: 16px;
-		width: 400px;
+		width: 350px;
 		background-color: rgb(28, 35, 41);
 		color: white;
 		font-family: Poppins;
 		font-size: 18px;
 		flex-direction: column;
-		gap: 4px;
-		padding: 8px;
+		gap: 16px;
+		padding: 12px 8px;
 
 		> .player
 		{
@@ -168,22 +168,124 @@ PolyHud
 
 				> Image
 				{
-					width: 32px;
-					height: 32px;
+					width: 42px;
+					height: 42px;
 					aspect-ratio: 1;
 					background-size: contain;
 					background-repeat: no-repeat;
 					background-position: center;
+					flex-shrink: 0;
 				}
 
-				> .name
+				> .name-container
 				{
+					flex-direction: column;
+					flex-grow: 1;
+
+					> .name
+					{
+						font-size: 20px;
+						flex-shrink: 0;
+						top: -4px;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+					}
+
+					> .health
+					{
+						bottom: 4px;
+						left: 0px;
+						width: 200px;
+						height: 18px;
+						align-items: center;
+						flex-shrink: 0;
+
+						> .bars
+						{
+							width: 100%;
+							height: 100%;
+							gap: 4px;
+							transform: skewX(-20deg);
+							align-items: flex-end;
+
+							> .bar
+							{
+								width: 16px;
+								background-color: orange;
+								box-shadow: 0 0 8px black;
+								transition: height 0.2s ease;
+							}
+						}
+
+						> .hp
+						{
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							transform: translate(-50%, -50%);
+							font-family: Poppins;
+							font-size: 50px;
+							font-weight: 700;
+							color: white;
+							font-size: 12px;
+							font-weight: 600;
+							text-stroke: 4px black;
+						}
+					}
+
+					// .health
+					// {
+					// 	position: absolute;
+					// 	bottom: 16px;
+					// 	left: 16px;
+					// 	width: 500px;
+					// 	height: 200px;
+					// 	background-image: url("/ui/health_background.png");
+					// 	background-size: contain;
+					// 	background-repeat: no-repeat;
+					// 	background-position: center;
+					// 	justify-content: center;
+					// 	align-items: center;
+
+					// 	> .bars
+					// 	{
+					// 		width: 320px;
+					// 		height: 30%;
+					// 		gap: 8px;
+					// 		transform: skewX(-20deg);
+					// 		align-items: flex-end;
+
+					// 		> .bar
+					// 		{
+					// 			width: 24px;
+					// 			background-color: orange;
+					// 			box-shadow: 0 0 8px black;
+					// 			transition: height 0.2s ease;
+					// 		}
+					// 	}
+
+					// 	> .hp
+					// 	{
+					// 		position: absolute;
+					// 		top: 50%;
+					// 		left: 50%;
+					// 		transform: translate(-50%, -50%);
+					// 		font-family: Poppins;
+					// 		font-size: 50px;
+					// 		font-weight: 700;
+					// 		color: white;
+					// 		text-stroke: 8px black;
+					// 		text-shadow: 0 0 8px black;
+					// 	}
+					// }
+
 
 				}
 			}
 
 			> .kills
 			{
+				flex-shrink: 0;
 			}
 		}
 
