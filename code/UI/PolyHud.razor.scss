@@ -16,6 +16,52 @@ PolyHud
 		pointer-events: all;
 	}
 
+	> .health
+	{
+		position: absolute;
+		bottom: 16px;
+		left: 16px;
+		width: 500px;
+		height: 200px;
+		background-image: url("/ui/health_background.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		background-position: center;
+		justify-content: center;
+		align-items: center;
+
+		> .bars
+		{
+			width: 320px;
+			height: 30%;
+			gap: 8px;
+			transform: skewX(-20deg);
+			align-items: flex-end;
+
+			> .bar
+			{
+				width: 24px;
+				background-color: orange;
+				box-shadow: 0 0 8px black;
+				transition: height 0.2s ease;
+			}
+		}
+
+		> .hp
+		{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			font-family: Poppins;
+			font-size: 50px;
+			font-weight: 700;
+			color: white;
+			text-stroke: 8px black;
+			text-shadow: 0 0 8px black;
+		}
+	}
+
 	> .weapon
 	{
 		position: absolute;

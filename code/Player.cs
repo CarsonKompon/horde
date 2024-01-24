@@ -159,6 +159,15 @@ public sealed class Player : Component
 		AnimationHelper.SpecialMove = IsSliding ? CitizenAnimationHelper.SpecialMoveStyle.Slide : CitizenAnimationHelper.SpecialMoveStyle.None;
 	}
 
+	public void Hurt( float damage )
+	{
+		Health -= damage;
+		if ( Health <= 0f )
+		{
+			Health = 0f;
+		}
+	}
+
 	[Broadcast]
 	public void BroadcastAttackEvent()
 	{

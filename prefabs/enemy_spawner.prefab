@@ -1,0 +1,24 @@
+{
+  "RootObject": {
+    "Id": "703dddfe-6a05-4f1e-8230-e3cba241416a",
+    "Name": "enemy_spawner",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "EnemySpawner",
+        "MaxEnemies": 1,
+        "MaxRespawnTime": 20,
+        "MinRespawnTime": 10,
+        "Prefabs": [
+          "prefabs/enemies/enemy_basic.prefab",
+          "prefabs/enemies/enemy_fast.prefab",
+          "prefabs/enemies/enemy_slow.prefab"
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

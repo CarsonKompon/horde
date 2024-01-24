@@ -3,7 +3,7 @@ using Sandbox;
 public sealed class MapManager : Component
 {
 	[Property] MapInstance Map { get; set; }
-	[Property] GameObject WeaponSpawnerPrefab { get; set; }
+	[Property] GameObject EnemySpawnerPrefab { get; set; }
 
 	protected override void OnStart()
 	{
@@ -23,7 +23,7 @@ public sealed class MapManager : Component
 
 			if ( obj.Name == "sd_weaponspawn_random" )
 			{
-				var weaponSpawner = WeaponSpawnerPrefab.Clone( obj.Transform.Position );
+				var weaponSpawner = EnemySpawnerPrefab.Clone( obj.Transform.Position );
 				weaponSpawner.NetworkSpawn( null );
 			}
 		}

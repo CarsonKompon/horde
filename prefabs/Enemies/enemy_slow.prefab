@@ -1,7 +1,7 @@
 {
   "RootObject": {
-    "Id": "3818d5d0-0bee-4ec5-86dc-1050f28ff2f9",
-    "Name": "enemy_basic",
+    "Id": "4c6ffc9b-f5fb-419f-9225-244a78f1d86d",
+    "Name": "enemy_slow",
     "Tags": "enemy",
     "Enabled": true,
     "Components": [
@@ -18,19 +18,19 @@
         "__type": "Enemy",
         "AnimationHelper": {
           "_type": "component",
-          "go": "89224f3c-d06d-4c4e-9a66-f4855fa43af2",
+          "go": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
           "component_type": "CitizenAnimationHelper"
         },
-        "Body": "89224f3c-d06d-4c4e-9a66-f4855fa43af2",
+        "Body": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
         "CharacterController": {
           "_type": "component",
-          "go": "3818d5d0-0bee-4ec5-86dc-1050f28ff2f9",
+          "go": "4c6ffc9b-f5fb-419f-9225-244a78f1d86d",
           "component_type": "CharacterController"
         },
-        "Health": 25,
-        "LeftForward": "2439b959-f0f8-46ca-ab0b-52b3dd95d7c7",
-        "RightForward": "ab1b10fb-415f-44f0-89a0-08bdef31dc10",
-        "Speed": 150
+        "Health": 50,
+        "LeftForward": "05dec6e6-016a-4d85-9fef-663be5eff7a4",
+        "RightForward": "47bb8d1d-90c3-4799-848e-bea1f342da7c",
+        "Speed": 88.2
       },
       {
         "__type": "SphereCollider",
@@ -43,8 +43,10 @@
     ],
     "Children": [
       {
-        "Id": "89224f3c-d06d-4c4e-9a66-f4855fa43af2",
+        "Id": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
         "Name": "Body",
+        "Position": "0,0,3.737914",
+        "Scale": "1.666,1.666,1.666",
         "Enabled": true,
         "Components": [
           {
@@ -61,10 +63,10 @@
           {
             "__type": "CitizenAnimationHelper",
             "BodyWeight": 1,
-            "EyeSource": "480aab58-5ccb-4206-9b7f-cab2bd4fd2e9",
+            "EyeSource": "31202175-6e6d-4caa-8828-5331738283df",
             "EyesWeight": 1,
             "HeadWeight": 1,
-            "Height": 1,
+            "Height": 0.6,
             "IkLeftFoot": null,
             "IkLeftHand": null,
             "IkRightFoot": null,
@@ -73,7 +75,7 @@
             "LookAtEnabled": false,
             "Target": {
               "_type": "component",
-              "go": "89224f3c-d06d-4c4e-9a66-f4855fa43af2",
+              "go": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
               "component_type": "SkinnedModelRenderer"
             }
           },
@@ -89,8 +91,9 @@
         ],
         "Children": [
           {
-            "Id": "2025b092-7613-49b0-b423-8008a6557176",
+            "Id": "e36b1661-92f6-488d-8200-b7c17a0ae02f",
             "Name": "Hair",
+            "Position": "0,0,0",
             "Enabled": true,
             "Components": [
               {
@@ -98,27 +101,27 @@
                 "BodyGroups": 18446744073709551615,
                 "BoneMergeTarget": {
                   "_type": "component",
-                  "go": "89224f3c-d06d-4c4e-9a66-f4855fa43af2",
+                  "go": "40ebf2be-40d2-4753-9f39-de7d12099ba9",
                   "component_type": "SkinnedModelRenderer"
                 },
                 "CreateBoneObjects": false,
                 "MaterialGroup": null,
                 "MaterialOverride": null,
-                "Model": "models/citizen_clothes/hair/hair_longbob/models/hair_longbob.vmdl",
+                "Model": "models/citizen_clothes/hair/hair_short_dreadlocks/models/hair_short_dreadlocks.vmdl",
                 "RenderType": "On",
                 "Tint": "1,1,1,1"
               }
             ]
           },
           {
-            "Id": "2439b959-f0f8-46ca-ab0b-52b3dd95d7c7",
+            "Id": "05dec6e6-016a-4d85-9fef-663be5eff7a4",
             "Name": "LeftForward",
             "Position": "14.41086,1,19.55466",
             "Rotation": "0.000000008232106,0.000000001010975,0.258819,0.9659258",
             "Enabled": true
           },
           {
-            "Id": "ab1b10fb-415f-44f0-89a0-08bdef31dc10",
+            "Id": "47bb8d1d-90c3-4799-848e-bea1f342da7c",
             "Name": "RightForward",
             "Position": "14.41086,-1,19.55466",
             "Rotation": "0.0000000076347,-0.000000003240523,-0.258819,0.9659258",
@@ -127,13 +130,13 @@
         ]
       },
       {
-        "Id": "480aab58-5ccb-4206-9b7f-cab2bd4fd2e9",
+        "Id": "31202175-6e6d-4caa-8828-5331738283df",
         "Name": "Head",
         "Position": "0,0,64",
         "Enabled": true
       },
       {
-        "Id": "ce794b1f-099e-4b18-bd0e-144faf691f32",
+        "Id": "a21bffa8-d995-4747-afc1-89ba7ea3d4ba",
         "Name": "Outline Circle",
         "Scale": "0.4849404,0.4849404,0.4849404",
         "Enabled": true,
@@ -159,7 +162,7 @@
         ]
       },
       {
-        "Id": "36e93a8b-3605-44e1-b5d7-6f197900b438",
+        "Id": "1896d971-fdad-41f7-8ff7-4d621651fc4c",
         "Name": "Collider",
         "Enabled": true,
         "Components": [
@@ -175,7 +178,7 @@
         ]
       },
       {
-        "Id": "826ac4d1-c0c2-4e91-9eb9-8a77fabf7f5d",
+        "Id": "faf9cab4-95ed-4f9e-ba64-fcb968d757d2",
         "Name": "Damage Trigger",
         "Position": "0,0,36.29562",
         "Enabled": true,
@@ -191,8 +194,8 @@
           },
           {
             "__type": "DamageTrigger",
-            "Cooldown": 1,
-            "Damage": 12
+            "Cooldown": 2,
+            "Damage": 20
           }
         ]
       }

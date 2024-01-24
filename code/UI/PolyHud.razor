@@ -9,7 +9,7 @@
 
 	@if(Player.Local is not null)
 	{
-		int i = 0;
+		int ind = 0;
 		var players = Scene.GetAllComponents<Player>();
 
 		<div class="notifications" @ref="NotificationPanel" >
@@ -18,11 +18,11 @@
 		<div class="leaderboard">
 			@foreach(var player in players.OrderBy(x => x.Kills))
 			{
-				@if(i == 4)
+				@if(ind == 4)
 				{
-					<div class="more">and @(players.Count() - i) more...</div>
+					<div class="more">and @(players.Count() - ind) more...</div>
 				}
-				else if(i < 4)
+				else if(ind < 4)
 				{
 					<div class="player">
 						<div class="info">
@@ -32,7 +32,20 @@
 						<p class="kills">@player.Kills</p>
 					</div>
 				}
+				ind++;
 			}
+		</div>
+
+		<div class="health">
+			<div class="bars">
+				@for(int i=0; i<System.Math.Ceiling(Player.Local.Health/10); i++)
+				{
+					var segmentValue = System.Math.Clamp(Player.Local.Health - i * 10, 0, 10);
+					var height = segmentValue / 10 * 100;
+					<div class="bar" style="height: @(height)%;"></div>
+				}
+			</div>
+			<p class="hp">@Player.Local.Health</p>
 		</div>
 
 		@if(Player.Local.CurrentWeapon is not null)

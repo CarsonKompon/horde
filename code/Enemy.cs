@@ -6,6 +6,8 @@ using Sandbox.Citizen;
 
 public sealed class Enemy : Component, Component.ITriggerListener
 {
+	public static int Count = 0;
+
 	[Property, Sync] public float Health { get; set; } = 25f;
 	[Property] float Speed { get; set; } = 80f;
 	[Property] GameObject Body { get; set; }
@@ -13,8 +15,6 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	[Property] CitizenAnimationHelper AnimationHelper { get; set; }
 	[Property] GameObject LeftForward { get; set; }
 	[Property] GameObject RightForward { get; set; }
-	[Property] List<GameObject> PickupDrops { get; set; }
-	[Property] GameObject DamageNumberPrefab { get; set; }
 	float ForwardDistance = 50f;
 
 	public Vector3 WishVelocity { get; set; }
@@ -29,6 +29,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	protected override void OnStart()
 	{
 		startingHealth = Health;
+		Count++;
 	}
 
 	protected override void OnUpdate()
@@ -42,11 +43,6 @@ public sealed class Enemy : Component, Component.ITriggerListener
 				{
 					foreach ( var obj in InRange )
 					{
-						var tr = Scene.Trace.Ray( Transform.Position + Vector3.Up * 16f, obj.Transform.Position + Vector3.Up * 16f )
-							.IgnoreGameObjectHierarchy( GameObject )
-							.WithoutTags( "trigger", "player" )
-							.Run();
-
 						if ( HasLineOfSight( obj.Transform.Position ) )
 						{
 							Target = obj.Transform.Position;
@@ -72,6 +68,11 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		UpdateAnimations();
 	}
 
+	protected override void OnDestroy()
+	{
+		Count--;
+	}
+
 	public void Hurt( float damage, Guid hurtBy = default )
 	{
 		if ( Health <= 0 ) return;
@@ -88,9 +89,10 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	public void Kill()
 	{
-		if ( PickupDrops is not null && PickupDrops.Count > 0 && Random.Shared.Float() < 0.15f )
+		var pickups = HordeManager.Instance.WeaponPrefabs;
+		if ( pickups is not null && pickups.Count > 0 && Random.Shared.Float() < 0.15f )
 		{
-			var pickup = PickupDrops[Random.Shared.Next( PickupDrops.Count )];
+			var pickup = pickups[Random.Shared.Next( pickups.Count )];
 			pickup.Clone( Transform.Position ).NetworkSpawn( null );
 		}
 
@@ -102,6 +104,8 @@ public sealed class Enemy : Component, Component.ITriggerListener
 				player.Kills++;
 			}
 		}
+
+		BroadcastKillEvent();
 
 		GameObject.Destroy();
 	}
@@ -219,7 +223,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	[Broadcast]
 	void BroadcastHurtEvent( float damage )
 	{
-		var obj = DamageNumberPrefab.Clone( Transform.Position + Vector3.Random.WithZ( 0f ) * 4f + Vector3.Up * 64f );
+		var obj = HordeManager.Instance.DamageNumberPrefab.Clone( Transform.Position + Vector3.Random.WithZ( 0f ) * 4f + Vector3.Up * 64f );
 		var dmgNumber = obj.Components.Get<DamageNumber>();
 		dmgNumber.Damage = (int)damage;
 		if ( damage >= startingHealth )
@@ -230,5 +234,11 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		{
 			dmgNumber.TextRenderer.Color = Color.Yellow;
 		}
+	}
+
+	[Broadcast]
+	void BroadcastKillEvent()
+	{
+		var obj = HordeManager.Instance.BloodBurstPrefab.Clone( Transform.Position + Vector3.Up * 32f * AnimationHelper.Height );
 	}
 }

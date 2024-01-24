@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "f0b482d1-ff11-4f5f-a95e-0a71302da96e",
+    "Id": "62cd71c7-8e9f-44a4-b209-8b0876b02f5c",
     "Name": "pickup_ak47",
     "Tags": "trigger",
     "Enabled": true,
@@ -15,21 +15,20 @@
       },
       {
         "__type": "Pickup",
-        "Body": "2fd92b58-b857-43c0-91eb-f4affef2ead4",
-        "PickupName": "AK-47",
-        "WeaponPrefab": "prefabs/weapons/weapon_mp5.prefab"
+        "Body": "d10e1856-e0db-4779-814c-d16ff2f1ff4c",
+        "WeaponPrefab": "prefabs/weapons/weapon_ak47.prefab"
       }
     ],
     "Children": [
       {
-        "Id": "2fd92b58-b857-43c0-91eb-f4affef2ead4",
+        "Id": "d10e1856-e0db-4779-814c-d16ff2f1ff4c",
         "Name": "Body",
         "Position": "0,0,3.724123",
         "Scale": "1.173685,1.173685,1.173685",
         "Enabled": true,
         "Children": [
           {
-            "Id": "ada93011-918f-4779-8642-f007ec685d23",
+            "Id": "9d665a33-cef9-4a8a-97b8-cced6a91b454",
             "Name": "Real Body",
             "Position": "5.659024,-0.00005429436,3.973969",
             "Enabled": true,
