@@ -118,6 +118,7 @@
     {
       "Id": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
       "Name": "Player",
+      "Tags": "player",
       "Components": [
         {
           "__type": "Player",
@@ -134,6 +135,7 @@
           },
           "FlashlightObject": "b29f2a6e-8b02-4f62-abc7-40890d2c0dcf",
           "HoldObject": "13a839be-b218-439f-ba51-82d07f3e5d9b",
+          "MainCollider": "2e1d5f17-7576-41c9-8d08-9c07bc725301",
           "Speed": 180,
           "StartingWeaponPrefab": "prefabs/weapons/weapon_pistol_default.prefab",
           "Tombstone": "dd812707-4d52-411e-9763-a078ac8aa7f0"
@@ -143,7 +145,7 @@
           "Acceleration": 10,
           "GroundAngle": 45,
           "Height": 64,
-          "IgnoreLayers": "trigger,enemy",
+          "IgnoreLayers": "trigger,enemy,player",
           "Radius": 10,
           "StepHeight": 18
         }

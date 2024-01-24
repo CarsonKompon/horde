@@ -14,7 +14,8 @@ public sealed class Player : Component
 	[Property] public CitizenAnimationHelper AnimationHelper { get; private set; }
 	[Property] GameObject FlashlightObject { get; set; }
 	[Property] public GameObject HoldObject { get; set; }
-	[Property] public GameObject Tombstone { get; set; }
+	[Property] GameObject MainCollider { get; set; }
+	[Property] GameObject Tombstone { get; set; }
 	[Property] GameObject StartingWeaponPrefab { get; set; }
 
 	public Weapon CurrentWeapon => HoldObject.Components.GetAll<Weapon>().OrderBy( x => x.IsDefault ).FirstOrDefault();
@@ -83,6 +84,13 @@ public sealed class Player : Component
 			var camPos = Transform.Position + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - Transform.Position.WithZ( AimPosition.z )) / 4f;
 			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
 		}
+		else
+		{
+			foreach ( var weapon in HeldWeapons )
+			{
+				weapon.Body.Enabled = weapon == CurrentWeapon;
+			}
+		}
 
 		// Enable Flashlight
 		FlashlightObject.Enabled = Flashlight;
@@ -92,6 +100,7 @@ public sealed class Player : Component
 		Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
 
 		Body.Enabled = Health > 0f;
+		MainCollider.Enabled = Health > 0f;
 		Tombstone.Enabled = Health <= 0f;
 
 		UpdateAnimations();
@@ -165,8 +174,10 @@ public sealed class Player : Component
 		AnimationHelper.SpecialMove = IsSliding ? CitizenAnimationHelper.SpecialMoveStyle.Slide : CitizenAnimationHelper.SpecialMoveStyle.None;
 	}
 
+	[Broadcast]
 	public void Hurt( float damage )
 	{
+		if ( IsProxy ) return;
 		Health -= damage;
 		if ( Health <= 0f )
 		{

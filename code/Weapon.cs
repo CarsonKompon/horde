@@ -5,7 +5,7 @@ using Sandbox.Citizen;
 public sealed class Weapon : Component
 {
 	[Property] public bool IsDefault { get; set; } = false;
-	[Property] GameObject Body { get; set; }
+	[Property] public GameObject Body { get; set; }
 	[Property, Category( "Bullet" )] GameObject BulletPrefab { get; set; }
 	[Property, Category( "Bullet" )] GameObject BulletSpawnPos { get; set; }
 

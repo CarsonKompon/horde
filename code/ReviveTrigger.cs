@@ -14,6 +14,7 @@ public sealed class ReviveTrigger : Component, Component.ITriggerListener
 
 		if ( other.Components.GetInParentOrSelf<Player>() is Player player && player != Player )
 		{
+			Log.Info( "revive" );
 			Player.Respawn();
 		}
 	}
