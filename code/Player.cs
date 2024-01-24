@@ -18,6 +18,7 @@ public sealed class Player : Component
 	[Property] public GameObject HoldObject { get; set; }
 	[Property] GameObject MainCollider { get; set; }
 	[Property] GameObject Tombstone { get; set; }
+	[Property] ParticleSphereEmitter SlideParticleEmitter { get; set; }
 	[Property] GameObject StartingWeaponPrefab { get; set; }
 
 	public Weapon CurrentWeapon => HoldObject.Components.GetAll<Weapon>().OrderBy( x => x.IsDefault ).FirstOrDefault();
@@ -116,15 +117,18 @@ public sealed class Player : Component
 		var targetRot = Rotation.LookAt( Forward, Vector3.Up );
 		Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
 
+		// Show/Hide Stuff
 		Body.Enabled = Health > 0f;
 		MainCollider.Enabled = Health > 0f;
 		Tombstone.Enabled = Health <= 0f;
+		SlideParticleEmitter.Enabled = IsSliding;
 
 		UpdateAnimations();
 	}
 
 	void Slide()
 	{
+		if ( WishVelocity.Length < 0.1f ) WishVelocity = Forward * Speed;
 		if ( WishVelocity.Length < Speed )
 		{
 			WishVelocity = WishVelocity.Normal * Speed;
