@@ -58,6 +58,20 @@
           "__type": "PolyHud",
           "MenuScene": "scenes/menu.scene"
         }
+      ],
+      "Children": [
+        {
+          "Id": "bf8da48a-f1b5-45c4-bed2-f07e79362617",
+          "Name": "Chat",
+          "Position": "0,0,0",
+          "Networked": true,
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Chatbox"
+            }
+          ]
+        }
       ]
     },
     {
@@ -1109,6 +1123,28 @@
                   "Offset": "0,180,0"
                 }
               ]
+            }
+          ]
+        },
+        {
+          "Id": "85860a16-1907-4117-9564-1581126ae6d5",
+          "Name": "Voice",
+          "Enabled": true,
+          "Components": [
+            {
+              "__type": "Voice",
+              "Loopback": false,
+              "Mode": "PushToTalk",
+              "MorphScale": 3,
+              "MorphSmoothTime": 0.1,
+              "PushToTalkInput": "voice",
+              "Renderer": {
+                "_type": "component",
+                "go": "8d57730b-b36d-446c-abd3-5ab8a485366a",
+                "component_type": "SkinnedModelRenderer"
+              },
+              "Volume": 1,
+              "WorldspacePlayback": true
             }
           ]
         }
