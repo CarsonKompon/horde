@@ -23,6 +23,8 @@ public sealed class MapManager : Component
 
 	public void OnMapLoaded()
 	{
+		if ( !Networking.IsHost ) return;
+
 		Scene.Title = Map.MapName;
 
 		bool createdSpawns = false;
