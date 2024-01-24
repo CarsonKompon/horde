@@ -1103,30 +1103,8 @@
               ]
             },
             {
-              "Id": "1e28202d-5d83-4229-b9ae-1982e9a4ccb2",
-              "Name": "Revive Text",
-              "Position": "-11.97115,-0.000000955547,53.78541",
-              "Rotation": "0,0,1,-0.00000004371139",
-              "Scale": "0.5,0.5,0.5",
-              "Enabled": true,
-              "Components": [
-                {
-                  "__type": "TextRenderer",
-                  "Color": "1,1,1,1",
-                  "FontFamily": "Poppins",
-                  "FontSize": 32,
-                  "Scale": 1,
-                  "Text": "REVIVE!"
-                },
-                {
-                  "__type": "LookAtCamera",
-                  "Offset": "0,180,0"
-                }
-              ]
-            },
-            {
               "Id": "0c00db67-12be-4394-b1b3-638be9da12cd",
-              "Name": "Screen",
+              "Name": "Revive UI",
               "Position": "0,0,0",
               "Enabled": true,
               "Components": [
@@ -1139,7 +1117,11 @@
                 },
                 {
                   "__type": "ReviveUI",
-                  "Target": "dd812707-4d52-411e-9763-a078ac8aa7f0"
+                  "Player": {
+                    "_type": "component",
+                    "go": "06bb7aa4-4e01-45ae-bd4a-6c42a0f7515d",
+                    "component_type": "Player"
+                  }
                 }
               ]
             }

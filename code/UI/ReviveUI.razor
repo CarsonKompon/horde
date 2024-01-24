@@ -4,16 +4,17 @@
 @inherits PanelComponent
 
 <root>
+    @if(Player == Player.Local) return;
     <p>NEEDS REVIVING!</p>
 </root>
 
 @code
 {
-	[Property] public GameObject Target { get; set; }
+    [Property] Player Player { get; set; }
 
 	protected override void OnUpdate()
 	{
-		var pos = Scene.Camera.PointToScreenPixels( Target.Transform.Position );
+		var pos = Scene.Camera.PointToScreenPixels( Transform.Position );
 		pos.x /= Scene.Camera.ScreenRect.Size.x;
 		pos.y /= Scene.Camera.ScreenRect.Size.y;
 		pos *= 100f;
@@ -22,5 +23,5 @@
 		Panel.Style.Bottom = Length.Percent( Math.Clamp(100f - pos.y, 10, 94) );
 	}
 
-	protected override int BuildHash() => System.HashCode.Combine( Target );
+	protected override int BuildHash() => System.HashCode.Combine( Player );
 }

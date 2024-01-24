@@ -103,7 +103,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 			var player = Scene.GetAllComponents<Player>().FirstOrDefault( x => x.Network.OwnerId == LastHurt );
 			if ( player is not null )
 			{
-				player.Kills++;
+				player.IncrementKills();
 			}
 		}
 
