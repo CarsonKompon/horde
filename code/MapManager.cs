@@ -60,6 +60,7 @@ public sealed class MapManager : Component
 			player.CharacterController.Velocity = Vector3.Zero;
 			player.Transform.Position = spawnPoints[spawnIndex].Transform.Position + Vector3.Up * 4f;
 			spawnIndex = (spawnIndex + 1) % spawnPoints.Count;
+			player.FillHealth();
 		}
 	}
 }

@@ -226,7 +226,7 @@ public sealed class Player : Component
 	public void Respawn()
 	{
 		if ( IsProxy || Health > 0f ) return;
-		Health = 100f;
+		Health = 50f;
 		timeSinceRespawn = 0f;
 		ResetWeapons();
 		BroadcastRespawnEvent();
@@ -282,6 +282,13 @@ public sealed class Player : Component
 		}
 
 		GiveStartingWeapon();
+	}
+
+	[Broadcast]
+	public void FillHealth()
+	{
+		if ( IsProxy ) return;
+		Health = 100f;
 	}
 
 	[Broadcast]
