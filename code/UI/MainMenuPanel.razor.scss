@@ -148,6 +148,7 @@ MainMenuPanel
 			gap: 16px;
 			overflow-y: scroll;
 			align-items: center;
+			pointer-events: all;
 
 			> .button
 			{
