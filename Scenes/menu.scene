@@ -721,9 +721,6 @@
               "LightColor": "0.77674,0.40023,0.16619,1",
               "Radius": 92.3999,
               "Shadows": true
-            },
-            {
-              "__type": "LightJitter"
             }
           ]
         }
