@@ -250,6 +250,8 @@ public sealed class Player : Component
 		var prefab = pickup.WeaponPrefab;
 		if ( prefab is null ) return;
 
+		Sound.Play( "pickup.weapon", Transform.Position );
+
 		foreach ( var obj in HoldObject.Children )
 		{
 			if ( obj.Components.Get<Weapon>() is Weapon wep && !wep.IsDefault )
