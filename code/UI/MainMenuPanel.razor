@@ -1,5 +1,8 @@
 @using Sandbox;
 @using Sandbox.UI;
+@using Sandbox.Network;
+@using System.Collections.Generic;
+@using System.Threading.Tasks;
 @inherits PanelComponent
 
 <root>
@@ -28,7 +31,46 @@
 		</div>
 	</div>
 	<div class="right">
-		
+		<div class="header">
+			<div class="title">Server List</div>
+		</div>
+
+		<div class="content">
+
+			@if (refreshing)
+			{
+				<div>Refreshing..</div>
+			}
+			else if (LobbyList.Count == 0)
+			{
+				<div>No lobbies were found</div>
+			}
+			else
+			{
+				@foreach (var lobby in LobbyList)
+				{
+					<div class="button" onclick=@(() => JoinLobby( lobby ) )>
+
+						<div class="title">
+							@lobby.Name
+						</div>
+
+						<div class="meta">
+
+							<div class="map">
+								@lobby.Map
+							</div>
+
+							<div class="count">
+								@lobby.Members / @lobby.MaxMembers
+							</div>
+
+						</div>
+
+					</div>
+				}
+			}
+		</div>
 	</div>
 </root>
 
@@ -38,12 +80,16 @@
 
 	[Property] public SceneFile GameScene { get; set; }
 
+	List<LobbyInformation> LobbyList = new();
 	bool UnsupportedMaps = false;
+	bool refreshing = false;
 
 	protected override void OnStart()
 	{
 		base.OnStart();
 		Instance = this;
+
+		_ = RefreshLobbyList();
 	}
 
 	void OnPackageSelected(Package package)
@@ -51,6 +97,27 @@
 		LaunchArguments.Map = package.FullIdent;
 		Scene.Load(GameScene);
 	}
+
+	async Task RefreshLobbyList()
+    {
+        while ( true )
+        {
+            refreshing = true;
+            StateHasChanged();
+
+            LobbyList = await GameNetworkSystem.QueryLobbies();
+
+            refreshing = false;
+            StateHasChanged();
+
+            await Task.DelayRealtimeSeconds( 5.0f );
+        }
+    }
+
+	void JoinLobby( LobbyInformation lobby )
+    {
+        GameNetworkSystem.Connect( lobby.LobbyId );
+    }
 
 	protected override int BuildHash() => System.HashCode.Combine( UnsupportedMaps );
 }

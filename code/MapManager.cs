@@ -21,6 +21,7 @@ public sealed class MapManager : Component
 
 	public void OnMapLoaded()
 	{
+		Scene.Title = Map.MapName;
 
 		foreach ( var obj in Map.GameObject.Children )
 		{
