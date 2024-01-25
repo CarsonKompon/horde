@@ -184,7 +184,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		// Rotate body towards target
 		if ( Target != Vector3.Zero )
 		{
-			var targetRot = Rotation.LookAt( Target - Transform.Position, Vector3.Up );
+			var targetRot = Rotation.LookAt( Target.WithZ( Transform.Position.z ) - Transform.Position, Vector3.Up );
 			Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, Time.Delta * 10f );
 		}
 

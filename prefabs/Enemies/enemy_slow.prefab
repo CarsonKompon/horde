@@ -169,7 +169,7 @@
         "Components": [
           {
             "__type": "CapsuleCollider",
-            "End": "0,0,56.79998",
+            "End": "0,0,128",
             "IsTrigger": false,
             "Radius": 19.400024,
             "Start": "0,0,15.60001",
