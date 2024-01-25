@@ -1,0 +1,64 @@
+{
+  "RootObject": {
+    "Id": "d516c822-b2b3-4e3f-8025-6a5a9d66c0e1",
+    "Name": "weapon_auto_shotgun",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Weapon",
+        "Body": "c76c2cd7-5e06-4fa3-a2d2-37c4872747a1",
+        "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
+        "BulletSpawnPos": "547aecf1-7e3f-4d82-bffd-a00e998aad00",
+        "BulletsPerShot": 6,
+        "ClipSize": 32,
+        "Damage": 5,
+        "FireRate": 0.5,
+        "FireSound": "sounds/weapons/shotgun_auto.sound",
+        "HoldType": "Shotgun",
+        "Icon": "ui/weapons/shotgun-auto.png",
+        "IsDefault": false,
+        "Name": "Auto Shotgun",
+        "Range": 148,
+        "Spread": 20
+      }
+    ],
+    "Children": [
+      {
+        "Id": "c76c2cd7-5e06-4fa3-a2d2-37c4872747a1",
+        "Name": "Body",
+        "Position": "-4.956769,0.006860911,-8.218204",
+        "Rotation": "0.000000005036823,0.000000009065626,1,-0.00000004371139",
+        "Scale": "1.36468,1.36468,1.36468",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 9493,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/weapons/w_shotgun.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ],
+        "Children": [
+          {
+            "Id": "547aecf1-7e3f-4d82-bffd-a00e998aad00",
+            "Name": "Bullet Spawn",
+            "Position": "-28.52426,0.000007791919,6.439966",
+            "Rotation": "0,0,1,-0.00000004371139",
+            "Enabled": true
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": [
+    "gok.w_shotgun"
+  ]
+}

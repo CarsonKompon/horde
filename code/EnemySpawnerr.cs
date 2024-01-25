@@ -15,10 +15,17 @@ public sealed class EnemySpawner : Component
 	int spawnCount = 0;
 	int goalCount = 0;
 
+	int Increment = 15;
+	int GoalIncrement = 4;
+	float Stunt = 0f;
+
 	protected override void OnStart()
 	{
 		respawnTime = Random.Shared.Float( MinRespawnTime, MaxRespawnTime );
 		timer = Random.Shared.Float( 0f, respawnTime );
+		Increment = Random.Shared.Int( 10, 15 );
+		GoalIncrement = Random.Shared.Int( 2, 4 );
+		Stunt = Random.Shared.Float();
 	}
 
 	protected override void OnUpdate()
@@ -37,20 +44,20 @@ public sealed class EnemySpawner : Component
 	void SpawnPrefab()
 	{
 		goalCount++;
-		if ( goalCount % 4 == 0 )
+		if ( goalCount % GoalIncrement == 0 )
 		{
 			MinRespawnTime -= 0.5f;
 			MaxRespawnTime -= 0.5f;
-			MinRespawnTime = Math.Max( MinRespawnTime, 2f );
-			MaxRespawnTime = Math.Max( MaxRespawnTime, 5f );
 		}
-		if ( goalCount >= (15 * MaxEnemies) )
+		if ( goalCount >= (Increment * MaxEnemies) )
 		{
 			MaxEnemies++;
 			goalCount = 0;
-			MinRespawnTime = 10;
-			MaxRespawnTime = 20;
+			MinRespawnTime = 10 - Stunt * MaxEnemies;
+			MaxRespawnTime = 20 - Stunt * MaxEnemies;
 		}
+		MinRespawnTime = Math.Max( MinRespawnTime, 2f );
+		MaxRespawnTime = Math.Max( MaxRespawnTime, 5f );
 
 
 		for ( int i = 0; i < spawned.Count; i++ )

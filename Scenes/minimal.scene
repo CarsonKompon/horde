@@ -18,7 +18,8 @@
             "prefabs/pickups/pickup_revolver.prefab",
             "prefabs/pickups/pickup_shotgun.prefab",
             "prefabs/pickups/pickup_sword.prefab",
-            "prefabs/pickups/pickup_rpg.prefab"
+            "prefabs/pickups/pickup_rpg.prefab",
+            "prefabs/pickups/pickup_auto_shotgun.prefab"
           ]
         },
         {
