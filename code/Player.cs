@@ -304,6 +304,7 @@ public sealed class Player : Component
 	[Broadcast]
 	void BroadcastDeathEvent()
 	{
+		if ( Network.OwnerConnection is null ) return;
 		PolyHud.Instance.AddNotification( $"{Network.OwnerConnection.DisplayName} has died!" );
 	}
 
