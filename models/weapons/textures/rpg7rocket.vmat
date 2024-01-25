@@ -1,0 +1,14 @@
+
+Layer0
+{
+	shader "shaders/complex.shader_c"
+
+	TextureColor "models/weapons/textures/rpg7rocket_albedo.png"
+	TextureAmbientOcclusion "models/weapons/textures/rpg7rocket_ao.png"
+	TextureNormal "models/weapons/textures/rpg7rocket_normal.png"
+	TextureRoughness "models/weapons/textures/rpg7rocket_roughness.png"
+	F_METALNESS_TEXTURE 1
+	F_SPECULAR 1
+	TextureMetalness "models/weapons/textures/rpg7rocket_metallic.png"
+
+}

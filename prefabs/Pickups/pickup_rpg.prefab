@@ -1,0 +1,66 @@
+{
+  "RootObject": {
+    "Id": "62cd71c7-8e9f-44a4-b209-8b0876b02f5c",
+    "Name": "pickup_rpg",
+    "Tags": "trigger",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "SphereCollider",
+        "Center": "0,0,9.700003",
+        "IsTrigger": true,
+        "Radius": 10,
+        "Static": false,
+        "Surface": null
+      },
+      {
+        "__type": "Pickup",
+        "Body": "d10e1856-e0db-4779-814c-d16ff2f1ff4c",
+        "WeaponPrefab": "prefabs/weapons/weapon_rpg.prefab"
+      }
+    ],
+    "Children": [
+      {
+        "Id": "d10e1856-e0db-4779-814c-d16ff2f1ff4c",
+        "Name": "Body",
+        "Position": "0,0,3.724123",
+        "Scale": "1.173685,1.173685,1.173685",
+        "Enabled": true,
+        "Children": [
+          {
+            "Id": "9d665a33-cef9-4a8a-97b8-cced6a91b454",
+            "Name": "Real Body",
+            "Position": "-0.8533006,-0.00005429436,2.75634",
+            "Enabled": true,
+            "Components": [
+              {
+                "__type": "SkinnedModelRenderer",
+                "BodyGroups": 3,
+                "BoneMergeTarget": null,
+                "CreateBoneObjects": false,
+                "MaterialGroup": null,
+                "MaterialOverride": null,
+                "Model": "models/weapons/rpg7.vmdl",
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              },
+              {
+                "__type": "HighlightOutline",
+                "Color": "1,1,1,1",
+                "InsideColor": "0,0,0,0",
+                "InsideObscuredColor": "0,0,0,0",
+                "Material": null,
+                "ObscuredColor": "0,0,0,0.4",
+                "Width": 0.25
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

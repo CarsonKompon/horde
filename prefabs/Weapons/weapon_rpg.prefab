@@ -1,0 +1,60 @@
+{
+  "RootObject": {
+    "Id": "7bba83c9-d77d-49cb-b8ca-bcc895d66098",
+    "Name": "weapon_rpg",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "Weapon",
+        "Body": "e99a4eee-4138-458b-98dd-e79c21e37265",
+        "BulletPrefab": "prefabs/projectiles/bullet_rocket.prefab",
+        "BulletSpawnPos": "07416bcb-6958-44a7-bb86-172ee7a90823",
+        "BulletsPerShot": 1,
+        "ClipSize": 16,
+        "Damage": 20,
+        "FireRate": 1.5,
+        "FireSound": "sounds/weapons/rpg_heavy.sound",
+        "HoldType": "RPG",
+        "Icon": "ui/weapons/rpg.png",
+        "IsDefault": false,
+        "Name": "Rocket Launcher",
+        "Range": 600,
+        "Spread": 2
+      }
+    ],
+    "Children": [
+      {
+        "Id": "e99a4eee-4138-458b-98dd-e79c21e37265",
+        "Name": "Body",
+        "Position": "-14.14111,0.5897759,-6.062905",
+        "Scale": "0.9832346,0.983,0.9832346",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "SkinnedModelRenderer",
+            "BodyGroups": 3,
+            "BoneMergeTarget": null,
+            "CreateBoneObjects": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/weapons/rpg7.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ],
+        "Children": [
+          {
+            "Id": "07416bcb-6958-44a7-bb86-172ee7a90823",
+            "Name": "Bullet Spawn",
+            "Position": "25.98698,0.00009419758,8.118264",
+            "Enabled": true
+          }
+        ]
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

@@ -1,0 +1,57 @@
+{
+  "RootObject": {
+    "Id": "e5f8d5b2-e76d-4b0d-80ce-9d57d892ff03",
+    "Name": "bullet_rocket",
+    "Tags": "bullet,trigger",
+    "Enabled": true,
+    "Components": [
+      {
+        "__type": "BulletProjectile",
+        "Damage": 10,
+        "DestroyPrefab": "prefabs/projectiles/explosion_collider.prefab",
+        "DestroySpawnPosition": "2c9f61a7-807e-4d59-9159-ebf3b0e3e4ab",
+        "ImpactSound": "sounds/weapons/rpg.explosion.sound",
+        "Lifetime": 1000,
+        "Speed": 600
+      },
+      {
+        "__type": "BoxCollider",
+        "Center": "14.70001,0,2.1",
+        "IsTrigger": true,
+        "Scale": "40.00013,7.800035,7.899994",
+        "Static": false,
+        "Surface": null
+      }
+    ],
+    "Children": [
+      {
+        "Id": "9792fdeb-22d4-41ef-86a2-c7435e2d066f",
+        "Name": "Body",
+        "Position": "-31.85457,0,-1.045809",
+        "Rotation": "-0.0000000006909777,0.01159268,0.000000000000000000216821,0.9999331",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "ModelRenderer",
+            "BodyGroups": 18446744073709551615,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
+            "Model": "models/weapons/rpg7_rocket.vmdl",
+            "RenderType": "On",
+            "Tint": "1,1,1,1"
+          }
+        ]
+      },
+      {
+        "Id": "2c9f61a7-807e-4d59-9159-ebf3b0e3e4ab",
+        "Name": "ExplodePosition",
+        "Position": "-0.2911873,-0.00000155469,-0.1436708",
+        "Enabled": true
+      }
+    ]
+  },
+  "ShowInMenu": false,
+  "MenuPath": null,
+  "MenuIcon": null,
+  "__references": []
+}

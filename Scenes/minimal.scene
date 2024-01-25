@@ -17,7 +17,8 @@
             "prefabs/pickups/pickup_mp5.prefab",
             "prefabs/pickups/pickup_revolver.prefab",
             "prefabs/pickups/pickup_shotgun.prefab",
-            "prefabs/pickups/pickup_sword.prefab"
+            "prefabs/pickups/pickup_sword.prefab",
+            "prefabs/pickups/pickup_rpg.prefab"
           ]
         },
         {
@@ -99,6 +100,7 @@
     {
       "Id": "a09d6359-41eb-4151-87bc-8ef6f217bd5d",
       "Name": "Map",
+      "Tags": "world",
       "Enabled": true,
       "Components": [
         {

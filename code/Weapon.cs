@@ -66,6 +66,12 @@ public sealed class Weapon : Component
 				bullet.Damage = Damage;
 				bullet.Range = Range;
 			}
+			var projectile = bulletObj.Components.Get<BulletProjectile>();
+			if ( projectile is not null )
+			{
+				projectile.Damage = Damage;
+				projectile.Speed = Range;
+			}
 			var melee = bulletObj.Components.Get<MeleeContact>();
 			if ( melee is not null )
 			{

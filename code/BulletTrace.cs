@@ -19,7 +19,7 @@ public sealed class BulletTrace : Component
 		var endPos = tr.Hit ? tr.HitPosition : tr.EndPosition;
 		var distance = (endPos - startPos).Length;
 
-		if ( !IsProxy && tr.Hit && tr.GameObject.Components.GetInParentOrSelf<Enemy>() is Enemy enemy )
+		if ( !IsProxy && tr.Hit && tr.GameObject.Components.GetInParent<Enemy>() is Enemy enemy )
 		{
 			enemy.Hurt( Damage, Network.OwnerId );
 

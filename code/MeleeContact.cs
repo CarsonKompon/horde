@@ -33,7 +33,7 @@ public sealed class MeleeContact : Component
 			}
 		}
 
-		if ( didHit )
+		if ( didHit && HitSound is not null )
 		{
 			Sound.Play( HitSound, Transform.Position );
 		}
