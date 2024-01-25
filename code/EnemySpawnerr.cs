@@ -49,7 +49,9 @@ public sealed class EnemySpawner : Component
 			MinRespawnTime -= 0.5f;
 			MaxRespawnTime -= 0.5f;
 		}
-		if ( goalCount >= (Increment * MaxEnemies) )
+		var inc = (Increment * MaxEnemies);
+		if ( MaxEnemies <= 2 ) inc = 10;
+		if ( goalCount >= inc )
 		{
 			MaxEnemies++;
 			goalCount = 0;
