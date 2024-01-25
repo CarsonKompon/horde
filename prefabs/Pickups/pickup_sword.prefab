@@ -1,6 +1,6 @@
 {
   "RootObject": {
-    "Id": "91a5e8df-5ad2-432e-911c-02681511d411",
+    "Id": "a897eb67-bf1b-453d-99ac-db661d9b4586",
     "Name": "pickup_sword",
     "Tags": "trigger",
     "Enabled": true,
@@ -15,20 +15,20 @@
       },
       {
         "__type": "Pickup",
-        "Body": "ac3694dd-2e87-4624-8ec5-3b37e0a4a6ed",
-        "WeaponPrefab": "prefabs/weapons/weapon_bat.prefab"
+        "Body": "95c7e8e1-a6d5-4a29-b2d6-9a486cd9ed20",
+        "WeaponPrefab": "prefabs/weapons/weapon_sword.prefab"
       }
     ],
     "Children": [
       {
-        "Id": "ac3694dd-2e87-4624-8ec5-3b37e0a4a6ed",
+        "Id": "95c7e8e1-a6d5-4a29-b2d6-9a486cd9ed20",
         "Name": "Body",
         "Position": "0,0,4.5",
         "Scale": "1.665597,1.665597,1.665597",
         "Enabled": true,
         "Children": [
           {
-            "Id": "e70666cf-74e0-4b3e-a1a5-9f7840d6dc3d",
+            "Id": "c053600d-cb86-4dc2-a025-59be00096681",
             "Name": "Real Body",
             "Position": "-1.391489,-0.00000008293916,5.013304",
             "Rotation": "0.6494766,0.3107237,-0.3307802,0.610098",

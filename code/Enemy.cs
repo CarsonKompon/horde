@@ -36,7 +36,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	{
 		if ( !IsProxy )
 		{
-			if ( targetTimer > 0.5f || Vector3.DistanceBetween( Target, Transform.Position ) < 10f )
+			if ( targetTimer > 0.5f )
 			{
 				Target = Transform.Position + Vector3.Random.Normal.WithZ( 0 ) * 100f;
 				if ( InRange.Count > 0 )
