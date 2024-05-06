@@ -8,7 +8,7 @@ using System.Net.Http;
 
 public sealed class Player : Component
 {
-	public static Player Local => GameManager.ActiveScene.GetAllComponents<Player>().FirstOrDefault( p => p.Network.IsOwner );
+	public static Player Local => Game.ActiveScene.GetAllComponents<Player>().FirstOrDefault( p => p.Network.IsOwner );
 	[Sync] public float Health { get; set; } = 100f;
 	[Property] public float Speed { get; set; } = 100f;
 	[Property] public bool GodMode { get; set; } = false;
