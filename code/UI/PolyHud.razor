@@ -8,31 +8,31 @@
 <root>
 	<div class="free-mouse" />
 
-	@if(Player.Local is not null)
+	@if (Player.Local is not null)
 	{
 		int ind = 0;
 		var players = Scene.GetAllComponents<Player>();
 
-		<div class="notifications" @ref="NotificationPanel" >
+		<div class="notifications" @ref="NotificationPanel">
 		</div>
 
 		<div class="leaderboard">
-			@foreach(var player in players.OrderBy(x => x.Kills))
+			@foreach (var player in players.OrderBy(x => x.Kills))
 			{
-				@if(ind == 4)
+				@if (ind == 4)
 				{
 					<div class="more">and @(players.Count() - ind) more...</div>
 				}
-				else if(ind < 4)
+				else if (ind < 4)
 				{
 					<div class="player">
 						<div class="info">
-							<Image texture=@Texture.LoadAvatar((long)player.Network.OwnerConnection.SteamId) />
+							<img class="avatar" src="@($"avatar:{player.Network.OwnerConnection.SteamId}")" />
 							<div class="name-container">
 								<p class="name">@player.Network.OwnerConnection.DisplayName</p>
 								<div class="health">
 									<div class="bars">
-										@for(int i=0; i<System.Math.Ceiling(player.Health/10); i++)
+										@for (int i = 0; i < System.Math.Ceiling(player.Health / 10); i++)
 										{
 											var segmentValue = System.Math.Clamp(player.Health - i * 10, 0, 10);
 											var height = segmentValue / 10 * 100;
@@ -52,7 +52,7 @@
 
 		<div class="health">
 			<div class="bars">
-				@for(int i=0; i<System.Math.Ceiling(Player.Local.Health/10); i++)
+				@for (int i = 0; i < System.Math.Ceiling(Player.Local.Health / 10); i++)
 				{
 					var segmentValue = System.Math.Clamp(Player.Local.Health - i * 10, 0, 10);
 					var height = segmentValue / 10 * 100;
@@ -62,12 +62,12 @@
 			<p class="hp">@Math.Ceiling(Player.Local.Health)</p>
 		</div>
 
-		@if(Player.Local.CurrentWeapon is not null)
+		@if (Player.Local.CurrentWeapon is not null)
 		{
 			var weapon = Player.Local.CurrentWeapon;
 			<div class="weapon">
 				<img src=@weapon.Icon class="icon" />
-				@if(weapon.ClipSize == 0)
+				@if (weapon.ClipSize == 0)
 				{
 					<img src="ui/infinity.png" class="infinite-ammo" />
 				}
@@ -79,12 +79,12 @@
 		}
 	}
 
-	@if(!HordeManager.Instance.InGame)
+	@if (!HordeManager.Instance.InGame)
 	{
 		<div class="game-over">
 			<h1>GAME OVER</h1>
 			<div class="options">
-				@if(Networking.IsHost)
+				@if (Networking.IsHost)
 				{
 					<p class="btn" onclick=@PlayAgain>Play Again</p>
 				}
@@ -96,7 +96,7 @@
 			</div>
 		</div>
 	}
-	else if(IsPaused)
+	else if (IsPaused)
 	{
 		<div class="pause-menu">
 			<h1>PAUSED</h1>
@@ -130,16 +130,16 @@
 	{
 		base.OnUpdate();
 
-		if(Input.EscapePressed)
+		if (Input.EscapePressed)
 		{
 			IsPaused = !IsPaused;
-			if(!IsPaused) HordePreferences.Save();
+			if (!IsPaused) HordePreferences.Save();
 		}
 	}
 
 	void PlayAgain()
 	{
-		if(Networking.IsHost)
+		if (Networking.IsHost)
 			HordeManager.Instance.ResetGame();
 	}
 
@@ -156,7 +156,7 @@
 		popup.Notification = notification;
 	}
 
-	protected override int BuildHash() => System.HashCode.Combine( Time.Now );
+	protected override int BuildHash() => System.HashCode.Combine(Time.Now);
 
 	public class Notification
 	{

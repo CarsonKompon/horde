@@ -1,14 +1,17 @@
 {
-  "Id": "421d44fb-414e-4f1d-a735-7fd1a30de676",
+  "__guid": "421d44fb-414e-4f1d-a735-7fd1a30de676",
   "GameObjects": [
     {
-      "Id": "bd8563f7-2711-4cf8-af33-6d6e82077579",
+      "__guid": "bd8563f7-2711-4cf8-af33-6d6e82077579",
+      "Flags": 0,
       "Name": "Network Manager",
-      "Networked": true,
       "Enabled": true,
+      "NetworkMode": 1,
+      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "HordeManager",
+          "__guid": "3328be65-d762-47f6-b149-88b7e2b140c4",
           "BloodBurstPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/particles/blood_burst.prefab"
@@ -53,7 +56,8 @@
           ]
         },
         {
-          "__type": "NetworkHelper",
+          "__type": "Sandbox.NetworkHelper",
+          "__guid": "4808e11f-80b6-4881-81a3-44c3d606b4b2",
           "PlayerPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/player.prefab"
@@ -64,13 +68,17 @@
       ]
     },
     {
-      "Id": "7a725c14-d328-4fca-8177-8efa6b531531",
+      "__guid": "7a725c14-d328-4fca-8177-8efa6b531531",
+      "Flags": 0,
       "Name": "Music Player",
       "Position": "-376.7363,-312.7557,534.2381",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "SongPlayer",
+          "__guid": "ef7d6047-2de1-4436-ad8c-096e33918dde",
           "Songs": [
             "sounds/music/music-1.sound",
             "sounds/music/music-2.sound"
@@ -79,13 +87,17 @@
       ]
     },
     {
-      "Id": "98456e73-f258-4881-9863-aa8839bce194",
+      "__guid": "98456e73-f258-4881-9863-aa8839bce194",
+      "Flags": 0,
       "Name": "Screen UI",
       "Position": "17.11655,-33.55924,33.3356",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "ScreenPanel",
+          "__type": "Sandbox.ScreenPanel",
+          "__guid": "621b6aa7-1a9e-4545-a997-aecd1bae54ec",
           "AutoScreenScale": true,
           "Opacity": 1,
           "Scale": 1,
@@ -93,65 +105,77 @@
         },
         {
           "__type": "PolyHud",
+          "__guid": "05799720-e90a-45b9-a35d-5a5312f5e0b3",
           "MenuScene": "scenes/menu.scene"
         }
       ],
       "Children": [
         {
-          "Id": "bf8da48a-f1b5-45c4-bed2-f07e79362617",
+          "__guid": "bf8da48a-f1b5-45c4-bed2-f07e79362617",
+          "Flags": 0,
           "Name": "Chat",
           "Position": "0,0,0",
-          "Networked": true,
           "Enabled": true,
+          "NetworkMode": 1,
+          "NetworkInterpolation": true,
           "Components": [
             {
-              "__type": "Chatbox"
+              "__type": "Chatbox",
+              "__guid": "c9131061-ee6f-4556-9b79-85395a15ce99"
             }
           ]
         }
       ]
     },
     {
-      "Id": "73a4fa50-a9b9-4573-b8f8-5d66ce6f0967",
+      "__guid": "73a4fa50-a9b9-4573-b8f8-5d66ce6f0967",
+      "Flags": 0,
       "Name": "Aim Plane",
       "Position": "458.7779,-534.3385,64",
       "Tags": "trigger,aimplane",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "BoxCollider",
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "a4ab055a-78b9-42f4-97f3-ebf070c3d46a",
           "Center": "0,0,0",
           "IsTrigger": false,
           "Scale": "3701.802,3700.902,0.25",
-          "Static": false,
-          "Surface": null
+          "Static": false
         },
         {
-          "__type": "AimPlane"
+          "__type": "AimPlane",
+          "__guid": "f3bbf775-e232-44c1-9ad7-d9ba9fd0cca0"
         }
       ]
     },
     {
-      "Id": "a09d6359-41eb-4151-87bc-8ef6f217bd5d",
+      "__guid": "a09d6359-41eb-4151-87bc-8ef6f217bd5d",
+      "Flags": 0,
       "Name": "Map",
       "Tags": "world",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "MapInstance",
+          "__type": "Sandbox.MapInstance",
+          "__guid": "a9653468-9a46-425d-8348-76a5d1903bf1",
           "MapName": "eagleone/sd_bank",
-          "OnMapLoaded": null,
-          "OnMapUnloaded": null,
           "UseMapFromLaunch": true
         },
         {
           "__type": "MapManager",
+          "__guid": "eee2d6f6-3181-40a2-9143-0ec9181304e7",
           "EnemySpawnerPrefab": {
             "_type": "gameobject",
             "prefab": "prefabs/enemy_spawner.prefab"
           },
           "Map": {
             "_type": "component",
+            "component_id": "a9653468-9a46-425d-8348-76a5d1903bf1",
             "go": "a09d6359-41eb-4151-87bc-8ef6f217bd5d",
             "component_type": "MapInstance"
           }
@@ -160,14 +184,18 @@
       "Children": []
     },
     {
-      "Id": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "__guid": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
+      "Flags": 0,
       "Name": "Camera",
       "Position": "-0.000008552593,0,390.8771",
       "Rotation": "0.000000007691807,0.5661847,-0.00000000769181,0.8242788",
       "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkInterpolation": true,
       "Components": [
         {
-          "__type": "CameraComponent",
+          "__type": "Sandbox.CameraComponent",
+          "__guid": "305eafa5-fb7b-4539-88a9-2dec56a3c55f",
           "BackgroundColor": "0.33333,0.46275,0.52157,1",
           "ClearFlags": "All",
           "FieldOfView": 69,
@@ -183,16 +211,17 @@
           "ZNear": 10
         },
         {
-          "__type": "Highlight"
+          "__type": "Sandbox.Highlight",
+          "__guid": "6f4fe932-66ef-45a8-814c-86ca7a528a67"
         }
       ]
     }
   ],
   "SceneProperties": {
     "FixedUpdateFrequency": 50,
-    "Lerping": true,
     "MaxFixedUpdates": 5,
     "NetworkFrequency": 60,
+    "NetworkInterpolation": true,
     "ThreadedAnimation": true,
     "TimeScale": 1,
     "UseFixedUpdate": true,
@@ -211,6 +240,8 @@
   },
   "Title": "minimal",
   "Description": "",
-  "LastSaved": "2024-02-10T13:52:32.2965534-05:00",
-  "__references": []
+  "LastSaved": "2024-06-19T20:10:59.5594779-04:00",
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
 }
