@@ -42,6 +42,7 @@ public sealed class Player : Component
 		if ( CurrentWeapon is not null && CurrentWeapon.IsDefault ) return;
 
 		GiveStartingWeapon();
+		HordeManager.Instance.IsStarting = false;
 	}
 
 	protected override void OnUpdate()

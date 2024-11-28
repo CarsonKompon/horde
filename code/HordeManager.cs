@@ -11,6 +11,7 @@ public sealed class HordeManager : Component
 	[Property] public List<GameObject> WeaponPrefabs { get; set; }
 
 	[Sync] public bool InGame { get; set; } = true;
+	public bool IsStarting { get; set; } = true;
 
 	protected override void OnAwake()
 	{
@@ -33,7 +34,7 @@ public sealed class HordeManager : Component
 				}
 			}
 
-			if ( !living )
+			if ( !living && !IsStarting )
 			{
 				InGame = false;
 			}

@@ -145,7 +145,7 @@
 
 	void ReturnToMenu()
 	{
-		Game.Disconnect();
+		Sandbox.Network.GameNetworkSystem.Disconnect();
 		Scene.Load(MenuScene);
 	}
 

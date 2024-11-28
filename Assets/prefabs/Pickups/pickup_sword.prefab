@@ -65,6 +65,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "__references": [
-    "hecker.sword"
+    "hecker.sword#34151"
   ]
 }

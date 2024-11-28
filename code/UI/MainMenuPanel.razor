@@ -16,7 +16,7 @@
 				<button class="@(UnsupportedMaps ? "selected" : "")" onclick=@(() => UnsupportedMaps = true)>Unsupported Maps</button>
 			</div>
 			<div class="content">
-				@if(UnsupportedMaps)
+				@if (UnsupportedMaps)
 				{
 					<PackageList ShowFilters="@true" Query="type:map sort:trending" OnSelected="@OnPackageSelected" Take=@(50)></PackageList>
 					<div class="warning">These maps are not officially supported by the game and may not work correctly.</div>
@@ -102,25 +102,25 @@
 	}
 
 	async Task RefreshLobbyList()
-    {
-        while ( true )
-        {
-            refreshing = true;
-            StateHasChanged();
+	{
+		while (true)
+		{
+			refreshing = true;
+			StateHasChanged();
 
-            LobbyList = await Networking.QueryLobbies();
+			LobbyList = await Networking.QueryLobbies();
 
-            refreshing = false;
-            StateHasChanged();
+			refreshing = false;
+			StateHasChanged();
 
-            await Task.DelayRealtimeSeconds( 5.0f );
-        }
-    }
+			await Task.DelayRealtimeSeconds(5.0f);
+		}
+	}
 
-	void JoinLobby( LobbyInformation lobby )
-    {
-        GameNetworkSystem.Connect( lobby.LobbyId );
-    }
+	void JoinLobby(LobbyInformation lobby)
+	{
+		GameNetworkSystem.Connect(lobby.LobbyId);
+	}
 
-	protected override int BuildHash() => System.HashCode.Combine( UnsupportedMaps );
+	protected override int BuildHash() => System.HashCode.Combine(UnsupportedMaps);
 }

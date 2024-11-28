@@ -64,6 +64,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "__references": [
-    "rust.rust_shotgun"
+    "rust.rust_shotgun#43966"
   ]
 }

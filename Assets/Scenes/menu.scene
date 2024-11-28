@@ -771,8 +771,8 @@
   "Title": "menu",
   "Description": "",
   "__references": [
-    "facepunch.floor_dirt_b",
-    "gkaf.cinderblock_wall",
-    "mdlresrc.rtx_oilbarrel"
+    "facepunch.floor_dirt_b#18644",
+    "gkaf.cinderblock_wall#24641",
+    "mdlresrc.rtx_oilbarrel#22477"
   ]
 }
