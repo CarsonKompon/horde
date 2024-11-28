@@ -9,6 +9,7 @@ ReviveUI
 	font-size: 20px;
 	padding: 8px;
 	transform: skewX(-10deg);
+	opacity: 0;
 
 	h1
 	{
@@ -33,5 +34,10 @@ ReviveUI
 		align-items: center;
 
 		padding: 0 20px;
+	}
+
+	&.visible
+	{
+		opacity: 1;
 	}
 }

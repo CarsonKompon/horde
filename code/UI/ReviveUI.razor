@@ -16,6 +16,8 @@
 	{
 		if (!Panel.IsValid()) return;
 
+		SetClass("visible", Player != Player.Local);
+
 		var pos = Scene.Camera.PointToScreenPixels(Transform.Position);
 		pos.x /= Scene.Camera.ScreenRect.Size.x;
 		pos.y /= Scene.Camera.ScreenRect.Size.y;
