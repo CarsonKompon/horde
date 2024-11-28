@@ -1,14 +1,25 @@
 {
   "RootObject": {
-    "Id": "10cc1407-883b-4687-81f5-57585229480f",
+    "__guid": "10cc1407-883b-4687-81f5-57585229480f",
+    "Flags": 0,
     "Name": "weapon_pistol_default",
     "Enabled": true,
     "Components": [
       {
         "__type": "Weapon",
-        "Body": "653e8c9a-c5ba-46cd-9de4-aa44d5650a87",
-        "BulletPrefab": "prefabs/projectiles/bullet_trace.prefab",
-        "BulletSpawnPos": "64f1a110-e41d-4193-9ba3-11d88539a133",
+        "__guid": "6b1d061c-3bdf-444c-8885-c7f04888c116",
+        "Body": {
+          "_type": "gameobject",
+          "go": "653e8c9a-c5ba-46cd-9de4-aa44d5650a87"
+        },
+        "BulletPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/projectiles/bullet_trace.prefab"
+        },
+        "BulletSpawnPos": {
+          "_type": "gameobject",
+          "go": "64f1a110-e41d-4193-9ba3-11d88539a133"
+        },
         "BulletsPerShot": 1,
         "ClipSize": 0,
         "Damage": 8,
@@ -24,7 +35,8 @@
     ],
     "Children": [
       {
-        "Id": "653e8c9a-c5ba-46cd-9de4-aa44d5650a87",
+        "__guid": "653e8c9a-c5ba-46cd-9de4-aa44d5650a87",
+        "Flags": 0,
         "Name": "Body",
         "Position": "3.628547,0.9520323,-4.626728",
         "Rotation": "0.000000008847564,-0.000000005122274,0.0000008642728,1.000005",
@@ -32,32 +44,78 @@
         "Enabled": true,
         "Components": [
           {
-            "__type": "SkinnedModelRenderer",
-            "BodyGroups": 9493,
-            "BoneMergeTarget": null,
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "b6dbc58d-ebf6-4a57-9597-a0f6aab8085c",
+            "BodyGroups": 9509,
+            "CreateAttachments": false,
             "CreateBoneObjects": false,
-            "MaterialGroup": null,
-            "MaterialOverride": null,
             "Model": "models/weapons/sbox_pistol_usp/w_usp.vmdl",
+            "Morphs": {},
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "On",
-            "Tint": "1,1,1,1"
+            "Sequence": {
+              "Name": null
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
           }
         ],
         "Children": [
           {
-            "Id": "64f1a110-e41d-4193-9ba3-11d88539a133",
+            "__guid": "64f1a110-e41d-4193-9ba3-11d88539a133",
+            "Flags": 0,
             "Name": "Bullet Spawn",
             "Position": "4.276376,0.0000002651219,4.558849",
             "Enabled": true
           }
         ]
       }
-    ]
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
   "__references": [
     "facepunch.w_usp#77979"
-  ]
+  ],
+  "IsValid": true,
+  "__version": 1
 }

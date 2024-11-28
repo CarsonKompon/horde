@@ -1,31 +1,100 @@
 {
   "RootObject": {
-    "Id": "dc1487e0-a4a5-4e59-b5e5-350eaa252785",
-    "Name": "Damage Numbers",
-    "Position": "0,0,104.3934",
-    "Rotation": "-0.00000001403369,0.2164396,-0.0000000002719414,0.976296",
+    "__guid": "dc1487e0-a4a5-4e59-b5e5-350eaa252785",
+    "Flags": 0,
+    "Name": "damage_numbers",
     "Enabled": true,
     "Components": [
       {
-        "__type": "TextRenderer",
-        "Color": "1,1,1,1",
-        "FontFamily": "Poppins",
-        "FontSize": 32,
+        "__type": "Sandbox.TextRenderer",
+        "__guid": "f0b1000b-891a-4771-bf57-b16a891e0570",
+        "__version": 1,
+        "BlendMode": "Normal",
+        "RenderOptions": {
+          "GameLayer": true,
+          "OverlayLayer": false,
+          "BloomLayer": false,
+          "AfterUILayer": false
+        },
         "Scale": 0.33,
-        "Text": "10\n"
+        "TextAlignment": "Center",
+        "TextScope": {
+          "Text": "10\n",
+          "TextColor": "1,1,1,1",
+          "FontName": "Poppins",
+          "FontSize": 32,
+          "FontWeight": 800,
+          "FontItalic": false,
+          "LineHeight": 1,
+          "LetterSpacing": 0,
+          "WordSpacing": 0,
+          "Outline": {
+            "Enabled": true,
+            "Size": 4,
+            "Color": "0,0,0,1"
+          },
+          "Shadow": {
+            "Enabled": false,
+            "Size": 4,
+            "Color": "0,0,0,1",
+            "Offset": "4,4"
+          },
+          "OutlineUnder": {
+            "Enabled": false,
+            "Size": 4,
+            "Color": "0,1,0,1"
+          },
+          "ShadowUnder": {
+            "Enabled": false,
+            "Size": 4,
+            "Color": "0,0,0,1",
+            "Offset": "4,4"
+          }
+        }
       },
       {
         "__type": "DamageNumber",
+        "__guid": "e5163029-947a-4583-a192-3e1ab2e40b88",
         "TextRenderer": {
           "_type": "component",
+          "component_id": "f0b1000b-891a-4771-bf57-b16a891e0570",
           "go": "dc1487e0-a4a5-4e59-b5e5-350eaa252785",
           "component_type": "TextRenderer"
         }
       }
-    ]
+    ],
+    "Children": [],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
-  "__references": []
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "IsValid": true,
+  "__version": 1
 }
