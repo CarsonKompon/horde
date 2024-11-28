@@ -49,7 +49,7 @@ public sealed class HordeManager : Component
 		for ( int i = players.Count - 1; i >= 0; i-- )
 		{
 			var player = players[i];
-			player.Respawn();
+			player.Respawn( false );
 			player.Health = 100f;
 			player.Kills = 0;
 		}
