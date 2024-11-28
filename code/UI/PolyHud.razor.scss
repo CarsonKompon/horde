@@ -318,7 +318,7 @@ PolyHud
 		transition: all 3s ease-in;
 		flex-direction: column;
 		color: white;
-		font-family: Poppins;
+		font-family: Zombie Shooting;
 		align-items: center;
 		justify-content: center;
 		gap: 128px;
@@ -328,7 +328,6 @@ PolyHud
 			font-size: 200px;
 			font-weight: 300;
 			text-shadow: 0 0 8px black;
-			font-family: Zombie A;
 			text-transform: uppercase;
 		}
 
@@ -343,7 +342,6 @@ PolyHud
 				background-color: rgb(109, 79, 79);
 				border-radius: 16px;
 				color: white;
-				font-family: Zombie Shooting;
 				font-size: 92px;
 				font-weight: 700;
 				text-shadow: 0 0 8px black;
@@ -443,6 +441,18 @@ PolyHud
 			
 			}
 		}
+	}
+
+	.screen-overlay
+	{
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -10;
+		background-color: transparent;
+		transition: all 0.1s ease-out;
 	}
 
 }
