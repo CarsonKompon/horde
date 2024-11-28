@@ -452,7 +452,15 @@ PolyHud
 		bottom: 0;
 		z-index: -10;
 		background-color: transparent;
-		transition: all 0.1s ease-out;
+		transition: all 0.2s ease-out;
+	}
+
+	&.hurt
+	{
+		.screen-overlay
+		{
+			background-color: rgba(red, 0.33);
+		}
 	}
 
 }

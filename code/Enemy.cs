@@ -21,8 +21,10 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	[Sync] Vector3 Target { get; set; } = Vector3.Zero;
 	[Sync] Guid LastHurt { get; set; } = Guid.Empty;
+	TimeSince timeSinceLastHurt = 0f;
 	TimeSince targetTimer = 0f;
 	float startingHealth = 10f;
+	int hurtChain = 0;
 
 	List<Player> InRange = new();
 
@@ -236,6 +238,14 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		{
 			dmgNumber.TextRenderer.Color = Color.Yellow;
 		}
+		if ( timeSinceLastHurt > 3f )
+		{
+			hurtChain = 0;
+		}
+		var sound = Sound.Play( "hurt.enemy", WorldPosition );
+		sound.Pitch = 1f + (hurtChain / 12f) * 2f;
+		hurtChain++;
+		timeSinceLastHurt = 0f;
 	}
 
 	[Broadcast]

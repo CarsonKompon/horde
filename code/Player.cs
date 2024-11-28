@@ -210,6 +210,10 @@ public sealed class Player : Component
 		{
 			Kill();
 		}
+
+		var sound = Sound.Play( "hurt.enemy", WorldPosition );
+		sound.Pitch = 0.5f;
+		PolyHud.Instance.Panel.FlashClass( "hurt", 0.2f );
 	}
 
 	public void Kill()
