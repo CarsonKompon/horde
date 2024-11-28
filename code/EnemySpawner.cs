@@ -4,9 +4,9 @@ using Sandbox;
 
 public sealed class EnemySpawner : Component
 {
-	[Property] public int MaxEnemies { get; set; } = 1;
-	[Property] public float MinRespawnTime { get; set; } = 50f;
-	[Property] public float MaxRespawnTime { get; set; } = 100f;
+	[Property, Sync] public int MaxEnemies { get; set; } = 1;
+	[Property, Sync] public float MinRespawnTime { get; set; } = 50f;
+	[Property, Sync] public float MaxRespawnTime { get; set; } = 100f;
 	[Property] List<GameObject> Prefabs { get; set; }
 
 	float timer = 0;
@@ -21,6 +21,7 @@ public sealed class EnemySpawner : Component
 
 	protected override void OnStart()
 	{
+		MaxEnemies = (int)MathF.Ceiling( Random.Shared.Float( 0.01f, 2.025f ) );
 		respawnTime = Random.Shared.Float( MinRespawnTime, MaxRespawnTime );
 		timer = Random.Shared.Float( 0f, respawnTime );
 		Increment = Random.Shared.Int( 10, 15 );
