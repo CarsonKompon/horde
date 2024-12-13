@@ -56,7 +56,7 @@ public sealed class Player : Component
 				if ( aim.Length > 0.1f )
 				{
 					Forward = new Vector3( aim.x, aim.y, 0 );
-					AimPosition = WorldPosition + Forward * 128f;
+					AimPosition = WorldPosition + Forward.ClampLength( 1f ) * 128f;
 				}
 			}
 			else

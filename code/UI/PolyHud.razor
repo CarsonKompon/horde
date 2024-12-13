@@ -6,7 +6,7 @@
 @inherits PanelComponent
 
 <root>
-	<div class="free-mouse" />
+	<div class="@(Input.UsingController ? "" : "free-mouse")" />
 
 	@if (Player.Local is not null)
 	{
