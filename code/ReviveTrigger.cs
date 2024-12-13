@@ -8,6 +8,10 @@ public sealed class ReviveTrigger : Component, Component.ITriggerListener
 	{
 		if ( other.Components.GetInParentOrSelf<Player>() is Player player && player != Player && player.Health > 0f )
 		{
+			using ( Rpc.FilterInclude( player.Network.Owner ) )
+			{
+				player.GrantRevive();
+			}
 			Player.Respawn();
 		}
 	}

@@ -228,6 +228,42 @@ public sealed class Player : Component
 	{
 		if ( IsProxy ) return;
 		Kills++;
+
+		string statId = "";
+		switch ( CurrentWeapon.Name )
+		{
+			case "USP":
+			case "Revolver":
+				{
+					statId = "kills_pistol";
+					break;
+				}
+			case "AK-47":
+			case "MP5":
+				{
+					statId = "kills_rifle";
+					break;
+				}
+			case "Pipe Shotgun":
+			case "Auto Shotgun":
+				{
+					statId = "kills_shotgun";
+					break;
+				}
+			case "Sword":
+			case "Bat":
+				{
+					statId = "kills_melee";
+					break;
+				}
+			case "RPG":
+				{
+					statId = "kills_explosive";
+					break;
+				}
+		}
+		if ( !string.IsNullOrEmpty( statId ) )
+			Sandbox.Services.Stats.Increment( statId, 1 );
 	}
 
 	[Broadcast]
@@ -239,6 +275,12 @@ public sealed class Player : Component
 		ResetWeapons();
 		if ( notify )
 			BroadcastRespawnEvent();
+	}
+
+	[Rpc.Broadcast]
+	public void GrantRevive()
+	{
+		Sandbox.Services.Stats.Increment( "revives", 1 );
 	}
 
 	public void GiveStartingWeapon()
