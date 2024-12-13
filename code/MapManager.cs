@@ -25,8 +25,6 @@ public sealed class MapManager : Component
 	{
 		if ( !Networking.IsHost ) return;
 
-		Scene.Title = Map.MapName;
-
 		bool createdSpawns = false;
 
 		foreach ( var obj in Map.GameObject.Children )
@@ -34,7 +32,7 @@ public sealed class MapManager : Component
 
 			if ( obj.Name == "sd_weaponspawn_random" || obj.Name.StartsWith( "tf_healthkit" ) || obj.Name.StartsWith( "tf_ammopack" ) )
 			{
-				var weaponSpawner = EnemySpawnerPrefab.Clone( obj.Transform.Position );
+				var weaponSpawner = EnemySpawnerPrefab.Clone( obj.WorldPosition );
 				weaponSpawner.NetworkSpawn( null );
 				createdSpawns = true;
 			}
@@ -47,7 +45,7 @@ public sealed class MapManager : Component
 
 				if ( obj.Name == "info_player_start" )
 				{
-					var weaponSpawner = EnemySpawnerPrefab.Clone( obj.Transform.Position );
+					var weaponSpawner = EnemySpawnerPrefab.Clone( obj.WorldPosition );
 					weaponSpawner.NetworkSpawn( null );
 				}
 			}
@@ -58,7 +56,7 @@ public sealed class MapManager : Component
 		foreach ( var player in Scene.Components.GetAll<Player>() )
 		{
 			player.CharacterController.Velocity = Vector3.Zero;
-			player.Transform.Position = spawnPoints[spawnIndex].Transform.Position + Vector3.Up * 4f;
+			player.WorldPosition = spawnPoints[spawnIndex].WorldPosition + Vector3.Up * 4f;
 			spawnIndex = (spawnIndex + 1) % spawnPoints.Count;
 			player.FillHealth();
 		}

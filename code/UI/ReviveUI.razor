@@ -18,7 +18,7 @@
 
 		SetClass("visible", Player != Player.Local);
 
-		var pos = Scene.Camera.PointToScreenPixels(Transform.Position);
+		var pos = Scene.Camera.PointToScreenPixels(WorldPosition);
 		pos.x /= Scene.Camera.ScreenRect.Size.x;
 		pos.y /= Scene.Camera.ScreenRect.Size.y;
 		pos *= 100f;

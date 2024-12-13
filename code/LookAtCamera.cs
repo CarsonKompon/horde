@@ -5,6 +5,6 @@ public sealed class LookAtCamera : Component
 	[Property] Angles Offset { get; set; } = Angles.Zero;
 	protected override void OnUpdate()
 	{
-		Transform.Rotation = Rotation.LookAt( Scene.Camera.Transform.Position - Transform.Position ) * Rotation.From( Offset );
+		WorldRotation = Rotation.LookAt( Scene.Camera.WorldPosition - WorldPosition ) * Rotation.From( Offset );
 	}
 }

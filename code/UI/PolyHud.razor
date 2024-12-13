@@ -27,9 +27,9 @@
 				{
 					<div class="player">
 						<div class="info">
-							<img class="avatar" src="@($"avatar:{player.Network.OwnerConnection.SteamId}")" />
+							<img class="avatar" src="@($"avatar:{player.Network.Owner.SteamId}")" />
 							<div class="name-container">
-								<p class="name">@player.Network.OwnerConnection.DisplayName</p>
+								<p class="name">@player.Network.Owner.DisplayName</p>
 								<div class="health">
 									<div class="bars">
 										@for (int i = 0; i < System.Math.Ceiling(player.Health / 10); i++)
@@ -146,7 +146,7 @@
 
 	void ReturnToMenu()
 	{
-		Sandbox.Network.GameNetworkSystem.Disconnect();
+		Networking.Disconnect();
 		Scene.Load(MenuScene);
 	}
 

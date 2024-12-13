@@ -56,7 +56,7 @@ public sealed class Player : Component
 				if ( aim.Length > 0.1f )
 				{
 					Forward = new Vector3( aim.x, aim.y, 0 );
-					AimPosition = Transform.Position + Forward * 128f;
+					AimPosition = WorldPosition + Forward * 128f;
 				}
 			}
 			else
@@ -66,7 +66,7 @@ public sealed class Player : Component
 					.WithTag( "aimplane" )
 					.Run();
 				var mousePos = mouseTrace.HitPosition;
-				Forward = (mousePos - Transform.Position.WithZ( mousePos.z )).Normal;
+				Forward = (mousePos - WorldPosition.WithZ( mousePos.z )).Normal;
 				AimPosition = mousePos;
 			}
 
@@ -98,12 +98,12 @@ public sealed class Player : Component
 				}
 			}
 
-			var camPos = Transform.Position + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - Transform.Position.WithZ( AimPosition.z )) / 4f;
-			// var camTrace = Scene.Trace.Ray( Transform.Position + Vector3.Up * 128f, camPos )
+			var camPos = WorldPosition + Vector3.Backward * 192f + Vector3.Up * 512f + (AimPosition - WorldPosition.WithZ( AimPosition.z )) / 4f;
+			// var camTrace = Scene.Trace.Ray( WorldPosition + Vector3.Up * 128f, camPos )
 			// 	.WithoutTags( "player", "enemy", "trigger" )
 			// 	.Run();
 			// if ( camTrace.Hit ) camPos = camTrace.HitPosition + camTrace.Normal * 2f;
-			Scene.Camera.Transform.Position = Scene.Camera.Transform.Position.LerpTo( camPos, 10 * Time.Delta );
+			Scene.Camera.WorldPosition = Scene.Camera.WorldPosition.LerpTo( camPos, 10 * Time.Delta );
 		}
 		else
 		{
@@ -118,7 +118,7 @@ public sealed class Player : Component
 
 		// Lerp Body Rotation
 		var targetRot = Rotation.LookAt( Forward, Vector3.Up );
-		Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, 10 * Time.Delta );
+		Body.WorldRotation = Rotation.Slerp( Body.WorldRotation, targetRot, 10 * Time.Delta );
 
 		// Show/Hide Stuff
 		Body.Enabled = Health > 0f;
@@ -198,7 +198,7 @@ public sealed class Player : Component
 		AnimationHelper.SpecialMove = IsSliding ? CitizenAnimationHelper.SpecialMoveStyle.Slide : CitizenAnimationHelper.SpecialMoveStyle.None;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void Hurt( float damage )
 	{
 		if ( IsProxy ) return;
@@ -223,7 +223,7 @@ public sealed class Player : Component
 		BroadcastDeathEvent();
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void IncrementKills()
 	{
 		if ( IsProxy ) return;
@@ -262,11 +262,12 @@ public sealed class Player : Component
 					break;
 				}
 		}
+		Sandbox.Services.Stats.Increment( "kills", 1 );
 		if ( !string.IsNullOrEmpty( statId ) )
 			Sandbox.Services.Stats.Increment( statId, 1 );
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void Respawn( bool notify = true )
 	{
 		if ( IsProxy || Health > 0f ) return;
@@ -290,10 +291,10 @@ public sealed class Player : Component
 
 		var weapon = StartingWeaponPrefab.Clone( HoldObject.Transform.World );
 		weapon.SetParent( HoldObject );
-		weapon.NetworkSpawn( Network.OwnerConnection );
+		weapon.NetworkSpawn( Network.Owner );
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void GiveWeapon( Guid pickupObjectId )
 	{
 		if ( IsProxy ) return;
@@ -305,7 +306,7 @@ public sealed class Player : Component
 		var prefab = pickup.WeaponPrefab;
 		if ( prefab is null ) return;
 
-		Sound.Play( "pickup.weapon", Transform.Position );
+		Sound.Play( "pickup.weapon", WorldPosition );
 
 		foreach ( var obj in HoldObject.Children )
 		{
@@ -335,30 +336,30 @@ public sealed class Player : Component
 		GiveStartingWeapon();
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void FillHealth()
 	{
 		if ( IsProxy ) return;
 		Health = 100f;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void BroadcastAttackEvent()
 	{
 		AnimationHelper.Target.Set( "holdtype_attack", 1 );
 		AnimationHelper.Target.Set( "b_attack", true );
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	void BroadcastDeathEvent()
 	{
-		if ( Network.OwnerConnection is null ) return;
-		PolyHud.Instance.AddNotification( $"{Network.OwnerConnection.DisplayName} has died!" );
+		if ( Network.Owner is null ) return;
+		PolyHud.Instance.AddNotification( $"{Network.Owner.DisplayName} has died!" );
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	void BroadcastRespawnEvent()
 	{
-		PolyHud.Instance.AddNotification( $"{Network.OwnerConnection.DisplayName} has been revived!" );
+		PolyHud.Instance.AddNotification( $"{Network.Owner.DisplayName} has been revived!" );
 	}
 }

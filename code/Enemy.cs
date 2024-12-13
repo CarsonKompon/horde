@@ -40,14 +40,14 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		{
 			if ( targetTimer > 0.5f )
 			{
-				Target = Transform.Position + Vector3.Random.Normal.WithZ( 0 ) * 100f;
+				Target = WorldPosition + Vector3.Random.Normal.WithZ( 0 ) * 100f;
 				if ( InRange.Count > 0 )
 				{
 					foreach ( var player in InRange )
 					{
-						if ( HasLineOfSight( player.Transform.Position ) && player.Health > 0 )
+						if ( HasLineOfSight( player.WorldPosition ) && player.Health > 0 )
 						{
-							Target = player.Transform.Position;
+							Target = player.WorldPosition;
 							break;
 						}
 					}
@@ -62,8 +62,8 @@ public sealed class Enemy : Component, Component.ITriggerListener
 			// {
 			// 	Gizmo.Draw.Color = Color.Blue;
 			// 	Gizmo.Draw.LineThickness = 2f;
-			// 	Gizmo.Draw.Line( LeftForward.Transform.Position, LeftForward.Transform.Position + LeftForward.Transform.Rotation.Forward * ForwardDistance );
-			// 	Gizmo.Draw.Line( RightForward.Transform.Position, RightForward.Transform.Position + RightForward.Transform.Rotation.Forward * ForwardDistance );
+			// 	Gizmo.Draw.Line( LeftForward.WorldPosition, LeftForward.WorldPosition + LeftForward.WorldRotation.Forward * ForwardDistance );
+			// 	Gizmo.Draw.Line( RightForward.WorldPosition, RightForward.WorldPosition + RightForward.WorldRotation.Forward * ForwardDistance );
 			// }
 		}
 
@@ -75,7 +75,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		Count--;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void Hurt( float damage, Guid hurtBy = default )
 	{
 		if ( IsProxy ) return;
@@ -97,7 +97,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		if ( pickups is not null && pickups.Count > 0 && Random.Shared.Float() < 0.15f )
 		{
 			var pickup = pickups[Random.Shared.Next( pickups.Count )];
-			pickup.Clone( Transform.Position ).NetworkSpawn( null );
+			pickup.Clone( WorldPosition ).NetworkSpawn( null );
 		}
 
 		if ( LastHurt != Guid.Empty )
@@ -116,28 +116,28 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	void BuildWishVelocity()
 	{
-		WishVelocity = (Target - Transform.Position).Normal;
+		WishVelocity = (Target - WorldPosition).Normal;
 
 		var canSee = HasLineOfSight( Target );
 		if ( !canSee )
 		{
-			var tr1 = Scene.Trace.Ray( LeftForward.Transform.Position, LeftForward.Transform.Position + LeftForward.Transform.Rotation.Forward * ForwardDistance )
+			var tr1 = Scene.Trace.Ray( LeftForward.WorldPosition, LeftForward.WorldPosition + LeftForward.WorldRotation.Forward * ForwardDistance )
 				.IgnoreGameObjectHierarchy( GameObject )
 				.WithoutTags( "trigger", "player" )
 				.Run();
-			var tr2 = Scene.Trace.Ray( RightForward.Transform.Position, RightForward.Transform.Position + RightForward.Transform.Rotation.Forward * ForwardDistance )
+			var tr2 = Scene.Trace.Ray( RightForward.WorldPosition, RightForward.WorldPosition + RightForward.WorldRotation.Forward * ForwardDistance )
 				.IgnoreGameObjectHierarchy( GameObject )
 				.WithoutTags( "trigger", "player" )
 				.Run();
 			if ( tr1.Hit )
 			{
-				Body.Transform.Rotation *= Rotation.FromYaw( 180f * Time.Delta );
-				WishVelocity = Body.Transform.Rotation.Forward;
+				Body.WorldRotation *= Rotation.FromYaw( 180f * Time.Delta );
+				WishVelocity = Body.WorldRotation.Forward;
 			}
 			else if ( tr2.Hit )
 			{
-				Body.Transform.Rotation *= Rotation.FromYaw( -180f * Time.Delta );
-				WishVelocity = Body.Transform.Rotation.Forward;
+				Body.WorldRotation *= Rotation.FromYaw( -180f * Time.Delta );
+				WishVelocity = Body.WorldRotation.Forward;
 			}
 		}
 
@@ -186,18 +186,18 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		// Rotate body towards target
 		if ( Target != Vector3.Zero )
 		{
-			var targetRot = Rotation.LookAt( Target.WithZ( Transform.Position.z ) - Transform.Position, Vector3.Up );
-			Body.Transform.Rotation = Rotation.Slerp( Body.Transform.Rotation, targetRot, Time.Delta * 10f );
+			var targetRot = Rotation.LookAt( Target.WithZ( WorldPosition.z ) - WorldPosition, Vector3.Up );
+			Body.WorldRotation = Rotation.Slerp( Body.WorldRotation, targetRot, Time.Delta * 10f );
 		}
 
 		AnimationHelper.WithWishVelocity( WishVelocity );
 		AnimationHelper.WithVelocity( CharacterController.Velocity );
-		AnimationHelper.WithLook( Body.Transform.Rotation.Forward );
+		AnimationHelper.WithLook( Body.WorldRotation.Forward );
 	}
 
 	bool HasLineOfSight( Vector3 pos )
 	{
-		var tr = Scene.Trace.Ray( Transform.Position + Vector3.Up * 16f, pos + Vector3.Up * 16f )
+		var tr = Scene.Trace.Ray( WorldPosition + Vector3.Up * 16f, pos + Vector3.Up * 16f )
 			.IgnoreGameObjectHierarchy( GameObject )
 			.WithoutTags( "trigger", "player" )
 			.Run();
@@ -224,10 +224,10 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	void BroadcastHurtEvent( float damage )
 	{
-		var obj = HordeManager.Instance.DamageNumberPrefab.Clone( Transform.Position + Vector3.Random.WithZ( 0f ) * 4f + Vector3.Up * 64f );
+		var obj = HordeManager.Instance.DamageNumberPrefab.Clone( WorldPosition + Vector3.Random.WithZ( 0f ) * 4f + Vector3.Up * 64f );
 		var dmgNumber = obj.Components.Get<DamageNumber>();
 		dmgNumber.Damage = (int)damage;
 		if ( damage >= startingHealth )
@@ -248,10 +248,10 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		timeSinceLastHurt = 0f;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	void BroadcastKillEvent()
 	{
-		Sound.Play( "zombie.death", Transform.Position );
-		var obj = HordeManager.Instance.BloodBurstPrefab.Clone( Transform.Position + Vector3.Up * 32f * (AnimationHelper?.Height ?? 1f) );
+		Sound.Play( "zombie.death", WorldPosition );
+		var obj = HordeManager.Instance.BloodBurstPrefab.Clone( WorldPosition + Vector3.Up * 32f * (AnimationHelper?.Height ?? 1f) );
 	}
 }

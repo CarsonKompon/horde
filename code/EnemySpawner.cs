@@ -74,7 +74,7 @@ public sealed class EnemySpawner : Component
 
 		if ( spawned.Count >= MaxEnemies ) return;
 		var prefab = Prefabs[Random.Shared.Next( Prefabs.Count )];
-		var newSpawn = prefab.Clone( Transform.Position );
+		var newSpawn = prefab.Clone( WorldPosition );
 		newSpawn.NetworkSpawn( null );
 		spawned.Add( newSpawn );
 		spawnCount++;

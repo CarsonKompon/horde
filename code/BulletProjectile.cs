@@ -13,11 +13,11 @@ public sealed class BulletProjectile : Component, Component.ITriggerListener
 	{
 		if ( IsProxy ) return;
 
-		var lastPos = Transform.Position;
-		Transform.Position += Transform.Rotation.Forward * Speed * Time.Delta;
+		var lastPos = WorldPosition;
+		WorldPosition += WorldRotation.Forward * Speed * Time.Delta;
 		Lifetime -= Time.Delta;
 
-		var tr = Scene.Trace.Ray( lastPos, Transform.Position )
+		var tr = Scene.Trace.Ray( lastPos, WorldPosition )
 			.WithoutTags( "trigger", "bullet", "enemy", "bullet" )
 			.Run();
 
@@ -69,11 +69,11 @@ public sealed class BulletProjectile : Component, Component.ITriggerListener
 		DestroyMe();
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	void DestroyMe()
 	{
 		if ( ImpactSound is not null )
-			Sound.Play( ImpactSound, Transform.Position );
+			Sound.Play( ImpactSound, WorldPosition );
 		GameObject.Destroy();
 	}
 }

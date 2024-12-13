@@ -10,13 +10,13 @@ public sealed class Pickup : Component, Component.ITriggerListener
 
 	protected override void OnStart()
 	{
-		offset = Body.Transform.LocalPosition;
+		offset = Body.LocalPosition;
 	}
 
 	protected override void OnUpdate()
 	{
-		Body.Transform.LocalPosition = offset + Vector3.Up * 3f * MathF.Sin( Time.Now * 2f );
-		Body.Transform.LocalRotation = Rotation.FromYaw( Time.Now * 100f );
+		Body.LocalPosition = offset + Vector3.Up * 3f * MathF.Sin( Time.Now * 2f );
+		Body.LocalRotation = Rotation.FromYaw( Time.Now * 100f );
 	}
 
 	public void OnTriggerEnter( Collider other )
@@ -35,7 +35,7 @@ public sealed class Pickup : Component, Component.ITriggerListener
 
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	public void DestroyMe()
 	{
 		GameObject.Destroy();

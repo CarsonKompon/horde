@@ -92,12 +92,12 @@ public sealed class Weapon : Component
 		timer = FireRate;
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	void BroadcastFireEvent()
 	{
 		if ( FireSound is not null )
 		{
-			Sound.Play( FireSound, Transform.Position );
+			Sound.Play( FireSound, WorldPosition );
 		}
 	}
 }

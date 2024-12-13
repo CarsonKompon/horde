@@ -26,7 +26,7 @@ public sealed class MeleeContact : Component
 			var enemy = enemies[i];
 			if ( enemy is null || enemy.Health <= 0 ) continue;
 			Log.Info( Range );
-			if ( Vector3.DistanceBetween( enemy.Transform.Position + Vector3.Up * 42f, Transform.Position ) <= Range )
+			if ( Vector3.DistanceBetween( enemy.WorldPosition + Vector3.Up * 42f, WorldPosition ) <= Range )
 			{
 				enemy.Hurt( Damage, Network.OwnerId );
 				didHit = true;
@@ -35,7 +35,7 @@ public sealed class MeleeContact : Component
 
 		if ( didHit && HitSound is not null )
 		{
-			Sound.Play( HitSound, Transform.Position );
+			Sound.Play( HitSound, WorldPosition );
 		}
 	}
 

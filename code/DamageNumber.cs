@@ -16,9 +16,9 @@ public sealed class DamageNumber : Component
 		TextRenderer.Color = TextRenderer.Color.WithAlpha( alpha );
 
 		velocity += Scene.PhysicsWorld.Gravity * Time.Delta;
-		Transform.Position += velocity * Time.Delta;
+		WorldPosition += velocity * Time.Delta;
 
-		Transform.Rotation = Rotation.LookAt( Transform.Position - Scene.Camera.Transform.Position, Vector3.Up );
+		WorldRotation = Rotation.LookAt( WorldPosition - Scene.Camera.WorldPosition, Vector3.Up );
 
 		if ( alpha <= 0f )
 		{

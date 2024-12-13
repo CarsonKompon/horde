@@ -7,11 +7,11 @@ public sealed class LightJitter : Component
 
 	protected override void OnStart()
 	{
-		StartPosition = Transform.Position;
+		StartPosition = WorldPosition;
 	}
 
 	protected override void OnUpdate()
 	{
-		Transform.Position = StartPosition + Vector3.Random * Random.Shared.Float() / 4f;
+		WorldPosition = StartPosition + Vector3.Random * Random.Shared.Float() / 4f;
 	}
 }

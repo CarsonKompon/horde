@@ -11,11 +11,11 @@ public sealed class BulletTrace : Component
 
 	protected override void OnStart()
 	{
-		var tr = Scene.Trace.Ray( Transform.Position, Transform.Position + Transform.Rotation.Forward * Range )
+		var tr = Scene.Trace.Ray( WorldPosition, WorldPosition + WorldRotation.Forward * Range )
 			.WithoutTags( "trigger", "player" )
 			.Run();
 
-		var startPos = Transform.Position;
+		var startPos = WorldPosition;
 		var endPos = tr.Hit ? tr.HitPosition : tr.EndPosition;
 		var distance = (endPos - startPos).Length;
 

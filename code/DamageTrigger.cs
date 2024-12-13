@@ -53,7 +53,7 @@ public sealed class DamageTrigger : Component, Component.ITriggerListener
 		}
 	}
 
-	[Broadcast]
+	[Rpc.Broadcast]
 	void BroadcastAttackEvent()
 	{
 		PlayAttackAnim();

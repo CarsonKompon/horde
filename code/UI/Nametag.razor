@@ -3,10 +3,10 @@
 @inherits PanelComponent
 
 <root>
-	@if(Player.Health <= 0f || Player == Player.Local) return;
+	@if (Player.Health <= 0f || Player == Player.Local) return;
 	<div class="content">
-		<img src="@($"avatar:{Player.Network.OwnerConnection.SteamId}")" />
-		<div class="name">@Player.Network.OwnerConnection.DisplayName</div>
+		<img src="@($"avatar:{Player.Network.Owner.SteamId}")" />
+		<div class="name">@Player.Network.Owner.DisplayName</div>
 	</div>
 </root>
 
@@ -16,5 +16,5 @@
 	/// <summary>
 	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
 	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( Player, Player.Health > 0f );
+	protected override int BuildHash() => System.HashCode.Combine(Player, Player.Health > 0f);
 }
