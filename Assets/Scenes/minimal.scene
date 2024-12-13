@@ -2,12 +2,27 @@
   "__guid": "421d44fb-414e-4f1d-a735-7fd1a30de676",
   "GameObjects": [
     {
+      "__guid": "cda24731-d258-4be3-8d31-a482d2101b4d",
+      "Flags": 0,
+      "Name": "Scene Information",
+      "Enabled": true,
+      "Components": [
+        {
+          "__type": "Sandbox.SceneInformation",
+          "__guid": "9395ada6-f7f3-44a9-b995-aae3c750306d",
+          "Changes": "",
+          "Description": "",
+          "SceneTags": "",
+          "Title": "minimal"
+        }
+      ]
+    },
+    {
       "__guid": "bd8563f7-2711-4cf8-af33-6d6e82077579",
       "Flags": 0,
       "Name": "Network Manager",
       "Enabled": true,
       "NetworkMode": 1,
-      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "HordeManager",
@@ -73,8 +88,6 @@
       "Name": "Music Player",
       "Position": "-376.7363,-312.7557,534.2381",
       "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "SongPlayer",
@@ -92,8 +105,6 @@
       "Name": "Screen UI",
       "Position": "17.11655,-33.55924,33.3356",
       "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "Sandbox.ScreenPanel",
@@ -101,6 +112,7 @@
           "AutoScreenScale": true,
           "Opacity": 1,
           "Scale": 1,
+          "ScaleStrategy": "ConsistentHeight",
           "ZIndex": 100
         },
         {
@@ -114,10 +126,8 @@
           "__guid": "bf8da48a-f1b5-45c4-bed2-f07e79362617",
           "Flags": 0,
           "Name": "Chat",
-          "Position": "0,0,0",
           "Enabled": true,
           "NetworkMode": 1,
-          "NetworkInterpolation": true,
           "Components": [
             {
               "__type": "Chatbox",
@@ -134,8 +144,6 @@
       "Position": "458.7779,-534.3385,64",
       "Tags": "trigger,aimplane",
       "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "Sandbox.BoxCollider",
@@ -143,7 +151,8 @@
           "Center": "0,0,0",
           "IsTrigger": false,
           "Scale": "3701.802,3700.902,0.25",
-          "Static": false
+          "Static": false,
+          "SurfaceVelocity": "0,0,0"
         },
         {
           "__type": "AimPlane",
@@ -157,13 +166,16 @@
       "Name": "Map",
       "Tags": "world",
       "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "Sandbox.MapInstance",
           "__guid": "a9653468-9a46-425d-8348-76a5d1903bf1",
+          "__version": 1,
+          "EnableCollision": true,
           "MapName": "eagleone/sd_bank",
+          "NoOrigin": true,
+          "OnMapLoaded": null,
+          "OnMapUnloaded": null,
           "UseMapFromLaunch": true
         },
         {
@@ -190,8 +202,6 @@
       "Position": "-0.000008552593,0,390.8771",
       "Rotation": "0.000000007691807,0.5661847,-0.00000000769181,0.8242788",
       "Enabled": true,
-      "NetworkMode": 2,
-      "NetworkInterpolation": true,
       "Components": [
         {
           "__type": "Sandbox.CameraComponent",
@@ -222,26 +232,29 @@
     "MaxFixedUpdates": 5,
     "NetworkFrequency": 60,
     "NetworkInterpolation": true,
+    "PhysicsSubSteps": 1,
     "ThreadedAnimation": true,
     "TimeScale": 1,
     "UseFixedUpdate": true,
+    "Metadata": {
+      "Title": "minimal"
+    },
     "NavMesh": {
-      "Enabled": false,
+      "Enabled": true,
       "IncludeStaticBodies": true,
       "IncludeKeyframedBodies": true,
       "EditorAutoUpdate": true,
       "AgentHeight": 64,
       "AgentRadius": 16,
-      "AgentStepSize": 18,
+      "AgentStepSize": 16,
       "AgentMaxSlope": 40,
-      "ExcludedBodies": "",
+      "ExcludedBodies": "aimplane,trigger",
       "IncludedBodies": ""
     }
   },
+  "ResourceVersion": 2,
   "Title": "minimal",
-  "Description": "",
-  "LastSaved": "2024-06-19T20:10:59.5594779-04:00",
-  "ResourceVersion": 1,
+  "Description": null,
   "__references": [],
-  "__version": 1
+  "__version": 2
 }

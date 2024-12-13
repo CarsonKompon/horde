@@ -8,6 +8,11 @@ public sealed class SongPlayer : Component
 	SoundHandle playing = null;
 	int index = 0;
 
+	protected override void OnAwake()
+	{
+		index = System.Random.Shared.Int( 0, Songs.Count - 1 );
+	}
+
 	protected override void OnUpdate()
 	{
 

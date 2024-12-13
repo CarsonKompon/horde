@@ -5,7 +5,7 @@
   "Ident": "horde",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": null,
+  "Resources": "/ui/*",
   "PackageReferences": [],
   "EditorReferences": null,
   "IsWhitelistDisabled": false,
@@ -24,7 +24,6 @@
     "CsProjName": "",
     "StartupScene": "scenes/menu.scene",
     "ProjectTemplate": null,
-    "MapStartupScene": null,
     "LaunchMode": "Normal"
   }
 }

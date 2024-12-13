@@ -133,6 +133,7 @@
 
 		if (Input.EscapePressed)
 		{
+			Input.EscapePressed = false;
 			IsPaused = !IsPaused;
 			if (!IsPaused) HordePreferences.Save();
 		}

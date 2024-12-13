@@ -1,127 +1,201 @@
 {
   "RootObject": {
-    "Id": "c7f2b04b-20f0-435c-a1be-3e13800c9ba0",
+    "__guid": "c7f2b04b-20f0-435c-a1be-3e13800c9ba0",
+    "Flags": 0,
     "Name": "enemy_slow",
     "Tags": "enemy",
     "Enabled": true,
     "Components": [
       {
-        "__type": "CharacterController",
+        "__type": "Sandbox.CharacterController",
+        "__guid": "138b92a6-2ce6-49ae-a445-c3b79265a519",
         "Acceleration": 10,
+        "Bounciness": 0.3,
         "GroundAngle": 45,
         "Height": 64,
         "IgnoreLayers": "trigger",
         "Radius": 9.29,
-        "StepHeight": 18
+        "StepHeight": 18,
+        "UseCollisionRules": false
       },
       {
         "__type": "Enemy",
+        "__guid": "4982c4ce-c9ec-4898-97d7-2ad42db09f55",
+        "Agent": {
+          "_type": "component",
+          "component_id": "505c3dc4-7ad0-4058-81c4-9b820b267f37",
+          "go": "c7f2b04b-20f0-435c-a1be-3e13800c9ba0",
+          "component_type": "NavMeshAgent"
+        },
         "AnimationHelper": {
           "_type": "component",
+          "component_id": "59485be4-707f-4659-ba7a-ab933574b6f7",
           "go": "ab42ce85-475f-4dbe-b74f-728a2da91b56",
           "component_type": "CitizenAnimationHelper"
         },
-        "Body": "ab42ce85-475f-4dbe-b74f-728a2da91b56",
+        "Body": {
+          "_type": "gameobject",
+          "go": "ab42ce85-475f-4dbe-b74f-728a2da91b56"
+        },
         "CharacterController": {
           "_type": "component",
+          "component_id": "138b92a6-2ce6-49ae-a445-c3b79265a519",
           "go": "c7f2b04b-20f0-435c-a1be-3e13800c9ba0",
           "component_type": "CharacterController"
         },
         "Health": 50,
-        "LeftForward": "45ac74f0-a5cd-448d-95b3-ecf08f32ad21",
-        "RightForward": "82ec7b2b-6826-49b1-9a44-3d3ec18ea473",
+        "LeftForward": {
+          "_type": "gameobject",
+          "go": "45ac74f0-a5cd-448d-95b3-ecf08f32ad21"
+        },
+        "RightForward": {
+          "_type": "gameobject",
+          "go": "82ec7b2b-6826-49b1-9a44-3d3ec18ea473"
+        },
         "Speed": 88.2
       },
       {
-        "__type": "SphereCollider",
+        "__type": "Sandbox.SphereCollider",
+        "__guid": "dedebdef-14d1-47a2-81e5-750549c5e241",
         "Center": "0,0,38.30001",
         "IsTrigger": true,
         "Radius": 420,
         "Static": false,
-        "Surface": null
+        "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Sandbox.NavMeshAgent",
+        "__guid": "505c3dc4-7ad0-4058-81c4-9b820b267f37",
+        "Acceleration": 50,
+        "Height": 64,
+        "MaxSpeed": 120,
+        "Radius": 16,
+        "Separation": 0.25,
+        "UpdatePosition": false,
+        "UpdateRotation": false
       }
     ],
     "Children": [
       {
-        "Id": "ab42ce85-475f-4dbe-b74f-728a2da91b56",
+        "__guid": "ab42ce85-475f-4dbe-b74f-728a2da91b56",
+        "Flags": 0,
         "Name": "Body",
         "Position": "0,0,3.737914",
         "Scale": "1.666,1.666,1.666",
         "Enabled": true,
         "Components": [
           {
-            "__type": "SkinnedModelRenderer",
+            "__type": "Sandbox.SkinnedModelRenderer",
+            "__guid": "4b686c5a-618a-42e4-a5eb-ece625ffa6ba",
             "BodyGroups": 341,
-            "BoneMergeTarget": null,
+            "CreateAttachments": false,
             "CreateBoneObjects": false,
-            "MaterialGroup": null,
             "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
             "Model": "models/citizen/citizen.vmdl",
+            "Morphs": {},
+            "Parameters": {
+              "bools": {},
+              "ints": {},
+              "floats": {},
+              "vectors": {},
+              "rotations": {}
+            },
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "On",
-            "Tint": "1,1,1,1"
+            "Sequence": {
+              "Name": null
+            },
+            "Tint": "1,1,1,1",
+            "UseAnimGraph": true
           },
           {
-            "__type": "CitizenAnimationHelper",
+            "__type": "Sandbox.Citizen.CitizenAnimationHelper",
+            "__guid": "59485be4-707f-4659-ba7a-ab933574b6f7",
             "BodyWeight": 1,
-            "EyeSource": "c2fb7c09-103d-469f-977d-c9bf7b6fa56f",
+            "EyeSource": {
+              "_type": "gameobject",
+              "go": "c2fb7c09-103d-469f-977d-c9bf7b6fa56f"
+            },
             "EyesWeight": 1,
             "HeadWeight": 1,
             "Height": 0.6,
-            "IkLeftFoot": null,
-            "IkLeftHand": null,
-            "IkRightFoot": null,
-            "IkRightHand": null,
-            "LookAt": null,
             "LookAtEnabled": false,
             "Target": {
               "_type": "component",
+              "component_id": "4b686c5a-618a-42e4-a5eb-ece625ffa6ba",
               "go": "ab42ce85-475f-4dbe-b74f-728a2da91b56",
               "component_type": "SkinnedModelRenderer"
             }
           },
           {
-            "__type": "HighlightOutline",
+            "__type": "Sandbox.HighlightOutline",
+            "__guid": "04ebacd6-d751-429e-ba46-ab772f51d116",
             "Color": "1,1,1,0",
             "InsideColor": "0,0,0,0",
             "InsideObscuredColor": "1,0,0,0.06275",
-            "Material": null,
             "ObscuredColor": "0,0,0,0.4",
             "Width": 0.25
           }
         ],
         "Children": [
           {
-            "Id": "917410d0-1826-4bb9-bebe-80110e257830",
+            "__guid": "917410d0-1826-4bb9-bebe-80110e257830",
+            "Flags": 0,
             "Name": "Hair",
-            "Position": "0,0,0",
             "Enabled": true,
             "Components": [
               {
-                "__type": "SkinnedModelRenderer",
+                "__type": "Sandbox.SkinnedModelRenderer",
+                "__guid": "317cf378-b5a7-4505-b844-8f258a1a246f",
                 "BodyGroups": 18446744073709551615,
                 "BoneMergeTarget": {
                   "_type": "component",
+                  "component_id": "4b686c5a-618a-42e4-a5eb-ece625ffa6ba",
                   "go": "ab42ce85-475f-4dbe-b74f-728a2da91b56",
                   "component_type": "SkinnedModelRenderer"
                 },
+                "CreateAttachments": false,
                 "CreateBoneObjects": false,
-                "MaterialGroup": null,
-                "MaterialOverride": null,
                 "Model": "models/citizen_clothes/hair/hair_short_dreadlocks/models/hair_short_dreadlocks.vmdl",
+                "Morphs": {},
+                "Parameters": {
+                  "bools": {},
+                  "ints": {},
+                  "floats": {},
+                  "vectors": {},
+                  "rotations": {}
+                },
+                "RenderOptions": {
+                  "GameLayer": true,
+                  "OverlayLayer": false,
+                  "BloomLayer": false,
+                  "AfterUILayer": false
+                },
                 "RenderType": "On",
-                "Tint": "1,1,1,1"
+                "Sequence": {
+                  "Name": null
+                },
+                "Tint": "1,1,1,1",
+                "UseAnimGraph": true
               }
             ]
           },
           {
-            "Id": "45ac74f0-a5cd-448d-95b3-ecf08f32ad21",
+            "__guid": "45ac74f0-a5cd-448d-95b3-ecf08f32ad21",
+            "Flags": 0,
             "Name": "LeftForward",
             "Position": "14.41086,1,19.55466",
             "Rotation": "0.000000008232106,0.000000001010975,0.258819,0.9659258",
             "Enabled": true
           },
           {
-            "Id": "82ec7b2b-6826-49b1-9a44-3d3ec18ea473",
+            "__guid": "82ec7b2b-6826-49b1-9a44-3d3ec18ea473",
+            "Flags": 0,
             "Name": "RightForward",
             "Position": "14.41086,-1,19.55466",
             "Rotation": "0.0000000076347,-0.000000003240523,-0.258819,0.9659258",
@@ -130,74 +204,88 @@
         ]
       },
       {
-        "Id": "c2fb7c09-103d-469f-977d-c9bf7b6fa56f",
+        "__guid": "c2fb7c09-103d-469f-977d-c9bf7b6fa56f",
+        "Flags": 0,
         "Name": "Head",
         "Position": "0,0,64",
         "Enabled": true
       },
       {
-        "Id": "82957155-d3d9-468f-8794-34b60c9fb2ec",
+        "__guid": "82957155-d3d9-468f-8794-34b60c9fb2ec",
+        "Flags": 0,
         "Name": "Outline Circle",
         "Position": "0,0,1",
         "Scale": "0.25,0.25,0.25",
         "Enabled": true,
         "Components": [
           {
-            "__type": "ModelRenderer",
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "7cbfae0d-c1ba-40e5-998e-9922d3e74f5e",
             "BodyGroups": 18446744073709551615,
-            "MaterialGroup": null,
-            "MaterialOverride": null,
+            "CreateAttachments": false,
             "Model": "models/circle.vmdl",
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "Off",
             "Tint": "1,1,1,0"
           },
           {
-            "__type": "HighlightOutline",
+            "__type": "Sandbox.HighlightOutline",
+            "__guid": "3785451e-ded4-4b68-9797-cfca3f369b71",
             "Color": "1,0,0,1",
             "InsideColor": "0,0,0,0",
             "InsideObscuredColor": "0,0,0,0",
-            "Material": null,
             "ObscuredColor": "0,0,0,0.4",
             "Width": 0.25
           }
         ]
       },
       {
-        "Id": "e6bfee0c-5a2f-4278-b1b6-6915b92e9b52",
+        "__guid": "e6bfee0c-5a2f-4278-b1b6-6915b92e9b52",
+        "Flags": 0,
         "Name": "Collider",
         "Enabled": true,
         "Components": [
           {
-            "__type": "CapsuleCollider",
+            "__type": "Sandbox.CapsuleCollider",
+            "__guid": "dd677761-b4b8-4b52-90d2-d0596e0d952c",
             "End": "0,0,128",
             "IsTrigger": false,
             "Radius": 19.400024,
             "Start": "0,0,15.60001",
             "Static": false,
-            "Surface": null
+            "SurfaceVelocity": "0,0,0"
           }
         ]
       },
       {
-        "Id": "9391f284-cb16-441c-ae43-e89392117943",
+        "__guid": "9391f284-cb16-441c-ae43-e89392117943",
+        "Flags": 0,
         "Name": "Damage Trigger",
         "Position": "0,0,36.29562",
         "Tags": "trigger",
         "Enabled": true,
         "Components": [
           {
-            "__type": "CapsuleCollider",
+            "__type": "Sandbox.CapsuleCollider",
+            "__guid": "45a2ab0a-3aa4-4dab-894c-8f18c90a9a8b",
             "End": "0,0,16",
             "IsTrigger": true,
             "Radius": 21.000029,
             "Start": "0,0,-16",
             "Static": false,
-            "Surface": null
+            "SurfaceVelocity": "0,0,0"
           },
           {
             "__type": "DamageTrigger",
+            "__guid": "850588bb-d31b-4ec9-8059-bbf4dc14d6eb",
             "CitizenAnimator": {
               "_type": "component",
+              "component_id": "59485be4-707f-4659-ba7a-ab933574b6f7",
               "go": "ab42ce85-475f-4dbe-b74f-728a2da91b56",
               "component_type": "CitizenAnimationHelper"
             },
@@ -206,10 +294,37 @@
           }
         ]
       }
-    ]
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
-  "__references": []
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
 }

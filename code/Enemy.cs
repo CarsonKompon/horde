@@ -15,7 +15,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	[Property] CitizenAnimationHelper AnimationHelper { get; set; }
 	[Property] GameObject LeftForward { get; set; }
 	[Property] GameObject RightForward { get; set; }
-	float ForwardDistance = 50f;
+	[Property] NavMeshAgent Agent { get; set; }
 
 	public Vector3 WishVelocity { get; set; }
 
@@ -23,6 +23,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	[Sync] Guid LastHurt { get; set; } = Guid.Empty;
 	TimeSince timeSinceLastHurt = 0f;
 	TimeSince targetTimer = 0f;
+	TimeSince timeSinceLastNav = 10f;
 	float startingHealth = 10f;
 	int hurtChain = 0;
 
@@ -30,17 +31,18 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	protected override void OnStart()
 	{
+		Agent.UpdatePosition = false;
+		Agent.UpdateRotation = false;
 		startingHealth = Health;
 		Count++;
 	}
 
-	protected override void OnUpdate()
+	protected override void OnFixedUpdate()
 	{
 		if ( !IsProxy )
 		{
 			if ( targetTimer > 0.5f )
 			{
-				Target = WorldPosition + Vector3.Random.Normal.WithZ( 0 ) * 100f;
 				if ( InRange.Count > 0 )
 				{
 					foreach ( var player in InRange )
@@ -55,6 +57,15 @@ public sealed class Enemy : Component, Component.ITriggerListener
 				targetTimer = 0f;
 			}
 
+			if ( timeSinceLastNav > 5f )
+			{
+				timeSinceLastNav = 0f;
+				var allPlayers = Scene.GetAllComponents<Player>();
+				var closestPlayer = allPlayers.OrderBy( x => Vector3.DistanceBetweenSquared( x.WorldPosition, WorldPosition ) ).FirstOrDefault();
+				Target = closestPlayer.WorldPosition;
+				Agent.MoveTo( Target );
+			}
+
 			BuildWishVelocity();
 			UpdateMovement();
 
@@ -67,6 +78,11 @@ public sealed class Enemy : Component, Component.ITriggerListener
 			// }
 		}
 
+	}
+
+	protected override void OnUpdate()
+	{
+		base.OnUpdate();
 		UpdateAnimations();
 	}
 
@@ -121,30 +137,11 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		var canSee = HasLineOfSight( Target );
 		if ( !canSee )
 		{
-			var tr1 = Scene.Trace.Ray( LeftForward.WorldPosition, LeftForward.WorldPosition + LeftForward.WorldRotation.Forward * ForwardDistance )
-				.IgnoreGameObjectHierarchy( GameObject )
-				.WithoutTags( "trigger", "player" )
-				.Run();
-			var tr2 = Scene.Trace.Ray( RightForward.WorldPosition, RightForward.WorldPosition + RightForward.WorldRotation.Forward * ForwardDistance )
-				.IgnoreGameObjectHierarchy( GameObject )
-				.WithoutTags( "trigger", "player" )
-				.Run();
-			if ( tr1.Hit )
-			{
-				Body.WorldRotation *= Rotation.FromYaw( 180f * Time.Delta );
-				WishVelocity = Body.WorldRotation.Forward;
-			}
-			else if ( tr2.Hit )
-			{
-				Body.WorldRotation *= Rotation.FromYaw( -180f * Time.Delta );
-				WishVelocity = Body.WorldRotation.Forward;
-			}
+			WishVelocity = Agent.WishVelocity;
 		}
 
 		WishVelocity = WishVelocity.Normal;
 		WishVelocity = WishVelocity * Speed;
-
-		if ( !canSee ) WishVelocity *= 0.1f;
 	}
 
 	void UpdateMovement()
