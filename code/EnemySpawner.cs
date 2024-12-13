@@ -56,8 +56,6 @@ public sealed class EnemySpawner : Component
 		{
 			MaxEnemies++;
 			goalCount = 0;
-			MinRespawnTime = 10 - Stunt * MaxEnemies;
-			MaxRespawnTime = 20 - Stunt * MaxEnemies;
 		}
 		MinRespawnTime = Math.Max( MinRespawnTime, 2f );
 		MaxRespawnTime = Math.Max( MaxRespawnTime, 5f );
