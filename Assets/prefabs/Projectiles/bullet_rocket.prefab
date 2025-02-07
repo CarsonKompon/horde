@@ -1,57 +1,127 @@
 {
   "RootObject": {
-    "Id": "e5f8d5b2-e76d-4b0d-80ce-9d57d892ff03",
+    "__guid": "e5f8d5b2-e76d-4b0d-80ce-9d57d892ff03",
+    "Flags": 0,
     "Name": "bullet_rocket",
-    "Tags": "bullet,trigger",
+    "Tags": "trigger,bullet",
     "Enabled": true,
     "Components": [
       {
         "__type": "BulletProjectile",
+        "__guid": "fe0fbe43-4c67-4811-b08d-99ce619368f1",
         "Damage": 10,
-        "DestroyPrefab": "prefabs/projectiles/explosion_collider.prefab",
-        "DestroySpawnPosition": "2c9f61a7-807e-4d59-9159-ebf3b0e3e4ab",
+        "DestroyPrefab": {
+          "_type": "gameobject",
+          "prefab": "prefabs/projectiles/explosion_collider.prefab"
+        },
+        "DestroySpawnPosition": {
+          "_type": "gameobject",
+          "go": "2c9f61a7-807e-4d59-9159-ebf3b0e3e4ab"
+        },
         "ImpactSound": "sounds/weapons/rpg.explosion.sound",
         "Lifetime": 1000,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Speed": 600
       },
       {
-        "__type": "BoxCollider",
+        "__type": "Sandbox.BoxCollider",
+        "__guid": "0b1282ed-2d37-4b16-b494-86de5bd70985",
         "Center": "14.70001,0,2.1",
+        "Friction": null,
         "IsTrigger": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OnObjectTriggerEnter": null,
+        "OnObjectTriggerExit": null,
+        "OnTriggerEnter": null,
+        "OnTriggerExit": null,
         "Scale": "40.00013,7.800035,7.899994",
         "Static": false,
-        "Surface": null
+        "Surface": null,
+        "SurfaceVelocity": "0,0,0"
       }
     ],
     "Children": [
       {
-        "Id": "9792fdeb-22d4-41ef-86a2-c7435e2d066f",
+        "__guid": "9792fdeb-22d4-41ef-86a2-c7435e2d066f",
+        "Flags": 0,
         "Name": "Body",
-        "Position": "-31.85457,0,-1.045809",
+        "Position": "-0.4481835,0.08292653,0.6457993",
         "Rotation": "-0.0000000006909777,0.01159268,0.000000000000000000216821,0.9999331",
         "Enabled": true,
         "Components": [
           {
-            "__type": "ModelRenderer",
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "9bfa04ab-dc6a-4964-833f-2fc3b76ae17a",
             "BodyGroups": 18446744073709551615,
+            "CreateAttachments": false,
             "MaterialGroup": null,
             "MaterialOverride": null,
             "Model": "models/weapons/rpg7_rocket.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "RenderOptions": {
+              "GameLayer": true,
+              "OverlayLayer": false,
+              "BloomLayer": false,
+              "AfterUILayer": false
+            },
             "RenderType": "On",
             "Tint": "1,1,1,1"
           }
         ]
       },
       {
-        "Id": "2c9f61a7-807e-4d59-9159-ebf3b0e3e4ab",
+        "__guid": "2c9f61a7-807e-4d59-9159-ebf3b0e3e4ab",
+        "Flags": 0,
         "Name": "ExplodePosition",
         "Position": "-0.2911873,-0.00000155469,-0.1436708",
         "Enabled": true
       }
-    ]
+    ],
+    "__variables": [],
+    "__properties": {
+      "FixedUpdateFrequency": 50,
+      "MaxFixedUpdates": 5,
+      "NetworkFrequency": 30,
+      "NetworkInterpolation": true,
+      "PhysicsSubSteps": 1,
+      "ThreadedAnimation": true,
+      "TimeScale": 1,
+      "UseFixedUpdate": true,
+      "Metadata": {},
+      "NavMesh": {
+        "Enabled": false,
+        "IncludeStaticBodies": true,
+        "IncludeKeyframedBodies": true,
+        "EditorAutoUpdate": true,
+        "AgentHeight": 64,
+        "AgentRadius": 16,
+        "AgentStepSize": 18,
+        "AgentMaxSlope": 40,
+        "ExcludedBodies": "",
+        "IncludedBodies": ""
+      }
+    }
   },
   "ShowInMenu": false,
   "MenuPath": null,
   "MenuIcon": null,
-  "__references": []
+  "DontBreakAsTemplate": false,
+  "ResourceVersion": 1,
+  "__references": [],
+  "__version": 1
 }

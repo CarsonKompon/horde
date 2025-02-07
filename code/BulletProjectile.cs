@@ -29,7 +29,7 @@ public sealed class BulletProjectile : Component, Component.ITriggerListener
 
 	public void OnTriggerEnter( Collider other )
 	{
-		if ( !other.GameObject.Tags.Has( "trigger" ) && other.Components.GetInParent<Enemy>() is Enemy enemy )
+		if ( !other.IsTrigger && !other.GameObject.Tags.Has( "trigger" ) && other.Components.GetInParent<Enemy>() is Enemy enemy )
 		{
 			enemy.Hurt( Damage, Network.OwnerId );
 			if ( !enemy.IsValid() )
