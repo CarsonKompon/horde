@@ -256,7 +256,7 @@ public sealed class Player : Component
 					statId = "kills_melee";
 					break;
 				}
-			case "RPG":
+			case "Rocket Launcher":
 				{
 					statId = "kills_explosive";
 					break;
