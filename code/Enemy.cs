@@ -19,15 +19,12 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 	public Vector3 WishVelocity { get; set; }
 
-	[Sync] Vector3 Target { get; set; } = Vector3.Zero;
+	[Sync] public Vector3 Target { get; set; } = Vector3.Zero;
 	[Sync] Guid LastHurt { get; set; } = Guid.Empty;
 	TimeSince timeSinceLastHurt = 0f;
-	TimeSince targetTimer = 0f;
 	TimeSince timeSinceLastNav = 10f;
 	float startingHealth = 10f;
 	int hurtChain = 0;
-
-	List<Player> InRange = new();
 
 	protected override void OnStart()
 	{
@@ -41,22 +38,6 @@ public sealed class Enemy : Component, Component.ITriggerListener
 	{
 		if ( !IsProxy )
 		{
-			if ( targetTimer > 0.5f )
-			{
-				if ( InRange.Count > 0 )
-				{
-					foreach ( var player in InRange )
-					{
-						if ( HasLineOfSight( player.WorldPosition ) && player.Health > 0 )
-						{
-							Target = player.WorldPosition;
-							break;
-						}
-					}
-				}
-				targetTimer = 0f;
-			}
-
 			if ( timeSinceLastNav > 5f )
 			{
 				timeSinceLastNav = 0f;
@@ -68,14 +49,6 @@ public sealed class Enemy : Component, Component.ITriggerListener
 
 			BuildWishVelocity();
 			UpdateMovement();
-
-			// using ( Gizmo.Scope( "navtest" ) )
-			// {
-			// 	Gizmo.Draw.Color = Color.Blue;
-			// 	Gizmo.Draw.LineThickness = 2f;
-			// 	Gizmo.Draw.Line( LeftForward.WorldPosition, LeftForward.WorldPosition + LeftForward.WorldRotation.Forward * ForwardDistance );
-			// 	Gizmo.Draw.Line( RightForward.WorldPosition, RightForward.WorldPosition + RightForward.WorldRotation.Forward * ForwardDistance );
-			// }
 		}
 
 	}
@@ -192,7 +165,7 @@ public sealed class Enemy : Component, Component.ITriggerListener
 		AnimationHelper.WithLook( Body.WorldRotation.Forward );
 	}
 
-	bool HasLineOfSight( Vector3 pos )
+	public bool HasLineOfSight( Vector3 pos )
 	{
 		var tr = Scene.Trace.Ray( WorldPosition + Vector3.Up * 16f, pos + Vector3.Up * 16f )
 			.IgnoreGameObjectHierarchy( GameObject )
@@ -200,25 +173,6 @@ public sealed class Enemy : Component, Component.ITriggerListener
 			.Run();
 
 		return !tr.Hit;
-	}
-
-	public void OnTriggerEnter( Collider other )
-	{
-		if ( IsProxy ) return;
-		if ( other.Components.GetInParentOrSelf<Player>() is Player player && player.Health > 0 )
-		{
-			InRange.Add( player );
-		}
-	}
-
-	public void OnTriggerExit( Collider other )
-	{
-		if ( IsProxy ) return;
-		if ( other.Components.GetInParentOrSelf<Player>() is Player player )
-		{
-			InRange.Remove( player );
-		}
-
 	}
 
 	[Rpc.Broadcast]

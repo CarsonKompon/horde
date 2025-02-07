@@ -14,6 +14,12 @@
         "GroundAngle": 45,
         "Height": 64,
         "IgnoreLayers": "trigger",
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Radius": 9.29,
         "StepHeight": 18,
         "UseCollisionRules": false
@@ -48,6 +54,12 @@
           "_type": "gameobject",
           "go": "8049689b-17de-410f-97f8-dfb193cf0b0e"
         },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "RightForward": {
           "_type": "gameobject",
           "go": "6d05f3fb-6d22-4c5c-83cb-d18c339f153b"
@@ -55,20 +67,17 @@
         "Speed": 220
       },
       {
-        "__type": "Sandbox.SphereCollider",
-        "__guid": "2a168090-7d5a-4854-89f6-555178634269",
-        "Center": "0,0,38.30001",
-        "IsTrigger": true,
-        "Radius": 420,
-        "Static": false,
-        "SurfaceVelocity": "0,0,0"
-      },
-      {
         "__type": "Sandbox.NavMeshAgent",
         "__guid": "505c3dc4-7ad0-4058-81c4-9b820b267f37",
         "Acceleration": 50,
         "Height": 64,
         "MaxSpeed": 120,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
         "Radius": 16,
         "Separation": 0.25,
         "UpdatePosition": false,
@@ -85,12 +94,21 @@
           {
             "__type": "Sandbox.SkinnedModelRenderer",
             "__guid": "de10ba34-e943-4609-9dab-1a8dd074a4eb",
+            "AnimationGraph": null,
             "BodyGroups": 341,
+            "BoneMergeTarget": null,
             "CreateAttachments": false,
             "CreateBoneObjects": false,
+            "MaterialGroup": null,
             "MaterialOverride": "models/citizen/skin/citizen_skin_zombie.vmat",
             "Model": "models/citizen/citizen.vmdl",
             "Morphs": {},
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "Parameters": {
               "bools": {},
               "ints": {},
@@ -122,7 +140,18 @@
             "EyesWeight": 1,
             "HeadWeight": 1,
             "Height": 1.5,
+            "IkLeftFoot": null,
+            "IkLeftHand": null,
+            "IkRightFoot": null,
+            "IkRightHand": null,
+            "LookAt": null,
             "LookAtEnabled": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "Target": {
               "_type": "component",
               "component_id": "de10ba34-e943-4609-9dab-1a8dd074a4eb",
@@ -136,7 +165,14 @@
             "Color": "1,1,1,0",
             "InsideColor": "0,0,0,0",
             "InsideObscuredColor": "1,0,0,0.06275",
+            "Material": null,
             "ObscuredColor": "0,0,0,0.4",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "Width": 0.25
           }
         ],
@@ -150,6 +186,7 @@
               {
                 "__type": "Sandbox.SkinnedModelRenderer",
                 "__guid": "3515d082-52c9-4419-a0a5-16dccfb9e477",
+                "AnimationGraph": null,
                 "BodyGroups": 18446744073709551615,
                 "BoneMergeTarget": {
                   "_type": "component",
@@ -159,8 +196,16 @@
                 },
                 "CreateAttachments": false,
                 "CreateBoneObjects": false,
+                "MaterialGroup": null,
+                "MaterialOverride": null,
                 "Model": "models/citizen_clothes/hair/hair_short_dreadlocks/models/hair_short_dreadlocks.vmdl",
                 "Morphs": {},
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
                 "Parameters": {
                   "bools": {},
                   "ints": {},
@@ -221,7 +266,15 @@
             "__guid": "f23f79d4-732e-42bf-9c48-f11055dfffa3",
             "BodyGroups": 18446744073709551615,
             "CreateAttachments": false,
+            "MaterialGroup": null,
+            "MaterialOverride": null,
             "Model": "models/circle.vmdl",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,
@@ -237,7 +290,14 @@
             "Color": "1,0,0,1",
             "InsideColor": "0,0,0,0",
             "InsideObscuredColor": "0,0,0,0",
+            "Material": null,
             "ObscuredColor": "0,0,0,0.4",
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
             "Width": 0.25
           }
         ]
@@ -252,10 +312,22 @@
             "__type": "Sandbox.CapsuleCollider",
             "__guid": "144d791b-4106-4131-adf9-fb47102dc0de",
             "End": "0,0,128",
+            "Friction": null,
             "IsTrigger": false,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
             "Radius": 19.400024,
             "Start": "0,0,15.60001",
             "Static": false,
+            "Surface": null,
             "SurfaceVelocity": "0,0,0"
           }
         ]
@@ -272,10 +344,22 @@
             "__type": "Sandbox.CapsuleCollider",
             "__guid": "107d683d-e55c-4c6c-9487-4f9587f2c23b",
             "End": "0,0,16",
+            "Friction": null,
             "IsTrigger": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
             "Radius": 21.000029,
             "Start": "0,0,-16",
             "Static": false,
+            "Surface": null,
             "SurfaceVelocity": "0,0,0"
           },
           {
@@ -288,7 +372,58 @@
               "component_type": "CitizenAnimationHelper"
             },
             "Cooldown": 1,
-            "Damage": 8
+            "Damage": 8,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null
+          }
+        ]
+      },
+      {
+        "__guid": "526fc450-7db8-452d-9927-fcf9653a8df3",
+        "Flags": 0,
+        "Name": "AggroCheck",
+        "Enabled": true,
+        "Components": [
+          {
+            "__type": "Sandbox.SphereCollider",
+            "__guid": "c237cd3c-5642-450b-8246-da736f6f52a0",
+            "Center": "0,0,38.30001",
+            "Friction": null,
+            "IsTrigger": true,
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null,
+            "OnObjectTriggerEnter": null,
+            "OnObjectTriggerExit": null,
+            "OnTriggerEnter": null,
+            "OnTriggerExit": null,
+            "Radius": 420,
+            "Static": false,
+            "Surface": null,
+            "SurfaceVelocity": "0,0,0"
+          },
+          {
+            "__type": "EnemyAggroCheck",
+            "__guid": "13eca37d-cc93-4ba4-b798-9df1bf37a02c",
+            "Enemy": {
+              "_type": "component",
+              "component_id": "b7477183-1dc8-433c-8fbd-1ad4b39cf15c",
+              "go": "4f01f0e7-91c4-46f9-8ad6-38ac612ef892",
+              "component_type": "Enemy"
+            },
+            "OnComponentDestroy": null,
+            "OnComponentDisabled": null,
+            "OnComponentEnabled": null,
+            "OnComponentFixedUpdate": null,
+            "OnComponentStart": null,
+            "OnComponentUpdate": null
           }
         ]
       }

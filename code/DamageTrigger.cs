@@ -38,8 +38,9 @@ public sealed class DamageTrigger : Component, Component.ITriggerListener
 	public void OnTriggerEnter( Collider other )
 	{
 		if ( IsProxy ) return;
-		if ( other.Components.GetInParentOrSelf<Player>() is Player player )
+		if ( other.GameObject.Root.Components.GetInDescendantsOrSelf<Player>() is Player player )
 		{
+			Log.Info( $"Player {player} entered trigger" );
 			canHurt.Add( player );
 		}
 	}
@@ -47,8 +48,9 @@ public sealed class DamageTrigger : Component, Component.ITriggerListener
 	public void OnTriggerExit( Collider other )
 	{
 		if ( IsProxy ) return;
-		if ( other.Components.GetInParentOrSelf<Player>() is Player player )
+		if ( other.GameObject.Root.Components.GetInDescendantsOrSelf<Player>() is Player player )
 		{
+			Log.Info( $"Player {player} exited trigger" );
 			canHurt.Remove( player );
 		}
 	}
