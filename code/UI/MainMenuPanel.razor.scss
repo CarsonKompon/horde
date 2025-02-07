@@ -7,6 +7,7 @@ MainMenuPanel
 	bottom: 0;
 	padding: 32px;
 	gap: 32px;
+	font-family: Teko;
 
 	> .left
 	{
@@ -16,7 +17,7 @@ MainMenuPanel
 
 		> .logo
 		{
-			width: 800px;
+			width: 700px;
 			aspect-ratio: 3.877;
 			flex-shrink: 0;
 		}
@@ -24,9 +25,9 @@ MainMenuPanel
 		> .subtitle
 		{
 			flex-shrink: 0;
-			font-family: Poppins;
-			font-size: 24px;
-			color: white;
+			font-size: 48px;
+			color: #990904;
+			text-shadow: 1px 1px 0px black;
 		}
 
 		> .menu
@@ -35,6 +36,7 @@ MainMenuPanel
 			background-color: rgba(black, 0.5);
 			flex-direction: column;
 			pointer-events: all;
+			// width: 100px;
 
 			> .header
 			{
@@ -48,7 +50,6 @@ MainMenuPanel
 					height: 64px;
 					background-color: rgba(black, 0.5);
 					color: white;
-					font-family: Poppins;
 					font-size: 32px;
 					font-weight: 700;
 					transition: all 0.05s ease-in;
@@ -78,6 +79,7 @@ MainMenuPanel
 			{
 				flex-direction: column;
 				padding: 32px;
+				flex-grow: 1;
 
 				> .supported-maps
 				{
@@ -121,7 +123,6 @@ MainMenuPanel
 
 				> .warning
 				{
-					font-family: Poppins;
 					font-size: 24px;
 					flex-shrink: 0;
 					color: rgb(224, 88, 88);
@@ -135,9 +136,10 @@ MainMenuPanel
 
 	> .right
 	{
-		width: 600px;
+		width: 400px;
+		height: 600px;
+		align-self: flex-end;
 		flex-shrink: 0;
-		font-family: Poppins;
 		flex-direction: column;
 		align-items: center;
 		background-color: rgba(black, 0.5);
@@ -146,6 +148,7 @@ MainMenuPanel
 		> .header
 		{
 			font-size: 64px;
+			font-weight: 800;
 		}
 
 		> .content
@@ -154,6 +157,7 @@ MainMenuPanel
 			width: 100%;
 			flex-direction: column;
 			gap: 16px;
+			overflow-x: hidden;
 			overflow-y: scroll;
 			align-items: center;
 			pointer-events: all;
@@ -163,11 +167,10 @@ MainMenuPanel
 			{
 				flex-shrink: 0;
 				width: 100%;
-				height: 100px;
 				background-color: grey;
 				flex-direction: column;
 				padding: 8px;
-				font-size: 28px;
+				font-size: 20px;
 
 				> .title
 				{
@@ -177,6 +180,12 @@ MainMenuPanel
 				> .meta
 				{
 					justify-content: space-between;
+				}
+
+				&:hover
+				{
+					background-color: rgba(grey, 0.7);
+					cursor: pointer;
 				}
 			}
 		}

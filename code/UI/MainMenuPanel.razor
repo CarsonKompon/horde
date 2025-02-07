@@ -52,24 +52,12 @@
 			{
 				@foreach (var lobby in LobbyList)
 				{
-					<div class="button" onclick=@(() => JoinLobby( lobby ) )>
-
-						<div class="title">
-							@lobby.Name
-						</div>
-
+					<div class="button" onclick=@(() => JoinLobby(lobby))>
+						<div class="title">@lobby.Name</div>
 						<div class="meta">
-
-							<div class="map">
-								@lobby.Map
-							</div>
-
-							<div class="count">
-								@lobby.Members / @lobby.MaxMembers
-							</div>
-
+							<div class="map">@lobby.Map</div>
+							<div class="count">@lobby.Members / @lobby.MaxMembers</div>
 						</div>
-
 					</div>
 				}
 			}
